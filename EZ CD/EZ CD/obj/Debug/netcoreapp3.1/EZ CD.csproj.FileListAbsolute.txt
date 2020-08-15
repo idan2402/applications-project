@@ -107,3 +107,4 @@ D:\College\Year D\Second Semester\Applications\applications-project\EZ CD\EZ CD\
 D:\College\Year D\Second Semester\Applications\applications-project\EZ CD\EZ CD\obj\Debug\netcoreapp3.1\EZ CD.csproj.CoreCompileInputs.cache
 D:\College\Year D\Second Semester\Applications\applications-project\EZ CD\EZ CD\obj\Debug\netcoreapp3.1\EZ CD.MvcApplicationPartsAssemblyInfo.cache
 D:\College\Year D\Second Semester\Applications\applications-project\EZ CD\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
+D:\College\Year D\Second Semester\Applications\applications-project\EZ CD\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\Login\Index.cshtml.g.cs

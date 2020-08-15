@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - EZ_CD</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/navbar.css" />
     <style>
         .logo-image {
             object-fit: contain;
@@ -35,7 +35,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link disabled" href="#">Admin</a>
+                        <a asp-controller="Login" asp-action="Index" class="nav-link">Log In</a>
                     </li>
                 </ul>
 
