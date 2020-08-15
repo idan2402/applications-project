@@ -7,7 +7,7 @@ namespace EZ_CD.Models
 {
     public class Disk
     {
-        public int Id;
+        public int diskId;
 
         public int Price;
 

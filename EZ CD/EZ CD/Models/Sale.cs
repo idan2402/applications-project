@@ -7,7 +7,7 @@ namespace EZ_CD.Models
 {
     public class Sale
     {
-        public int Id;
+        public int saleId;
         public int customerId;
         public Disk[] disks;
 
