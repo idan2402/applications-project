@@ -16,5 +16,7 @@ namespace EZ_CD.Models
         public Song[] Songs;
 
         public String Genre;
+
+        public int BirthYear, BirthMonth, BirthDay;
     }
 }

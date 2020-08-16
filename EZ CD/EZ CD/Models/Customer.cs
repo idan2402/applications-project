@@ -8,6 +8,10 @@ namespace EZ_CD.Models
     public class Customer
     {
         public int customerId;
+        public String name;
+        public String phone;
+        public String addr;
+        public String email;
         public Sale[] purchases;
     }
 }
