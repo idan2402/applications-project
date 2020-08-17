@@ -9,7 +9,7 @@ namespace EZ_CD.Models
     {
         public int saleId { get; set; }
         public Customer customer { get; set; }
-        public ICollection<SaleDetailes> disks { get; set; }
+        public ICollection<SaleDetailes> disksSalesDetailes { get; set; }
         public DateTime date { get; set; }
     }
 }

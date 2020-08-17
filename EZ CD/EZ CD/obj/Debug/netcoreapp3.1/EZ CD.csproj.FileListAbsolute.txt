@@ -272,3 +272,15 @@ E:\College\web app develolpment\Final_Project\applications-project\EZ CD\EZ CD\b
 E:\College\web app develolpment\Final_Project\applications-project\EZ CD\EZ CD\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 E:\College\web app develolpment\Final_Project\applications-project\EZ CD\EZ CD\obj\Debug\netcoreapp3.1\EZ CD.csproj.CoreCompileInputs.cache
 E:\College\web app develolpment\Final_Project\applications-project\EZ CD\EZ CD\obj\Debug\netcoreapp3.1\EZ CD.MvcApplicationPartsAssemblyInfo.cache
+E:\College\web app develolpment\Final_Project\applications-project\EZ CD\EZ CD\bin\Debug\netcoreapp3.1\Properties\serviceDependencies.json
+E:\College\web app develolpment\Final_Project\applications-project\EZ CD\EZ CD\bin\Debug\netcoreapp3.1\Properties\serviceDependencies.local.json
+E:\College\web app develolpment\Final_Project\applications-project\EZ CD\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\Admins\Create.cshtml.g.cs
+E:\College\web app develolpment\Final_Project\applications-project\EZ CD\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\Admins\Delete.cshtml.g.cs
+E:\College\web app develolpment\Final_Project\applications-project\EZ CD\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\Admins\Details.cshtml.g.cs
+E:\College\web app develolpment\Final_Project\applications-project\EZ CD\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\Admins\Edit.cshtml.g.cs
+E:\College\web app develolpment\Final_Project\applications-project\EZ CD\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\Admins\Index.cshtml.g.cs
+E:\College\web app develolpment\Final_Project\applications-project\EZ CD\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\SaleDetailes\Create.cshtml.g.cs
+E:\College\web app develolpment\Final_Project\applications-project\EZ CD\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\SaleDetailes\Delete.cshtml.g.cs
+E:\College\web app develolpment\Final_Project\applications-project\EZ CD\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\SaleDetailes\Details.cshtml.g.cs
+E:\College\web app develolpment\Final_Project\applications-project\EZ CD\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\SaleDetailes\Edit.cshtml.g.cs
+E:\College\web app develolpment\Final_Project\applications-project\EZ CD\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\SaleDetailes\Index.cshtml.g.cs

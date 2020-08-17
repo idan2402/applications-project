@@ -26,7 +26,7 @@ namespace EZ_CD.Models
         public Admin admin { get; set; } // The admin who added the disk to the DB
 
         
-        public ICollection<SaleDetailes> sales { get; set; } // all the orders that contains the disk
+        public ICollection<SaleDetailes> disksSalesDetailes { get; set; } // all the orders that contains the disk
 
     }
 }
