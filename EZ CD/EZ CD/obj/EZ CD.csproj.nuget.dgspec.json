@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\College\\Year D\\Second Semester\\Applications\\applications-project\\EZ CD\\EZ CD\\EZ CD.csproj": {}
+    "E:\\College\\web app develolpment\\Final_Project\\applications-project\\EZ CD\\EZ CD\\EZ CD.csproj": {}
   },
   "projects": {
-    "D:\\College\\Year D\\Second Semester\\Applications\\applications-project\\EZ CD\\EZ CD\\EZ CD.csproj": {
+    "E:\\College\\web app develolpment\\Final_Project\\applications-project\\EZ CD\\EZ CD\\EZ CD.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\College\\Year D\\Second Semester\\Applications\\applications-project\\EZ CD\\EZ CD\\EZ CD.csproj",
+        "projectUniqueName": "E:\\College\\web app develolpment\\Final_Project\\applications-project\\EZ CD\\EZ CD\\EZ CD.csproj",
         "projectName": "EZ CD",
-        "projectPath": "D:\\College\\Year D\\Second Semester\\Applications\\applications-project\\EZ CD\\EZ CD\\EZ CD.csproj",
-        "packagesPath": "C:\\Users\\idan chudner\\.nuget\\packages\\",
-        "outputPath": "D:\\College\\Year D\\Second Semester\\Applications\\applications-project\\EZ CD\\EZ CD\\obj\\",
+        "projectPath": "E:\\College\\web app develolpment\\Final_Project\\applications-project\\EZ CD\\EZ CD\\EZ CD.csproj",
+        "packagesPath": "C:\\Users\\Adir Zaguri\\.nuget\\packages\\",
+        "outputPath": "E:\\College\\web app develolpment\\Final_Project\\applications-project\\EZ CD\\EZ CD\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\idan chudner\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Adir Zaguri\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -38,6 +38,20 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[3.1.6, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[3.1.6, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.1.6, )"
+            },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[3.1.4, )"
@@ -61,7 +75,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
         }
       }
     }
