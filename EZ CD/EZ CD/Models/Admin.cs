@@ -7,10 +7,10 @@ namespace EZ_CD.Models
 {
     public class Admin
     {
-        int AdminId;
-        String Name;
-        String Username;
-        String Password;
-        String Email;
+        public int adminId { get; set; }
+        public string name { get; set; }
+        public string username { get; set; }
+        public string password { get; set; }
+        public string email { get; set; }
     }
 }

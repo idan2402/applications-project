@@ -7,11 +7,11 @@ namespace EZ_CD.Models
 {
     public class Customer
     {
-        public int customerId;
-        public String name;
-        public String phone;
-        public String addr;
-        public String email;
-        public Sale[] purchases;
+        public int customerId { get; set; }
+        public string name { get; set; }
+        public string phone { get; set; }
+        public string addr { get; set; }
+        public string email { get; set; }
+        public ICollection<Sale> purchases { get; set; }
     }
 }

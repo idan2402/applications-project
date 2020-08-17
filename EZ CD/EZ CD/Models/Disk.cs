@@ -7,16 +7,23 @@ namespace EZ_CD.Models
 {
     public class Disk
     {
-        public int diskId;
+        public int diskId { get; set; }
 
-        public int Price;
+        public double price { get; set; }
 
-        public String Name;
+        public string name { get; set; }
 
-        public Song[] Songs;
+        public DateTime date { get; set; }
 
-        public String Genre;
+        public Artist artist { get; set; }
 
-        public int BirthYear, BirthMonth, BirthDay;
-    }
+        public ICollection<Song> songs { get; set; }
+
+        public string genre { get; set; }
+
+        public DateTime dateAdded { get; set; } // The date that the admin added the disk to the website
+
+        public Admin admin { get; set; } // The admin who added the disk to the DB
+
+    } 
 }

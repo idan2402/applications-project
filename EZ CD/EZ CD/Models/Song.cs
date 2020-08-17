@@ -7,9 +7,9 @@ namespace EZ_CD.Models
 {
     public class Song
     {
-        public int songId;
-        public String Name;
-        public int artistId;
-        public int legnthMin, lengthSec;
+        public int songId { get; set; }
+        public string name { get; set; }
+        public Artist artist { get; set; }
+        public string length { get; set; }
     }
 }
