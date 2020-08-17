@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace EZ_CD.Models
 {
-    public class Sale
+    public class SaleDetailes
     {
+        public Disk disk { get; set; }
+        public int diskId { get; set; }
         public int saleId { get; set; }
-        public Customer customer { get; set; }
-        public ICollection<SaleDetailes> disks { get; set; }
-        public DateTime date { get; set; }
+        public Sale sale { get; set; }
     }
 }
