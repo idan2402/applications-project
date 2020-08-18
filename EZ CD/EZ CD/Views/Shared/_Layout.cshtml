@@ -11,6 +11,7 @@
             object-fit: contain;
         }
     </style>
+
 </head>
 <body>
     <header>
@@ -40,14 +41,50 @@
                 </ul>
 
                 <div class="dropdown cat-dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Choose a Category
+                    <button class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" type="button" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false">
+                        Filters
                     </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Name</a>
-                        <a class="dropdown-item" href="#">Artist</a>
-                        <a class="dropdown-item" href="#">Year</a>
+                    <div class="dropdown-menu main-dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item Genre" href="#">Genre</a>
+                        <ul class="submenu Genres dropdown-menu">
+                            <li class="checkbox dropdown-item">
+                                <label><input type="checkbox" class="icheck"> Pop</label>
+                            </li>
+                            <li class="checkbox dropdown-item">
+                                <label><input type="checkbox" class="icheck"> Rap</label>
+                            </li>
+                            <li class="checkbox dropdown-item">
+                                <label><input type="checkbox" class="icheck"> Rock</label>
+                            </li>
+                            <li class="checkbox dropdown-item">
+                                <label><input type="checkbox" class="icheck"> Metal</label>
+                            </li>
+                            <li class="checkbox dropdown-item">
+                                <label><input type="checkbox" class="icheck"> Classic</label>
+                            </li>
+                        </ul>
+                        <a class="dropdown-item Release-date" href="#">Release Year</a>
+                        <ul class="submenu Release-dates dropdown-menu">
+                            <li class="dropdown-item">
+                                From:
+                                <input type="text" id="fromText" name="fromText" min="4" maxlength="4" size="6">
+                            </li>
+                            <li class="dropdown-item">
+                                To:
+                                <input type="text" id="toText" name="toText" max="4" maxlength="4" size="6">
+                            </li>
+                        </ul>
+                        <a class="dropdown-item Price" href="#">Price</a>
+                        <ul class="submenu Prices dropdown-menu">
+                            <li class="dropdown-item">
+                                Minimum:
+                                <input type="text" id="minPrice" name="minPriceText" min="4" maxlength="4" size="6">
+                            </li>
+                            <li class="dropdown-item">
+                                Maximum:
+                                <input type="text" id="maxPrice" name="maxPriceText" max="4" maxlength="4" size="6">
+                            </li>
+                        </ul>
                     </div>
                 </div>
                 <form class="form-inline my-2 my-lg-0">
@@ -64,6 +101,8 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="~/js/navbar.js"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>

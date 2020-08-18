@@ -15,3 +15,55 @@
 .cat-dropdown{
   padding-right: 10px;
 }
+
+.slider {
+    width: 65%;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.submenu{
+    position: absolute;
+    left: 100%;
+    display:none;
+}
+
+.submenu:hover{
+    display:block;
+}
+
+.checkbox {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.Genre:hover + .Genres{
+    display:block;
+}
+
+.Genres {
+    top: 0;
+}
+
+.Price:hover + .Prices{
+    display:block
+}
+
+.Prices{
+    top:62%;
+}
+
+.Release-date:hover + .Release-dates {
+    display: block
+}
+
+.Release-dates {
+    top: 35%;
+}
+
+.slider{
+    width:10px;
+}
+
