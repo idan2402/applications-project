@@ -8,6 +8,8 @@
   <ItemGroup>
     <Compile Remove="Migrations\20200817151341_help.cs" />
     <Compile Remove="Migrations\20200817151341_help.Designer.cs" />
+    <Compile Remove="Migrations\20200818172044_unwantedColumnCleanup.cs" />
+    <Compile Remove="Migrations\20200818172044_unwantedColumnCleanup.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

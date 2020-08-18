@@ -24,5 +24,13 @@ namespace EZ_CD.Data
         }
 
         public DbSet<EZ_CD.Models.SaleDetailes> SaleDetailes { get; set; }
+
+        public DbSet<EZ_CD.Models.Artist> Artist { get; set; }
+
+        public DbSet<EZ_CD.Models.Disk> Disk { get; set; }
+
+        public DbSet<EZ_CD.Models.Customer> Customer { get; set; }
+
+        public DbSet<EZ_CD.Models.Sale> Sale { get; set; }
     }
 }
