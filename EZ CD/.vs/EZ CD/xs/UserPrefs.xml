@@ -1,0 +1,36 @@
+﻿<Properties StartupConfiguration="{4C94782E-BB91-4811-9DBC-A14FCF1F95BF}|EZ_CD">
+  <MonoDevelop.Ide.Workbench ActiveDocument="EZ CD/wwwroot/css/login.css">
+    <Files>
+      <File FileName="EZ CD/Views/Login/Index.cshtml" Line="17" Column="22" />
+      <File FileName="EZ CD/wwwroot/css/login.css" Line="55" Column="14" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="EZ CD" expanded="True">
+            <Node name="EZ CD" expanded="True">
+              <Node name="Views" expanded="True">
+                <Node name="Login" expanded="True" />
+              </Node>
+              <Node name="wwwroot" expanded="True">
+                <Node name="css" expanded="True">
+                  <Node name="login.css" selected="True" />
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.EZ_220CD PreferredExecutionTarget="/Applications/Safari.app" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
