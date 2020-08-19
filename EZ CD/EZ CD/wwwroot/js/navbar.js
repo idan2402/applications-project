@@ -23,3 +23,12 @@ $(document).ready(function () {
         });
     $("#price").slider("moveTo", 500000, 1);
 });
+
+$('#filters-form').submit(function () {
+    $(this)
+        .find('input[name]')
+        .filter(function () {
+            return !this.value;
+        })
+        .prop('name', '');
+});

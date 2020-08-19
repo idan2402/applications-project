@@ -24,6 +24,12 @@ namespace EZ_CD.Controllers
         {
             return View(await _context.Disk.ToListAsync());
         }
+        public async Task<IActionResult> Search(string pop="", string rap = "", string rock = "", string metal = "", string classic = "",
+            string fromYear = "", string toYear = "", string minPrice = "", string maxPrice = "")
+        {
+            var results = _context.Disk;
+            return View(await _context.Disk.ToListAsync());
+        }
 
         // GET: Disks/Details/5
         public async Task<IActionResult> Details(int? id)
