@@ -28,7 +28,15 @@ namespace EZ_CD.Controllers
             string fromYear = "", string toYear = "", string minPrice = "", string maxPrice = "")
         {
             var results = _context.Disk;
-            return View(await _context.Disk.ToListAsync());
+            if (!String.IsNullOrEmpty(fromYear))
+                results.Intersect(from disk in _context.Disk
+                                  where disk.date.Year > int.Parse(fromYear)
+                                  select disk
+                                  );
+            if(String.IsNullOrEmpty(pop) && String.IsNullOrEmpty(rap) && String.IsNullOrEmpty(rock) && String.IsNullOrEmpty(metal) && String.IsNullOrEmpty(classic))
+
+
+            return View(await results.ToListAsync());
         }
 
         // GET: Disks/Details/5
