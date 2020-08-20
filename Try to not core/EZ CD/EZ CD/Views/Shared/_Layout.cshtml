@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - EZ_CD</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/navbar.css" />
+    <style>
+        .logo-image {
+            object-fit: contain;
+        }
+    </style>
+
+</head>
+<body>
+    <header>
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">
+                <img src="~/img/logo.png" width="30" height="30" class="logo-image d-inline-block align-top" alt="">
+                EZ CD
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    @if (Session["username"] == null)
+                    {
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/Home/Login">Hello guest!<span class="sr-only">(current)</span></a>
+                    </li>
+                    }
+                    else
+                    {
+                    <li class="nav-item active">
+                        <a href="/Home" class="nav-link">Hello @Session["username"]!</a>
+
+
+                    </li>
+                    }
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">News</a>
+                    </li>
+
+                    @if (Session["username"] == null)
+                    {
+                        <li class="nav-item">
+                            <a href="/Home/Login" class="nav-link">Log In</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            @{
+                                Session["username"] = null;
+                            }
+                            <a href="/Home" class="nav-link">Log Out</a>
+                        </li>
+                    }
+
+                </ul>
+                <!-- fix the navbar astetic bullshit -->
+                <form method="get" action="/disks/search" id="filters-form">
+                    <div class="dropdown cat-dropdown search-element">
+                        <button class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" type="button" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false">
+                            Filters
+                        </button>
+                        <div class="dropdown-menu main-dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item Genre" href="#">Genre</a>
+                            <ul class="submenu Genres dropdown-menu">
+                                <li class="checkbox dropdown-item">
+                                    <label><input type="checkbox" name="pop" class="icheck" value="Pop"> Pop</label>
+                                </li>
+                                <li class="checkbox dropdown-item">
+                                    <label><input type="checkbox" name="rap" class="icheck" value="Rap"> Rap</label>
+                                </li>
+                                <li class="checkbox dropdown-item">
+                                    <label><input type="checkbox" name="rock" class="icheck" value="Rock"> Rock</label>
+                                </li>
+                                <li class="checkbox dropdown-item">
+                                    <label><input type="checkbox" name="metal" class="icheck " value="Metal"> Metal</label>
+                                </li>
+                                <li class="checkbox dropdown-item">
+                                    <label><input type="checkbox" name="classic" class="icheck" value="Classic"> Classic</label>
+                                </li>
+                            </ul>
+                            <a class="dropdown-item Release-date" href="#">Release Year</a>
+                            <ul class="submenu Release-dates dropdown-menu">
+                                <li class="dropdown-item">
+                                    From:
+                                    <input type="text" id="fromText" name="fromYear" min="4" maxlength="4" size="6">
+                                </li>
+                                <li class="dropdown-item">
+                                    To:
+                                    <input type="text" id="toText" name="toYear" max="4" maxlength="4" size="6">
+                                </li>
+                            </ul>
+                            <a class="dropdown-item Price" href="#">Price</a>
+                            <ul class="submenu Prices dropdown-menu">
+                                <li class="dropdown-item">
+                                    Minimum:
+                                    <input type="text" id="minPrice" name="minPrice" min="4" maxlength="4" size="6">
+                                </li>
+                                <li class="dropdown-item">
+                                    Maximum:
+                                    <input type="text" id="maxPrice" name="maxPrice" max="4" maxlength="4" size="6">
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                    <input class="form-control mr-sm-2 search-element" name="diskName" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0 search-element" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+    </header>
+
+    @RenderBody()
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="~/Scripts/navbar.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
