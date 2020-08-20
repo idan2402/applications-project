@@ -39,7 +39,7 @@
                         <a asp-controller="Login" asp-action="Index" class="nav-link">Log In</a>
                     </li>
                 </ul>
-                <form method="get" action="/disks/search" id="filters-form">
+                <form method="get" action="/disks/search" id="filters-form" name="filters-form" onsubmit="return validateFiltersForm()">
                     <div class="dropdown cat-dropdown search-element">
                         <button class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" type="button" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false">
                             Filters

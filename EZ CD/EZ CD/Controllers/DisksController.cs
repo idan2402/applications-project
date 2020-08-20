@@ -24,11 +24,49 @@ namespace EZ_CD.Controllers
         {
             return View(await _context.Disk.ToListAsync());
         }
+        public void inValidInput() { 
+        }
         public async Task<IActionResult> Search(string diskName, string pop="", string rap = "", string rock = "", string metal = "", string classic = "",
             string fromYear = "", string toYear = "", string minPrice = "", string maxPrice = "")
         {
-            // TODO: check the input is ok before the queries
+            // Validations:
+            if(fromYear != "")
+            {
+                if (!isDigits(fromYear))
+                    return View("_InvalidArguments");
+                if(int.Parse(fromYear) <= 0)
+                    return View("_InvalidArguments");
+                if (int.Parse(fromYear) != double.Parse(fromYear))
+                    return View("_InvalidArguments");
+            }
+            if (toYear != "")
+            {
+                if (!isDigits(toYear))
+                    return View("_InvalidArguments");
+                if (int.Parse(toYear) > int.Parse(DateTime.Now.Year.ToString()))
+                    return View("_InvalidArguments");
+                if (int.Parse(toYear) != double.Parse(toYear))
+                    return View("_InvalidArguments");
+                if(int.Parse(toYear) < int.Parse(fromYear))
+                    return View("_InvalidArguments");
+            }
+            if (minPrice != "")
+            {
+                if (!isDigits(minPrice))
+                    return View("_InvalidArguments");
+                if (int.Parse(minPrice) < 0)
+                    return View("_InvalidArguments");
+            }
+            if (minPrice != "")
+            {
+                if (!isDigits(maxPrice))
+                    return View("_InvalidArguments");
+                if (int.Parse(maxPrice) < int.Parse(minPrice))
+                    return View("_InvalidArguments");
+            }
+            // End Of Validations
 
+            // The Search:
             IQueryable<Disk> results = _context.Disk;
 
             if (!String.IsNullOrEmpty(diskName))
@@ -176,5 +214,14 @@ namespace EZ_CD.Controllers
         {
             return _context.Disk.Any(e => e.diskId == id);
         }
+        private bool isDigits(string str)
+        {
+            char[] digitsArr = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '-', '.'};
+            foreach (char c in str)
+                if (!digitsArr.Contains(c))
+                    return false;
+            return true;
+        }
+
     }
 }
