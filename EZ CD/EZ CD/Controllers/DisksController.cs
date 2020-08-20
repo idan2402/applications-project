@@ -24,19 +24,32 @@ namespace EZ_CD.Controllers
         {
             return View(await _context.Disk.ToListAsync());
         }
-        public async Task<IActionResult> Search(string pop="", string rap = "", string rock = "", string metal = "", string classic = "",
+        public async Task<IActionResult> Search(string diskName, string pop="", string rap = "", string rock = "", string metal = "", string classic = "",
             string fromYear = "", string toYear = "", string minPrice = "", string maxPrice = "")
         {
-            var results = _context.Disk;
+            // TODO: check the input is ok before the queries
+
+            IQueryable<Disk> results = _context.Disk;
+
+            if (!String.IsNullOrEmpty(diskName))
+                results = results.Where(disk => (disk.name.Contains(diskName)));
             if (!String.IsNullOrEmpty(fromYear))
-                results.Intersect(from disk in _context.Disk
-                                  where disk.date.Year > int.Parse(fromYear)
-                                  select disk
-                                  );
-            if(String.IsNullOrEmpty(pop) && String.IsNullOrEmpty(rap) && String.IsNullOrEmpty(rock) && String.IsNullOrEmpty(metal) && String.IsNullOrEmpty(classic))
+                results = results.Where(disk => (disk.date.Year >= int.Parse(fromYear)));
+            if (!String.IsNullOrEmpty(toYear))
+                results = results.Where(disk => (disk.date.Year <= int.Parse(toYear)));
+            if (!String.IsNullOrEmpty(minPrice))
+                results = results.Where(disk => (disk.price >= int.Parse(minPrice)));
+            if (!String.IsNullOrEmpty(maxPrice))
+                results = results.Where(disk => (disk.price <= int.Parse(maxPrice)));
 
-
-            return View(await results.ToListAsync());
+            if (String.IsNullOrEmpty(pop) && String.IsNullOrEmpty(rap) && String.IsNullOrEmpty(rock) && String.IsNullOrEmpty(metal) && String.IsNullOrEmpty(classic))
+                return View(await results.ToListAsync());
+            
+            return View(
+                from disk in results
+                where (disk.genre == pop) || (disk.genre == rap) || (disk.genre == rock) || (disk.genre == metal) || (disk.genre == classic)
+                select disk
+                );
         }
 
         // GET: Disks/Details/5
