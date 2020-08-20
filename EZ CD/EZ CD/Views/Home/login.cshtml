@@ -1,4 +1,5 @@
 ﻿
+@model User 
 @{
     Layout = null;
 }
@@ -58,21 +59,25 @@
 
 
                 <!-- Login Form -->
-                <form style="padding-top: 5px; padding-bottom: 20px">
+                @using (Html.BeginForm("Login", "Home", FormMethod.Post))
+                {
+                    <form style="padding-top: 5px; padding-bottom: 20px">
 
-                    <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
-                    <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
-                    <input type="submit" class="fadeIn fourth" value="Log In">
-                    <div class="fb-login-button fadeIn fourth"
-                         data-size="large"
-                         data-button-type="login_with"
-                         data-layout="rounded"
-                         data-auto-logout-link="false"
-                         data-use-continue-as="false"
-                         data-width="225px">
+                        <input type="text" id="username" class="fadeIn second" name="username" placeholder="username">
+                        <input type="text" id="password" class="fadeIn third" name="password" placeholder="password">
+                        <input type="submit" class="fadeIn fourth" value="Log In">
+                            <div class="fb-login-button fadeIn fourth"
+                                 data-size="large"
+                                 data-button-type="login_with"
+                                 data-layout="rounded"
+                                 data-auto-logout-link="false"
+                                 data-use-continue-as="false"
+                                 data-width="225px">
 
-                    </div>
-                </form>
+                            </div>
+                    </form>
+                }
+                
 
                 <!-- Remind Passowrd -->
                 <div id="formFooter">
