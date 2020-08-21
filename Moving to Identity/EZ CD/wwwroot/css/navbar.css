@@ -16,10 +16,6 @@
   padding-right: 10px;
 }
 
-.slider {
-    width: 65%;
-}
-
 ul {
     list-style-type: none;
 }
@@ -67,7 +63,20 @@ form {
     vertical-align:top;
 }
 
+#filters-dropdown{
+    position:relative;
+    top:38px;
+    right:173px;
+}
 
+#search-textbox {
+}
+
+#search-btn {
+    position: relative;
+    top: -38px;
+    right:80px;
+}
 
 
 

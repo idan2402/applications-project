@@ -11,7 +11,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Create" onsubmit="return validateGenre()">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="price" class="control-label"></label>
@@ -30,12 +30,18 @@
             </div>
             <div class="form-group">
                 <label asp-for="genre" class="control-label"></label>
-                <input asp-for="genre" class="form-control" />
+                <select id="genre-list" asp-for="genre" class="form-control">
+                    <option value="Pop" selected>Pop</option>
+                    <option value="Rap">Rap</option>
+                    <option value="Rock">Rock</option>
+                    <option value="Metal">Metal</option>
+                    <option value="Classic">Classic</option>
+                </select>
                 <span asp-validation-for="genre" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="dateAdded" class="control-label"></label>
-                <input asp-for="dateAdded" class="form-control" />
+                <input asp-for="dateAdded" class="form-control" id="dateAdded" type="datetime-local" />
                 <span asp-validation-for="dateAdded" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -58,6 +64,10 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="~/js/AdminPanel/createDisk.js"></script>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
