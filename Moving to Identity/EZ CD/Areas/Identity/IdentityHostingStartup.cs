@@ -16,16 +16,7 @@ namespace EZ_CD.Areas.Identity
         public void Configure(IWebHostBuilder builder)
         {
             builder.ConfigureServices((context, services) => {
-                services.AddDbContext<EZ_CD_DBContext>(options =>
-                    options.UseSqlServer(
-                        context.Configuration.GetConnectionString("EZ_CD_DBContextConnection")));
-
-                services.AddDefaultIdentity<User>(options => {
-                    options.SignIn.RequireConfirmedAccount = false;
-                    options.Password.RequireLowercase = false;
-                    options.Password.RequireUppercase = false;
-                    })
-                    .AddEntityFrameworkStores<EZ_CD_DBContext>();
+                
             });
         }
     }

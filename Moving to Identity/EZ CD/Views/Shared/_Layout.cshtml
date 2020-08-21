@@ -16,7 +16,7 @@
 <body>
     <header>
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <a class="navbar-brand" href="#">
                 <img src="~/img/logo.png" width="30" height="30" class="logo-image d-inline-block align-top" alt="">
                 EZ CD
@@ -30,7 +30,7 @@
                 <ul class="navbar-nav mr-auto">
                     <partial name="_LoginPartial.cshtml" />
                 </ul>
-                <form method="get" action="/disks/search" id="filters-form">
+                <form method="get" action="/disks/search" id="filters-form" name="filters-form" onsubmit="return validateFiltersForm()">
                     <div class="dropdown cat-dropdown search-element">
                         <button class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" type="button" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false">
                             Filters

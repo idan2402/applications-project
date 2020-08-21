@@ -215,3 +215,226 @@ D:\College\Year D\Second Semester\Applications\EZ CD\EZ CD\bin\Debug\netcoreapp3
 D:\College\Year D\Second Semester\Applications\EZ CD\EZ CD\obj\Debug\netcoreapp3.1\EZ CD.csproj.CoreCompileInputs.cache
 D:\College\Year D\Second Semester\Applications\EZ CD\EZ CD\obj\Debug\netcoreapp3.1\EZ CD.MvcApplicationPartsAssemblyInfo.cs
 D:\College\Year D\Second Semester\Applications\EZ CD\EZ CD\obj\Debug\netcoreapp3.1\EZ CD.MvcApplicationPartsAssemblyInfo.cache
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\appsettings.Development.json
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\appsettings.json
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\Properties\serviceDependencies.json
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\Properties\serviceDependencies.local.json
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\EZ CD.StaticWebAssets.xml
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\EZ CD.exe
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\EZ CD.deps.json
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\EZ CD.runtimeconfig.json
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\EZ CD.runtimeconfig.dev.json
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\EZ CD.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\EZ CD.pdb
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\EZ CD.Views.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\EZ CD.Views.pdb
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.Internal.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.UI.Views.V3.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.UI.Views.V4.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.UI.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Razor.Language.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\Microsoft.Bcl.AsyncInterfaces.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\Microsoft.Bcl.HashCode.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\Microsoft.CodeAnalysis.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\Microsoft.CodeAnalysis.CSharp.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\Microsoft.CodeAnalysis.CSharp.Workspaces.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\Microsoft.CodeAnalysis.Razor.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\Microsoft.CodeAnalysis.Workspaces.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\Microsoft.Data.Sqlite.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\Microsoft.DotNet.PlatformAbstractions.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Relational.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Sqlite.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.SqlServer.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Caching.Abstractions.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Caching.Memory.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Abstractions.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Binder.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyModel.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\Microsoft.Extensions.FileProviders.Abstractions.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\Microsoft.Extensions.FileProviders.Embedded.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Core.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Stores.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.Abstractions.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Options.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Primitives.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\Microsoft.Identity.Client.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.Web.CodeGeneration.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.Web.CodeGeneration.Contracts.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.Web.CodeGeneration.Core.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\dotnet-aspnet-codegenerator-design.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.Web.CodeGeneration.Templating.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\NuGet.Frameworks.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\SQLitePCLRaw.batteries_v2.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\SQLitePCLRaw.nativelibrary.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\SQLitePCLRaw.core.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\SQLitePCLRaw.provider.dynamic_cdecl.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\System.Collections.Immutable.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\System.Composition.AttributedModel.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\System.Composition.Convention.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\System.Composition.Hosting.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\System.Composition.Runtime.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\System.Composition.TypedParts.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\System.Configuration.ConfigurationManager.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\System.Diagnostics.DiagnosticSource.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\System.Runtime.Caching.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\System.Security.Cryptography.ProtectedData.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\System.Text.Json.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\cs\Microsoft.CodeAnalysis.resources.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\de\Microsoft.CodeAnalysis.resources.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\es\Microsoft.CodeAnalysis.resources.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\fr\Microsoft.CodeAnalysis.resources.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\it\Microsoft.CodeAnalysis.resources.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\ja\Microsoft.CodeAnalysis.resources.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\ko\Microsoft.CodeAnalysis.resources.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\pl\Microsoft.CodeAnalysis.resources.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\pt-BR\Microsoft.CodeAnalysis.resources.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\ru\Microsoft.CodeAnalysis.resources.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\tr\Microsoft.CodeAnalysis.resources.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\zh-Hans\Microsoft.CodeAnalysis.resources.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.resources.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\cs\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\de\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\es\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\fr\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\it\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\ja\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\ko\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\pl\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\pt-BR\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\ru\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\tr\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\zh-Hans\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\cs\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\de\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\es\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\fr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\it\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\ja\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\ko\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\pl\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\pt-BR\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\ru\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\tr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\zh-Hans\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\cs\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\de\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\es\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\fr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\it\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\ja\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\ko\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\pl\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\pt-BR\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\ru\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\Microsoft.Data.SqlClient.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\Microsoft.Data.SqlClient.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\sni.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\sni.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\sni.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\runtimes\alpine-x64\native\libe_sqlite3.so
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\runtimes\linux-arm\native\libe_sqlite3.so
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\runtimes\linux-arm64\native\libe_sqlite3.so
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\runtimes\linux-armel\native\libe_sqlite3.so
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\runtimes\linux-musl-x64\native\libe_sqlite3.so
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\runtimes\linux-x64\native\libe_sqlite3.so
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\runtimes\linux-x86\native\libe_sqlite3.so
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\runtimes\osx-x64\native\libe_sqlite3.dylib
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\runtimes\win-arm\native\e_sqlite3.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\e_sqlite3.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\e_sqlite3.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\e_sqlite3.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\EZ CD.csprojAssemblyReference.cache
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\EZ CD.AssemblyInfoInputs.cache
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\EZ CD.AssemblyInfo.cs
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\EZ CD.csproj.CoreCompileInputs.cache
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\EZ CD.MvcApplicationPartsAssemblyInfo.cs
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\EZ CD.MvcApplicationPartsAssemblyInfo.cache
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\EZ CD.RazorAssemblyInfo.cache
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\EZ CD.RazorAssemblyInfo.cs
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\EZ CD.TagHelpers.input.cache
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\EZ CD.TagHelpers.output.cache
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\EZ CD.RazorCoreGenerate.cache
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\Login.cshtml.g.cs
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\Register.cshtml.g.cs
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\_ViewImports.cshtml.g.cs
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ValidationScriptsPartial.cshtml.g.cs
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ViewImports.cshtml.g.cs
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ViewStart.cshtml.g.cs
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\Admins\Create.cshtml.g.cs
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\Admins\Delete.cshtml.g.cs
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\Admins\Details.cshtml.g.cs
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\Admins\Edit.cshtml.g.cs
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\Admins\Index.cshtml.g.cs
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\Artists\Create.cshtml.g.cs
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\Artists\Delete.cshtml.g.cs
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\Artists\Details.cshtml.g.cs
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\Artists\Edit.cshtml.g.cs
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\Artists\Index.cshtml.g.cs
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\Customers\Create.cshtml.g.cs
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\Customers\Delete.cshtml.g.cs
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\Customers\Details.cshtml.g.cs
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\Customers\Edit.cshtml.g.cs
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\Customers\Index.cshtml.g.cs
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\Disks\Create.cshtml.g.cs
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\Disks\Delete.cshtml.g.cs
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\Disks\Details.cshtml.g.cs
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\Disks\Edit.cshtml.g.cs
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\Disks\Index.cshtml.g.cs
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\Disks\Search.cshtml.g.cs
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\SaleDetailes\Create.cshtml.g.cs
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\SaleDetailes\Delete.cshtml.g.cs
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\SaleDetailes\Details.cshtml.g.cs
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\SaleDetailes\Edit.cshtml.g.cs
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\SaleDetailes\Index.cshtml.g.cs
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\Sales\Create.cshtml.g.cs
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\Sales\Delete.cshtml.g.cs
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\Sales\Details.cshtml.g.cs
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\Sales\Edit.cshtml.g.cs
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\Sales\Index.cshtml.g.cs
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\Shared\tmplay.cshtml.g.cs
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_LoginPartial.cshtml.g.cs
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\_ViewImports.cshtml.g.cs
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\_ViewStart.cshtml.g.cs
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\EZ CD.RazorTargetAssemblyInfo.cache
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\EZ CD.RazorTargetAssemblyInfo.cs
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\EZ CD.Views.pdb
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\EZ CD.csproj.CopyComplete
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\staticwebassets\EZ CD.StaticWebAssets.Manifest.cache
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\staticwebassets\EZ CD.StaticWebAssets.xml
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\EZ CD.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\EZ CD.pdb
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\EZ CD.genruntimeconfig.cache
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\Songs\Create.cshtml.g.cs
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\Songs\Delete.cshtml.g.cs
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\Songs\Details.cshtml.g.cs
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\Songs\Edit.cshtml.g.cs
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\Songs\Index.cshtml.g.cs
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_AdminLayout.cshtml.g.cs
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_InvalidArguments.cshtml.g.cs

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Wb6RIAhyY4dTcY+P5pE8PMFfRmMfpuMC+sRzsEAK2vxozm9XqrMEcstu1TJYSak3P85PcVetteBxITgpjWBUXg==",
+  "dgSpecHash": "K81mXcVqkpCMmNl7/ipAYMYJLWpa1Cxo3DfSXELAgGbV3wROR4PphsLJjbfVCaPyiG1wrfrevIQWNWsCzHXcig==",
   "success": true,
-  "projectFilePath": "D:\\College\\Year D\\Second Semester\\Applications\\EZ CD\\EZ CD\\EZ CD.csproj",
+  "projectFilePath": "D:\\College\\Year D\\Second Semester\\Applications\\applications-project\\Moving to Identity\\EZ CD\\EZ CD.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\idan chudner\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\3.1.6\\microsoft.aspnetcore.cryptography.internal.3.1.6.nupkg.sha512",
     "C:\\Users\\idan chudner\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\3.1.6\\microsoft.aspnetcore.cryptography.keyderivation.3.1.6.nupkg.sha512",

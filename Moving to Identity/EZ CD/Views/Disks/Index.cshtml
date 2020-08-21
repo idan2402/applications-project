@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "Index";
-    Layout = "_AdminLayout";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h1>Index</h1>
@@ -28,6 +28,12 @@
             <th>
                 @Html.DisplayNameFor(model => model.dateAdded)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.imagePath)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.videoUrl)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -48,6 +54,12 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.dateAdded)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.imagePath)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.videoUrl)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.diskId">Edit</a> |

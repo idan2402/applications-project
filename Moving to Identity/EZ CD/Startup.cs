@@ -2,9 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EZ_CD.Areas.Identity.Data;
+using EZ_CD.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -23,6 +26,18 @@ namespace EZ_CD
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddDbContext<EZ_CD_DBContext>(options =>
+                    options.UseSqlServer(
+                        Configuration.GetConnectionString("EZ_CD_DBContextConnection")));
+
+            services.AddDefaultIdentity<User>(options => {
+                options.SignIn.RequireConfirmedAccount = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+            })
+                .AddEntityFrameworkStores<EZ_CD_DBContext>();
+
             services.AddControllersWithViews();
             services.AddRazorPages();
         }

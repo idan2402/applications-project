@@ -8929,11 +8929,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\College\\Year D\\Second Semester\\Applications\\EZ CD\\EZ CD\\EZ CD.csproj",
+      "projectUniqueName": "D:\\College\\Year D\\Second Semester\\Applications\\applications-project\\Moving to Identity\\EZ CD\\EZ CD.csproj",
       "projectName": "EZ CD",
-      "projectPath": "D:\\College\\Year D\\Second Semester\\Applications\\EZ CD\\EZ CD\\EZ CD.csproj",
+      "projectPath": "D:\\College\\Year D\\Second Semester\\Applications\\applications-project\\Moving to Identity\\EZ CD\\EZ CD.csproj",
       "packagesPath": "C:\\Users\\idan chudner\\.nuget\\packages\\",
-      "outputPath": "D:\\College\\Year D\\Second Semester\\Applications\\EZ CD\\EZ CD\\obj\\",
+      "outputPath": "D:\\College\\Year D\\Second Semester\\Applications\\applications-project\\Moving to Identity\\EZ CD\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\idan chudner\\AppData\\Roaming\\NuGet\\NuGet.Config",
