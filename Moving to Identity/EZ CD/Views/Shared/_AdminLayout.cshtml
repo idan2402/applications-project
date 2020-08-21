@@ -73,7 +73,7 @@
                 <div class="sidebar-sticky pt-3">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="/admindashboard">
                                 <span data-feather="home"></span>
                                 Dashboard
                             </a>
@@ -107,7 +107,7 @@
                 </div>
             </nav>
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-                        @RenderBody()      
+                @RenderBody()
             </main>
         </div>
     </div>
@@ -123,6 +123,7 @@
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
     <script src="~/js/AdminPanel/Layout/layout.js"></script>
+    @RenderSection("Scripts", required: false)
 </body>
 
 </html>
