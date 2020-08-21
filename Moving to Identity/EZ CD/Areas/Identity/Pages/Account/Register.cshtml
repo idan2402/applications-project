@@ -1,0 +1,75 @@
+﻿@page
+@model RegisterModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="~/css/login.css" />
+    <!------ Include the above in your HEAD tag ---------->
+</head>
+
+<body>
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+            <!-- Tabs Titles -->
+            <!-- Icon -->
+            <div class="fadeIn first" style="padding-top: 5px;">
+                <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+                <div class="circle">
+                    <i class="fa fa-user fa-3x"></i>
+                </div>
+
+            </div>
+
+
+            <!-- Login Form -->
+
+            <form asp-rout-returnUrl="@Model.ReturnUrl" method="post" style="padding-top: 5px; padding-bottom: 20px">
+                <div asp-validation-summary="All" class="text-danger"></div>
+
+                <input asp-for="Input.FirstName" class="fadeIn second" placeholder="First Name">
+                <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+
+                <input asp-for="Input.LastName" class="fadeIn third" placeholder="Last Name">
+                <span asp-validation-for="Input.LastName" class="text-danger"></span>
+
+                <input asp-for="Input.Email" class="fadeIn second" placeholder="Email">
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+
+                <input asp-for="Input.Password" class="fadeIn third" placeholder="Password">
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+
+                <input asp-for="Input.ConfirmPassword" class="fadeIn third" placeholder="Confirm Password">
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+
+                <input type="submit" class="fadeIn fourth" value="Sign Up">
+                <div class="fb-login-button fadeIn fourth"
+                     data-size="large"
+                     data-button-type="login_with"
+                     data-layout="rounded"
+                     data-auto-logout-link="false"
+                     data-use-continue-as="false"
+                     data-width="225px">
+
+                </div>
+            </form>
+
+
+
+            <!-- Remind Passowrd -->
+            <div id="formFooter">
+                <a class="underlineHover" href="#">Already have an account? Log in</a>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
