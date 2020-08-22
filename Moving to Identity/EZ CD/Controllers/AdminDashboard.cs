@@ -4,12 +4,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using EZ_CD.Areas.Identity.Data;
 using EZ_CD.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace EZ_CD.Controllers
 {
+    
+    [Authorize]
     public class AdminDashboard : Controller
     {
         private UserManager<User> _userManager;
