@@ -4,14 +4,16 @@ using EZ_CD.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EZ_CD.Migrations
 {
     [DbContext(typeof(EZ_CD_DBContext))]
-    partial class EZ_CD_DBContextModelSnapshot : ModelSnapshot
+    [Migration("20200822173036_user-id")]
+    partial class userid
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

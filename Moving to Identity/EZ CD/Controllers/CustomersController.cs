@@ -54,7 +54,7 @@ namespace EZ_CD.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("customerId,name,phone,addr,email")] Customer customer)
+        public async Task<IActionResult> Create([Bind("customerId,theUserId")] Customer customer)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace EZ_CD.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("customerId,name,phone,addr,email")] Customer customer)
+        public async Task<IActionResult> Edit(int id, [Bind("customerId,theUserId")] Customer customer)
         {
             if (id != customer.customerId)
             {

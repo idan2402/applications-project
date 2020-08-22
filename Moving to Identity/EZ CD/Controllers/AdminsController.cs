@@ -30,6 +30,7 @@ namespace EZ_CD.Controllers
             return View(await _context.Admin.ToListAsync());
         }
 
+
         // GET: Admins/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -51,6 +52,7 @@ namespace EZ_CD.Controllers
         // GET: Admins/Create
         public IActionResult Create()
         {
+            ViewData["Users"] = new SelectList(_context.Users, "Id", "Email");
             return View();
         }
 
@@ -161,5 +163,7 @@ namespace EZ_CD.Controllers
         {
             return _context.Admin.Any(e => e.adminId == id);
         }
+
+
     }
 }

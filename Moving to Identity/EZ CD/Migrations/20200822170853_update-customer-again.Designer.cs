@@ -4,14 +4,16 @@ using EZ_CD.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EZ_CD.Migrations
 {
     [DbContext(typeof(EZ_CD_DBContext))]
-    partial class EZ_CD_DBContextModelSnapshot : ModelSnapshot
+    [Migration("20200822170853_update-customer-again")]
+    partial class updatecustomeragain
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -146,9 +148,6 @@ namespace EZ_CD.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("theUserId")
-                        .HasColumnType("int");
-
                     b.Property<string>("userId")
                         .HasColumnType("nvarchar(450)");
 
@@ -230,14 +229,9 @@ namespace EZ_CD.Migrations
                     b.Property<int>("SaleId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("customerId")
-                        .HasColumnType("int");
-
                     b.HasKey("DiskId", "SaleId");
 
                     b.HasIndex("SaleId");
-
-                    b.HasIndex("customerId");
 
                     b.ToTable("SaleDetailes");
                 });
@@ -434,7 +428,7 @@ namespace EZ_CD.Migrations
             modelBuilder.Entity("EZ_CD.Models.Sale", b =>
                 {
                     b.HasOne("EZ_CD.Models.Customer", "customer")
-                        .WithMany()
+                        .WithMany("purchases")
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -453,10 +447,6 @@ namespace EZ_CD.Migrations
                         .HasForeignKey("SaleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("EZ_CD.Models.Customer", null)
-                        .WithMany("purchases")
-                        .HasForeignKey("customerId");
                 });
 
             modelBuilder.Entity("EZ_CD.Models.Song", b =>

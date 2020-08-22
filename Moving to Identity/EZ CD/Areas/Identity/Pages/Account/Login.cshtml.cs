@@ -93,9 +93,8 @@ namespace EZ_CD.Areas.Identity.Pages.Account
                 {
                     _logger.LogInformation("User logged in.");
                     var user = await _userManager.FindByEmailAsync(Input.Email);
-                    //await _userManager.IsInRoleAsync(user, "Admins") || 
-                    if (Input.Email == "idan.chudner@gmail.com") // If the user is an admin
-                        return LocalRedirect(Url.Content("~/Admins")); // Redirect to admins
+                    if (await _userManager.IsInRoleAsync(user, "Admins")) // If the user is an admin
+                        return LocalRedirect(Url.Content("~/Admindashboard")); // Redirect to admins
 
                     else
                         return LocalRedirect(returnUrl);
