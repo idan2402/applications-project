@@ -11,8 +11,12 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create" onsubmit="return validateGenre()">
+        <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ArtistId" class="control-label"></label>
+                <select asp-for="ArtistId" class="form-control" asp-items="ViewBag.Artists"></select>
+            </div>
             <div class="form-group">
                 <label asp-for="price" class="control-label"></label>
                 <input asp-for="price" class="form-control" />
@@ -41,12 +45,12 @@
             </div>
             <div class="form-group">
                 <label asp-for="dateAdded" class="control-label"></label>
-                <input asp-for="dateAdded" class="form-control" id="dateAdded" type="datetime-local" />
+                <input asp-for="dateAdded" class="form-control" />
                 <span asp-validation-for="dateAdded" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="imagePath" class="control-label"></label>
-                <input asp-for="imagePath" class="form-control" />
+                <input type="file" accept="image/*" asp-for="imagePath" class="form-control" />
                 <span asp-validation-for="imagePath" class="text-danger"></span>
             </div>
             <div class="form-group">

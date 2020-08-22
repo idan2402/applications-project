@@ -8,8 +8,8 @@ namespace EZ_CD.Models
     public class SaleDetailes
     {
         public Disk disk { get; set; }
-        public int diskId { get; set; }
-        public int saleId { get; set; }
+        public int DiskId { get; set; }
+        public int SaleId { get; set; }
         public Sale sale { get; set; }
     }
 }

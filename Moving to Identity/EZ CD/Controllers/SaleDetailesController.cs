@@ -37,7 +37,7 @@ namespace EZ_CD.Controllers
             var saleDetailes = await _context.SaleDetailes
                 .Include(s => s.disk)
                 .Include(s => s.sale)
-                .FirstOrDefaultAsync(m => m.diskId == id);
+                .FirstOrDefaultAsync(m => m.DiskId == id);
             if (saleDetailes == null)
             {
                 return NotFound();
@@ -49,8 +49,8 @@ namespace EZ_CD.Controllers
         // GET: SaleDetailes/Create
         public IActionResult Create()
         {
-            ViewData["diskId"] = new SelectList(_context.Disk, "diskId", "diskId");
-            ViewData["saleId"] = new SelectList(_context.Sale, "saleId", "saleId");
+            ViewData["DiskId"] = new SelectList(_context.Disk, "diskId", "diskId");
+            ViewData["SaleId"] = new SelectList(_context.Sale, "saleId", "saleId");
             return View();
         }
 
@@ -59,7 +59,7 @@ namespace EZ_CD.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("diskId,saleId")] SaleDetailes saleDetailes)
+        public async Task<IActionResult> Create([Bind("DiskId,SaleId")] SaleDetailes saleDetailes)
         {
             if (ModelState.IsValid)
             {
@@ -67,8 +67,8 @@ namespace EZ_CD.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["diskId"] = new SelectList(_context.Disk, "diskId", "diskId", saleDetailes.diskId);
-            ViewData["saleId"] = new SelectList(_context.Sale, "saleId", "saleId", saleDetailes.saleId);
+            ViewData["DiskId"] = new SelectList(_context.Disk, "diskId", "diskId", saleDetailes.DiskId);
+            ViewData["SaleId"] = new SelectList(_context.Sale, "saleId", "saleId", saleDetailes.SaleId);
             return View(saleDetailes);
         }
 
@@ -85,8 +85,8 @@ namespace EZ_CD.Controllers
             {
                 return NotFound();
             }
-            ViewData["diskId"] = new SelectList(_context.Disk, "diskId", "diskId", saleDetailes.diskId);
-            ViewData["saleId"] = new SelectList(_context.Sale, "saleId", "saleId", saleDetailes.saleId);
+            ViewData["DiskId"] = new SelectList(_context.Disk, "diskId", "diskId", saleDetailes.DiskId);
+            ViewData["SaleId"] = new SelectList(_context.Sale, "saleId", "saleId", saleDetailes.SaleId);
             return View(saleDetailes);
         }
 
@@ -95,9 +95,9 @@ namespace EZ_CD.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("diskId,saleId")] SaleDetailes saleDetailes)
+        public async Task<IActionResult> Edit(int id, [Bind("DiskId,SaleId")] SaleDetailes saleDetailes)
         {
-            if (id != saleDetailes.diskId)
+            if (id != saleDetailes.DiskId)
             {
                 return NotFound();
             }
@@ -111,7 +111,7 @@ namespace EZ_CD.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!SaleDetailesExists(saleDetailes.diskId))
+                    if (!SaleDetailesExists(saleDetailes.DiskId))
                     {
                         return NotFound();
                     }
@@ -122,8 +122,8 @@ namespace EZ_CD.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["diskId"] = new SelectList(_context.Disk, "diskId", "diskId", saleDetailes.diskId);
-            ViewData["saleId"] = new SelectList(_context.Sale, "saleId", "saleId", saleDetailes.saleId);
+            ViewData["DiskId"] = new SelectList(_context.Disk, "diskId", "diskId", saleDetailes.DiskId);
+            ViewData["SaleId"] = new SelectList(_context.Sale, "saleId", "saleId", saleDetailes.SaleId);
             return View(saleDetailes);
         }
 
@@ -138,7 +138,7 @@ namespace EZ_CD.Controllers
             var saleDetailes = await _context.SaleDetailes
                 .Include(s => s.disk)
                 .Include(s => s.sale)
-                .FirstOrDefaultAsync(m => m.diskId == id);
+                .FirstOrDefaultAsync(m => m.DiskId == id);
             if (saleDetailes == null)
             {
                 return NotFound();
@@ -160,7 +160,7 @@ namespace EZ_CD.Controllers
 
         private bool SaleDetailesExists(int id)
         {
-            return _context.SaleDetailes.Any(e => e.diskId == id);
+            return _context.SaleDetailes.Any(e => e.DiskId == id);
         }
     }
 }

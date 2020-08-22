@@ -8,7 +8,6 @@ namespace EZ_CD.Models
     public class Disk
     {
         public int diskId { get; set; }
-
         public double price { get; set; }
 
         public string name { get; set; }
@@ -16,7 +15,7 @@ namespace EZ_CD.Models
         public DateTime date { get; set; }
 
         public Artist artist { get; set; }
-
+        public int ArtistId { get; set; }
         public ICollection<Song> songs { get; set; }
 
         public string genre { get; set; }

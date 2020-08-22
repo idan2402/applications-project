@@ -10,6 +10,7 @@ namespace EZ_CD.Models
         public int songId { get; set; }
         public string name { get; set; }
         public Disk disk{ get; set; }
+        public int DiskId { get; set; }
         public string length { get; set; }
     }
 }
