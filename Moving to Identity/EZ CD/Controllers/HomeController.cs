@@ -22,7 +22,7 @@ namespace EZ_CD.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return View("Index", _context.Disk);
         }
 
         public IActionResult Privacy()
