@@ -6,21 +6,23 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using EZ_CD.Models;
+using EZ_CD.Data;
 
 namespace EZ_CD.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly EZ_CD_DBContext _context;
+        public HomeController(ILogger<HomeController> logger, EZ_CD_DBContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
         public IActionResult Index()
         {
-            return View();
+            return View("Index", _context.Disk);
         }
 
         public IActionResult Privacy()
