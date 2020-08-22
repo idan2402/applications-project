@@ -9,9 +9,11 @@ using EZ_CD.Data;
 using EZ_CD.Models;
 using Microsoft.AspNetCore.Identity;
 using EZ_CD.Areas.Identity.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EZ_CD.Controllers
 {
+    [Authorize]
     public class AdminsController : Controller
     {
         private readonly EZ_CD_DBContext _context;

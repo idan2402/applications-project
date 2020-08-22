@@ -7,9 +7,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EZ_CD.Data;
 using EZ_CD.Models;
+using Microsoft.AspNetCore.Authorization;
+
 
 namespace EZ_CD.Controllers
 {
+    [Authorize]
     public class DisksController : Controller
     {
         private readonly EZ_CD_DBContext _context;
