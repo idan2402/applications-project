@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using EZ_CD.Data;
 
 namespace EZ_CD.Areas.Identity.Pages.Account
 {
@@ -21,14 +22,20 @@ namespace EZ_CD.Areas.Identity.Pages.Account
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
         private readonly ILogger<LoginModel> _logger;
+        private readonly EZ_CD_DBContext _context;
+        private RoleManager<IdentityRole> _roleManager;
 
         public LoginModel(SignInManager<User> signInManager, 
             ILogger<LoginModel> logger,
-            UserManager<User> userManager)
+            UserManager<User> userManager,
+            EZ_CD_DBContext context,
+            RoleManager<IdentityRole> rolemgr)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
+            _context = context;
+            _roleManager = rolemgr;
         }
 
         [BindProperty]
@@ -85,7 +92,13 @@ namespace EZ_CD.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
-                    return LocalRedirect(returnUrl);
+                    var user = await _userManager.FindByEmailAsync(Input.Email);
+                    //await _userManager.IsInRoleAsync(user, "Admins") || 
+                    if (Input.Email == "idan.chudner@gmail.com") // If the user is an admin
+                        return LocalRedirect(Url.Content("~/Admins")); // Redirect to admins
+
+                    else
+                        return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)
                 {

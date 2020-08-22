@@ -7,16 +7,21 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EZ_CD.Data;
 using EZ_CD.Models;
+using Microsoft.AspNetCore.Identity;
+using EZ_CD.Areas.Identity.Data;
 
 namespace EZ_CD.Controllers
 {
     public class AdminsController : Controller
     {
         private readonly EZ_CD_DBContext _context;
-
-        public AdminsController(EZ_CD_DBContext context)
+        private RoleManager<IdentityRole> _roleManager;
+        private UserManager<User> _userManager;
+        public AdminsController(EZ_CD_DBContext context, RoleManager<IdentityRole> roleMgr, UserManager<User> usermgr)
         {
             _context = context;
+            _roleManager = roleMgr;
+            _userManager = usermgr;
         }
 
         // GET: Admins
@@ -61,6 +66,12 @@ namespace EZ_CD.Controllers
                 admin.dateAdded = DateTime.Now;
                 _context.Add(admin);
                 await _context.SaveChangesAsync();
+                IdentityRole role = await _roleManager.FindByNameAsync("Admins");
+                // If this is the first admin
+                if (role == null) {
+                    // _userManager.AddToRoleAsync(admin.theUser.Id, "Admins"); //This line will add the user as an admin to the admin role
+                }
+
                 return RedirectToAction(nameof(Index));
             }
             return View(admin);
