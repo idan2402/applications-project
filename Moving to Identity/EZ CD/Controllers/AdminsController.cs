@@ -54,10 +54,11 @@ namespace EZ_CD.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("adminId,name,username,password,email")] Admin admin)
+        public async Task<IActionResult> Create([Bind("adminId, user")] Admin admin)
         {
             if (ModelState.IsValid)
             {
+                admin.dateAdded = DateTime.Now;
                 _context.Add(admin);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -86,7 +87,7 @@ namespace EZ_CD.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("adminId,name,username,password,email")] Admin admin)
+        public async Task<IActionResult> Edit(int id, [Bind("adminId,dateAdded")] Admin admin)
         {
             if (id != admin.adminId)
             {

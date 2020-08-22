@@ -383,11 +383,6 @@ D:\College\Year D\Second Semester\Applications\applications-project\Moving to Id
 D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ValidationScriptsPartial.cshtml.g.cs
 D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ViewImports.cshtml.g.cs
 D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ViewStart.cshtml.g.cs
-D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\Admins\Create.cshtml.g.cs
-D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\Admins\Delete.cshtml.g.cs
-D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\Admins\Details.cshtml.g.cs
-D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\Admins\Edit.cshtml.g.cs
-D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\Admins\Index.cshtml.g.cs
 D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\Artists\Create.cshtml.g.cs
 D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\Artists\Delete.cshtml.g.cs
 D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\Artists\Details.cshtml.g.cs
@@ -438,3 +433,15 @@ D:\College\Year D\Second Semester\Applications\applications-project\Moving to Id
 D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\Songs\Index.cshtml.g.cs
 D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_AdminLayout.cshtml.g.cs
 D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_InvalidArguments.cshtml.g.cs
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\AdminDashboard\Index.cshtml.g.cs
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\Admins\Create.cshtml.g.cs
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\Admins\Delete.cshtml.g.cs
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\Admins\Details.cshtml.g.cs
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\Admins\Edit.cshtml.g.cs
+D:\College\Year D\Second Semester\Applications\applications-project\Moving to Identity\EZ CD\obj\Debug\netcoreapp3.1\Razor\Views\Admins\Index.cshtml.g.cs
