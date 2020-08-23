@@ -28,8 +28,6 @@ namespace EZ_CD
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc()
-                .AddGitHubWebHooks();
 
             services.AddDbContext<EZ_CD_DBContext>(options =>
                     options.UseSqlServer(
