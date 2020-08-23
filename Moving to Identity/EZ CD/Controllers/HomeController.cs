@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using EZ_CD.Models;
 using EZ_CD.Data;
 using Microsoft.EntityFrameworkCore;
+using System.Net.Http;
 
 namespace EZ_CD.Controllers
 {
@@ -30,6 +31,12 @@ namespace EZ_CD.Controllers
         {
             return View();
         }
+
+        public IActionResult DiskDetails()
+        {
+            return View("_DisksDisplayer");
+        }
+
 
         public async Task<IActionResult> Search(string diskName, string pop = "", string rap = "", string rock = "", string metal = "", string classic = "",
             string fromYear = "", string toYear = "", string minPrice = "", string maxPrice = "")
