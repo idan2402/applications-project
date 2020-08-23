@@ -62,5 +62,7 @@
             document.getElementById(thePage).classList.add("active");
         case "customers":           
             document.getElementById(thePage).classList.add("active");
+        case "artists":
+            document.getElementById(thePage).classList.add("active");
     }
 }())
