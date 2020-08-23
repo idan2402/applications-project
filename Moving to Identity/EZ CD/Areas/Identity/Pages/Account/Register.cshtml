@@ -32,7 +32,6 @@
             <!-- Login Form -->
 
             <form asp-rout-returnUrl="@Model.ReturnUrl" method="post" style="padding-top: 5px; padding-bottom: 20px">
-                <div asp-validation-summary="All" class="text-danger"></div>
 
                 <input asp-for="Input.FirstName" class="fadeIn second" placeholder="First Name">
                 <span asp-validation-for="Input.FirstName" class="text-danger"></span>

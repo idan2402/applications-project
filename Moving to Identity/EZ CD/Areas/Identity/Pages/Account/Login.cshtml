@@ -32,9 +32,10 @@
             <!-- Login Form -->
 
             <form method="post" style="padding-top: 5px; padding-bottom: 20px">
-                <div asp-validation-summary="All" class="text-danger"></div>
                 <input asp-for="Input.Email" class="fadeIn second" placeholder="Email">
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
                 <input asp-for="Input.Password" class="fadeIn third" placeholder="Password">
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
 
                 <div class="the-submit">
                     <input type="submit" class="fadeIn fourth" value="Log In">
@@ -45,7 +46,7 @@
                         <span class="checkmark"></span>
                     </label>
                 </div>
-                
+
 
                 <div class="fb-login-button fadeIn fourth"
                      data-size="large"
