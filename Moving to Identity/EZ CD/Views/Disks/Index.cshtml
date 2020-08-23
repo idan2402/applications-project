@@ -53,7 +53,9 @@
                 @Html.DisplayFor(modelItem => item.date)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.artist.artistId)
+                <a asp-controller="artists" asp-action="details" asp-route-id="@item.artist.artistId">
+                    @Html.DisplayFor(modelItem => item.artist.name)
+                </a>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.genre)
