@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace EZ_CD.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admins")]
     public class AdminsController : Controller
     {
         private readonly EZ_CD_DBContext _context;

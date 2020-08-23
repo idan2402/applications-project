@@ -36,6 +36,7 @@ namespace EZ_CD
                 options.SignIn.RequireConfirmedAccount = false;
                 options.Password.RequireLowercase = false;
                 options.Password.RequireUppercase = false;
+                options.Password.RequireNonAlphanumeric= false;
             })
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<EZ_CD_DBContext>();

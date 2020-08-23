@@ -8,11 +8,13 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Web;
+using Microsoft.VisualBasic;
 
 namespace EZ_CD.Controllers
 {
     
-    [Authorize]
+    [Authorize(Roles = "Admins")]
     public class AdminDashboard : Controller
     {
         private UserManager<User> _userManager;
@@ -53,10 +55,44 @@ namespace EZ_CD.Controllers
                 var roleResult = await _roleManager.CreateAsync(new IdentityRole("Admins"));
 
             }
-            var roleresult = await _userManager.AddToRoleAsync(currentUser, "Admins");
-
-            return RedirectToAction("Index");
+            var roleresult = await _userManager.AddToRoleAsync(currentUser, "Admins");            
+            return View();
         }
 
     }
+
+        class RandomPasswordGenerator
+        {
+
+            const string LOWER_CASE = "abcdefghijklmnopqursuvwxyz";
+            const string UPPER_CAES = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            const string NUMBERS = "123456789";
+            const string SPECIALS = @"!@£$%^&*()#€";
+
+
+            public string GeneratePassword(bool useLowercase=true, bool useUppercase = true, bool useNumbers = true, bool useSpecial = true,
+                int passwordSize = 6)
+            {
+                char[] _password = new char[passwordSize];
+                string charSet = ""; // Initialise to blank
+                System.Random _random = new Random();
+                int counter;
+
+                // Build up the character set to choose from
+                if (useLowercase) charSet += LOWER_CASE;
+
+                if (useUppercase) charSet += UPPER_CAES;
+
+                if (useNumbers) charSet += NUMBERS;
+
+                if (useSpecial) charSet += SPECIALS;
+
+                for (counter = 0; counter < passwordSize; counter++)
+                {
+                    _password[counter] = charSet[_random.Next(charSet.Length - 1)];
+                }
+
+                return String.Join(null, _password);
+            }
+        }
 }

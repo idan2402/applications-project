@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace EZ_CD.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admins")]
     public class SongsController : Controller
     {
         private readonly EZ_CD_DBContext _context;
