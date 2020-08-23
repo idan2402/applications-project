@@ -13,14 +13,22 @@
 <head>
     <title>EZ CD</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
             integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
             crossorigin="anonymous"></script>
 
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+            integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+            crossorigin="anonymous"></script>
     <link type="text/css" rel="stylesheet" href="./css/home.css" />
     <link href="https://fonts.googleapis.com/css?family=Slabo+27px&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 
 <body>
@@ -39,29 +47,29 @@
 
         <div class="album py-5 bg-light">
             <div class="container">
-                    @{ if (Model.Count() == 0)
-                            @Html.Raw("<h1> Couldn't find results </h1>");
+                @{ if (Model.Count() == 0)
+                        @Html.Raw("<h1> Couldn't find results </h1>");
 
-                                }
+                }
 
                 @foreach (var item in Model)
                 {
-
- 
- 
                     <div class="col-md-6 col-lg-4">
                         <div class="card">
                             <div class="embed-responsive embed-responsive-4by3">
                                 <img alt="Card image cap" class="card-img-top img-fluid embed-responsive-item"
-                                     src="@Html.DisplayFor(modelItem => item.imagePath)" />
+                                     src="@item.imagePath" />
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title">@Html.DisplayFor(modelItem => item.name)</h5>
                                 <p class="card-text">
                                     @Html.DisplayFor(modelItem => item.artist.name)
-                                    @Html.DisplayFor(modelItem => item.date)
-                                    @Html.DisplayFor(modelItem => item.genre)
-                                    @Html.DisplayFor(modelItem => item.price)
+                                    <br />
+                                    Date Released: @item.date.ToShortDateString()
+                                    <br />
+                                    Genre: @Html.DisplayFor(modelItem => item.genre)
+                                    <br />
+                                    Price: @Html.DisplayFor(modelItem => item.price)$
                                 </p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
