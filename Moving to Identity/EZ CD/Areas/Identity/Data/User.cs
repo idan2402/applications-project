@@ -16,5 +16,9 @@ namespace EZ_CD.Areas.Identity.Data
         [PersonalData]
         [Column(TypeName = "nvarchar(100)")]
         public string LastName { get; set; }
+
+        [PersonalData]
+        [Column(TypeName = "nvarchar(100)")]
+        public string Address { get; set; }
     }
 }

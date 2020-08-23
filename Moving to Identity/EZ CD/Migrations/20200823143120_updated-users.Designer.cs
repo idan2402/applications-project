@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EZ_CD.Migrations
 {
     [DbContext(typeof(EZ_CD_DBContext))]
-    [Migration("20200822191550_initial")]
-    partial class initial
+    [Migration("20200823143120_updated-users")]
+    partial class updatedusers
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,6 +28,9 @@ namespace EZ_CD.Migrations
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
