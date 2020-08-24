@@ -8,9 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using EZ_CD.Data;
 using EZ_CD.Models;
 using EZ_CD.Areas.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EZ_CD.Controllers
 {
+    [Authorize(Roles = "Admins")]
     public class SalesController : Controller
     {
         private readonly EZ_CD_DBContext _context;

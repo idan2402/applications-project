@@ -1,0 +1,91 @@
+﻿@model IEnumerable<EZ_CD.Models.Disk>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_Layout";
+}
+
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>EZ CD</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+            integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+            crossorigin="anonymous"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+            integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+            crossorigin="anonymous"></script>
+    <link type="text/css" rel="stylesheet" href="./css/home.css" />
+    <link href="https://fonts.googleapis.com/css?family=Slabo+27px&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<body>
+    <!-- Website Header -->
+    <div>
+        <section>
+            <div class="jumbotron jumbotron-fluid text-center">
+                <div class="container">
+                    <h1 class="display-4">EZ CD</h1>
+                    <p class="lead">
+                        This is the place to get CD. THIS IS A NICE!
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <div class="album py-5 bg-light">
+            <div class="container">
+                @{ if (Model.Count() == 0)
+                        @Html.Raw("<h1> Couldn't find results </h1>");
+
+                }
+
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card">
+                            <div class="embed-responsive embed-responsive-4by3">
+                                <img alt="Card image cap" class="card-img-top img-fluid embed-responsive-item"
+                                     src="@item.imagePath" />
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">@Html.DisplayFor(modelItem => item.name)</h5>
+                                <p class="card-text">
+                                    @Html.DisplayFor(modelItem => item.Artist.name)
+                                    <br />
+                                    Date Released: @item.date.ToShortDateString()
+                                    <br />
+                                    Genre: @Html.DisplayFor(modelItem => item.genre)
+                                    <br />
+                                    Price: @Html.DisplayFor(modelItem => item.price)$
+                                </p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <a asp-controller="Disks" asp-action="Details" asp-route-id="@item.diskId"> <button type="button" class="btn btn-sm btn-outline-secondary">View</button></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                }
+
+            </div>
+
+        </div>
+</body>
+
+</html>
