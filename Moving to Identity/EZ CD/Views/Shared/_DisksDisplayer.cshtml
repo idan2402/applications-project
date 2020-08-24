@@ -1,1 +1,72 @@
-﻿
+﻿@model EZ_CD.Models.Disk
+
+
+@{
+    
+    ViewData["Title"] = Model.name;
+    Layout = "_Layout";
+}
+
+
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="img/favicon.png" type="image/png">
+    <title>MeetMe Personal</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/css/DiskDetails/css/bootstrap.css">
+    <link rel="stylesheet" href="~/css/DiskDetails/vendors/linericon/style.css">
+    <link rel="stylesheet" href="~/css/DiskDetails/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/css/DiskDetails/vendors/owl-carousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/css/DiskDetails/vendors/lightbox/simpleLightbox.css">
+    <link rel="stylesheet" href="~/css/DiskDetails/vendors/nice-select/css/nice-select.css">
+    <link rel="stylesheet" href="~/css/DiskDetails/vendors/animate-css/animate.css">
+    <link rel="stylesheet" href="~/css/DiskDetails/vendors/popup/magnific-popup.css">
+    <link rel="stylesheet" href="~/css/DiskDetails/vendors/flaticon/flaticon.css">
+    <!-- main css -->
+    <link rel="stylesheet" href="~/css/DiskDetails/css/style.css">
+    <link rel="stylesheet" href="~/css/DiskDetails/css/responsive.css">
+</head>
+
+
+
+
+<body>
+
+    <section class="home_banner_area">
+        <div class="container box_1620">
+            <div class="banner_inner d-flex align-items-center">
+                <div class="banner_content">
+                    <div class="media">
+                        <div class="d-flex">
+                            <img src=@Model.imagePath alt="">
+                        </div>
+                        <div class="media-body">
+                            <div class="personal_text">
+                                <h6>Hello Everybody, i am</h6>
+                                <h3>@Model.name</h3>
+                                <h4>@Model.Artist</h4>
+                                <h5>@Model.genre</h5>
+                                <h5>@Model.date</h5>
+                                <p>You will begin to realise why this exercise is called the Dickens Pattern (with reference to the ghost showing Scrooge some different futures)</p>
+                                <ul class="list basic_info">
+                                    <li><a href="#"><i class="lnr lnr-calendar-full"></i> @Model.date</a></li>
+                                    <li><a href="#"><i class="lnr lnr-phone-handset"></i> @Model.price</a></li>
+                                    <li><a href="#"><i class="lnr lnr-envelope"></i>@Model.Artist</a></li>
+                                    <li><a href="#"><i class="lnr lnr-home"></i> @Model.featuredVideoUrl</a></li>
+                                </ul>
+                                <ul class="list personal_social">
+                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
