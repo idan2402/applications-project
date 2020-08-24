@@ -9,27 +9,26 @@ using EZ_CD.Data;
 using EZ_CD.Models;
 using Microsoft.AspNetCore.Authorization;
 
-
 namespace EZ_CD.Controllers
 {
     [Authorize(Roles = "Admins")]
-    public class SaleDetailesController : Controller
+    public class SongsController : Controller
     {
         private readonly EZ_CD_DBContext _context;
 
-        public SaleDetailesController(EZ_CD_DBContext context)
+        public SongsController(EZ_CD_DBContext context)
         {
             _context = context;
         }
 
-        // GET: SaleDetailes
+        // GET: Songs
         public async Task<IActionResult> Index()
         {
-            var eZ_CD_DBContext = _context.SaleDetailes.Include(s => s.disk).Include(s => s.sale);
+            var eZ_CD_DBContext = _context.Song.Include(s => s.disk);
             return View(await eZ_CD_DBContext.ToListAsync());
         }
 
-        // GET: SaleDetailes/Details/5
+        // GET: Songs/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -37,45 +36,42 @@ namespace EZ_CD.Controllers
                 return NotFound();
             }
 
-            var saleDetailes = await _context.SaleDetailes
+            var song = await _context.Song
                 .Include(s => s.disk)
-                .Include(s => s.sale)
-                .FirstOrDefaultAsync(m => m.DiskId == id);
-            if (saleDetailes == null)
+                .FirstOrDefaultAsync(m => m.songId == id);
+            if (song == null)
             {
                 return NotFound();
             }
 
-            return View(saleDetailes);
+            return View(song);
         }
 
-        // GET: SaleDetailes/Create
+        // GET: Songs/Create
         public IActionResult Create()
         {
             ViewData["DiskId"] = new SelectList(_context.Disk, "diskId", "diskId");
-            ViewData["SaleId"] = new SelectList(_context.Sale, "saleId", "saleId");
             return View();
         }
 
-        // POST: SaleDetailes/Create
+        // POST: Songs/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("DiskId,SaleId")] SaleDetailes saleDetailes)
+        public async Task<IActionResult> Create([Bind("songId,name,DiskId,length")] Song song)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(saleDetailes);
+                _context.Add(song);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["DiskId"] = new SelectList(_context.Disk, "diskId", "diskId", saleDetailes.DiskId);
-            ViewData["SaleId"] = new SelectList(_context.Sale, "saleId", "saleId", saleDetailes.SaleId);
-            return View(saleDetailes);
+            ViewData["DiskId"] = new SelectList(_context.Disk, "diskId", "diskId", song.DiskId);
+            return View(song);
         }
 
-        // GET: SaleDetailes/Edit/5
+        // GET: Songs/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -83,24 +79,23 @@ namespace EZ_CD.Controllers
                 return NotFound();
             }
 
-            var saleDetailes = await _context.SaleDetailes.FindAsync(id);
-            if (saleDetailes == null)
+            var song = await _context.Song.FindAsync(id);
+            if (song == null)
             {
                 return NotFound();
             }
-            ViewData["DiskId"] = new SelectList(_context.Disk, "diskId", "diskId", saleDetailes.DiskId);
-            ViewData["SaleId"] = new SelectList(_context.Sale, "saleId", "saleId", saleDetailes.SaleId);
-            return View(saleDetailes);
+            ViewData["DiskId"] = new SelectList(_context.Disk, "diskId", "diskId", song.DiskId);
+            return View(song);
         }
 
-        // POST: SaleDetailes/Edit/5
+        // POST: Songs/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("DiskId,SaleId")] SaleDetailes saleDetailes)
+        public async Task<IActionResult> Edit(int id, [Bind("songId,name,DiskId,length")] Song song)
         {
-            if (id != saleDetailes.DiskId)
+            if (id != song.songId)
             {
                 return NotFound();
             }
@@ -109,12 +104,12 @@ namespace EZ_CD.Controllers
             {
                 try
                 {
-                    _context.Update(saleDetailes);
+                    _context.Update(song);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!SaleDetailesExists(saleDetailes.DiskId))
+                    if (!SongExists(song.songId))
                     {
                         return NotFound();
                     }
@@ -125,12 +120,11 @@ namespace EZ_CD.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["DiskId"] = new SelectList(_context.Disk, "diskId", "diskId", saleDetailes.DiskId);
-            ViewData["SaleId"] = new SelectList(_context.Sale, "saleId", "saleId", saleDetailes.SaleId);
-            return View(saleDetailes);
+            ViewData["DiskId"] = new SelectList(_context.Disk, "diskId", "diskId", song.DiskId);
+            return View(song);
         }
 
-        // GET: SaleDetailes/Delete/5
+        // GET: Songs/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -138,32 +132,31 @@ namespace EZ_CD.Controllers
                 return NotFound();
             }
 
-            var saleDetailes = await _context.SaleDetailes
+            var song = await _context.Song
                 .Include(s => s.disk)
-                .Include(s => s.sale)
-                .FirstOrDefaultAsync(m => m.DiskId == id);
-            if (saleDetailes == null)
+                .FirstOrDefaultAsync(m => m.songId == id);
+            if (song == null)
             {
                 return NotFound();
             }
 
-            return View(saleDetailes);
+            return View(song);
         }
 
-        // POST: SaleDetailes/Delete/5
+        // POST: Songs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var saleDetailes = await _context.SaleDetailes.FindAsync(id);
-            _context.SaleDetailes.Remove(saleDetailes);
+            var song = await _context.Song.FindAsync(id);
+            _context.Song.Remove(song);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool SaleDetailesExists(int id)
+        private bool SongExists(int id)
         {
-            return _context.SaleDetailes.Any(e => e.DiskId == id);
+            return _context.Song.Any(e => e.songId == id);
         }
     }
 }

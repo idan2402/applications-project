@@ -23,9 +23,6 @@
                 @Html.DisplayNameFor(model => model.date)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.artist)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.genre)
             </th>
             <th>
@@ -35,7 +32,7 @@
                 @Html.DisplayNameFor(model => model.imagePath)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.videoUrl)
+                @Html.DisplayNameFor(model => model.featuredVideoUrl)
             </th>
             <th></th>
         </tr>
@@ -53,11 +50,6 @@
                 @Html.DisplayFor(modelItem => item.date)
             </td>
             <td>
-                <a asp-controller="artists" asp-action="details" asp-route-id="@item.artist.artistId">
-                    @Html.DisplayFor(modelItem => item.artist.name)
-                </a>
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.genre)
             </td>
             <td>
@@ -67,7 +59,7 @@
                 @Html.DisplayFor(modelItem => item.imagePath)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.videoUrl)
+                @Html.DisplayFor(modelItem => item.featuredVideoUrl)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.diskId">Edit</a> |

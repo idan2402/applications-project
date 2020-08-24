@@ -7,11 +7,9 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EZ_CD.Data;
 using EZ_CD.Models;
-using Microsoft.AspNetCore.Authorization;
 
 namespace EZ_CD.Controllers
 {
-    [Authorize(Roles = "Admins")]
     public class ArtistsController : Controller
     {
         private readonly EZ_CD_DBContext _context;
@@ -56,7 +54,7 @@ namespace EZ_CD.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("name,artistId,birthday,genre,country")] Artist artist)
+        public async Task<IActionResult> Create([Bind("artistId,name,birthday,genre,country")] Artist artist)
         {
             if (ModelState.IsValid)
             {
@@ -88,7 +86,7 @@ namespace EZ_CD.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("name,artistId,birthday,genre,country")] Artist artist)
+        public async Task<IActionResult> Edit(int id, [Bind("artistId,name,birthday,genre,country")] Artist artist)
         {
             if (id != artist.artistId)
             {

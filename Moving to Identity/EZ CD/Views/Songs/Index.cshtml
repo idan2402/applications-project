@@ -17,10 +17,13 @@
                 @Html.DisplayNameFor(model => model.name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.disk)
+                @Html.DisplayNameFor(model => model.length)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.length)
+                @Html.DisplayNameFor(model => model.imagePath)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.videoUrl)
             </th>
             <th></th>
         </tr>
@@ -32,10 +35,13 @@
                 @Html.DisplayFor(modelItem => item.name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.disk.diskId)
+                @Html.DisplayFor(modelItem => item.length)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.length)
+                @Html.DisplayFor(modelItem => item.imagePath)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.videoUrl)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.songId">Edit</a> |

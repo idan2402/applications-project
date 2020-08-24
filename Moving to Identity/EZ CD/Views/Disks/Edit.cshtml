@@ -15,10 +15,6 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="diskId" />
             <div class="form-group">
-                <div class="form-group">
-                    <label asp-for="ArtistId" class="control-label"></label>
-                    <select asp-for="ArtistId" class="form-control" asp-items="ViewBag.Artists"></select>
-                </div>
                 <label asp-for="price" class="control-label"></label>
                 <input asp-for="price" class="form-control" />
                 <span asp-validation-for="price" class="text-danger"></span>
@@ -35,13 +31,8 @@
             </div>
             <div class="form-group">
                 <label asp-for="genre" class="control-label"></label>
-                <select id="genre-list" asp-for="genre" class="form-control">
-                    <option value="Pop" selected>Pop</option>
-                    <option value="Rap">Rap</option>
-                    <option value="Rock">Rock</option>
-                    <option value="Metal">Metal</option>
-                    <option value="Classic">Classic</option>
-                </select>                <span asp-validation-for="genre" class="text-danger"></span>
+                <input asp-for="genre" class="form-control" />
+                <span asp-validation-for="genre" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="dateAdded" class="control-label"></label>
@@ -54,9 +45,9 @@
                 <span asp-validation-for="imagePath" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="videoUrl" class="control-label"></label>
-                <input asp-for="videoUrl" class="form-control" />
-                <span asp-validation-for="videoUrl" class="text-danger"></span>
+                <label asp-for="featuredVideoUrl" class="control-label"></label>
+                <input asp-for="featuredVideoUrl" class="form-control" />
+                <span asp-validation-for="featuredVideoUrl" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
@@ -69,6 +60,3 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

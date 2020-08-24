@@ -7,12 +7,9 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EZ_CD.Data;
 using EZ_CD.Models;
-using Microsoft.AspNetCore.Authorization;
-
 
 namespace EZ_CD.Controllers
 {
-    [Authorize(Roles = "Admins")]
     public class SalesController : Controller
     {
         private readonly EZ_CD_DBContext _context;
@@ -25,8 +22,7 @@ namespace EZ_CD.Controllers
         // GET: Sales
         public async Task<IActionResult> Index()
         {
-            var eZ_CD_DBContext = _context.Sale.Include(s => s.customer);
-            return View(await eZ_CD_DBContext.ToListAsync());
+            return View(await _context.Sale.ToListAsync());
         }
 
         // GET: Sales/Details/5
@@ -38,7 +34,6 @@ namespace EZ_CD.Controllers
             }
 
             var sale = await _context.Sale
-                .Include(s => s.customer)
                 .FirstOrDefaultAsync(m => m.saleId == id);
             if (sale == null)
             {
@@ -51,7 +46,6 @@ namespace EZ_CD.Controllers
         // GET: Sales/Create
         public IActionResult Create()
         {
-            ViewData["CustomerId"] = new SelectList(_context.Customer, "customerId", "customerId");
             return View();
         }
 
@@ -60,7 +54,7 @@ namespace EZ_CD.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("saleId,CustomerId,date")] Sale sale)
+        public async Task<IActionResult> Create([Bind("saleId,date")] Sale sale)
         {
             if (ModelState.IsValid)
             {
@@ -68,7 +62,6 @@ namespace EZ_CD.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CustomerId"] = new SelectList(_context.Customer, "customerId", "customerId", sale.CustomerId);
             return View(sale);
         }
 
@@ -85,7 +78,6 @@ namespace EZ_CD.Controllers
             {
                 return NotFound();
             }
-            ViewData["CustomerId"] = new SelectList(_context.Customer, "customerId", "customerId", sale.CustomerId);
             return View(sale);
         }
 
@@ -94,7 +86,7 @@ namespace EZ_CD.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("saleId,CustomerId,date")] Sale sale)
+        public async Task<IActionResult> Edit(int id, [Bind("saleId,date")] Sale sale)
         {
             if (id != sale.saleId)
             {
@@ -121,7 +113,6 @@ namespace EZ_CD.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CustomerId"] = new SelectList(_context.Customer, "customerId", "customerId", sale.CustomerId);
             return View(sale);
         }
 
@@ -134,7 +125,6 @@ namespace EZ_CD.Controllers
             }
 
             var sale = await _context.Sale
-                .Include(s => s.customer)
                 .FirstOrDefaultAsync(m => m.saleId == id);
             if (sale == null)
             {

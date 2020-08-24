@@ -7,33 +7,29 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EZ_CD.Data;
 using EZ_CD.Models;
-using Microsoft.AspNetCore.Identity;
-using EZ_CD.Areas.Identity.Data;
 using Microsoft.AspNetCore.Authorization;
+
 
 namespace EZ_CD.Controllers
 {
     [Authorize(Roles = "Admins")]
-    public class AdminsController : Controller
+    public class SalesController : Controller
     {
         private readonly EZ_CD_DBContext _context;
-        private RoleManager<IdentityRole> _roleManager;
-        private UserManager<User> _userManager;
-        public AdminsController(EZ_CD_DBContext context, RoleManager<IdentityRole> roleMgr, UserManager<User> usermgr)
+
+        public SalesController(EZ_CD_DBContext context)
         {
             _context = context;
-            _roleManager = roleMgr;
-            _userManager = usermgr;
         }
 
-        // GET: Admins
+        // GET: Sales
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Admin.ToListAsync());
+            var eZ_CD_DBContext = _context.Sale.Include(s => s.customer);
+            return View(await eZ_CD_DBContext.ToListAsync());
         }
 
-
-        // GET: Admins/Details/5
+        // GET: Sales/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -41,47 +37,42 @@ namespace EZ_CD.Controllers
                 return NotFound();
             }
 
-            var admin = await _context.Admin
-                .FirstOrDefaultAsync(m => m.adminId == id);
-            if (admin == null)
+            var sale = await _context.Sale
+                .Include(s => s.customer)
+                .FirstOrDefaultAsync(m => m.saleId == id);
+            if (sale == null)
             {
                 return NotFound();
             }
 
-            return View(admin);
+            return View(sale);
         }
 
-        // GET: Admins/Create
+        // GET: Sales/Create
         public IActionResult Create()
         {
-            ViewData["Users"] = new SelectList(_context.Users, "Id", "Email");
+            ViewData["CustomerId"] = new SelectList(_context.Customer, "customerId", "customerId");
             return View();
         }
 
-        // POST: Admins/Create
+        // POST: Sales/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("adminId, user")] Admin admin)
+        public async Task<IActionResult> Create([Bind("saleId,CustomerId,date")] Sale sale)
         {
             if (ModelState.IsValid)
             {
-                admin.dateAdded = DateTime.Now;
-                _context.Add(admin);
+                _context.Add(sale);
                 await _context.SaveChangesAsync();
-                IdentityRole role = await _roleManager.FindByNameAsync("Admins");
-                // If this is the first admin
-                if (role == null) {
-                    // _userManager.AddToRoleAsync(admin.theUser.Id, "Admins"); //This line will add the user as an admin to the admin role
-                }
-
                 return RedirectToAction(nameof(Index));
             }
-            return View(admin);
+            ViewData["CustomerId"] = new SelectList(_context.Customer, "customerId", "customerId", sale.CustomerId);
+            return View(sale);
         }
 
-        // GET: Admins/Edit/5
+        // GET: Sales/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -89,22 +80,23 @@ namespace EZ_CD.Controllers
                 return NotFound();
             }
 
-            var admin = await _context.Admin.FindAsync(id);
-            if (admin == null)
+            var sale = await _context.Sale.FindAsync(id);
+            if (sale == null)
             {
                 return NotFound();
             }
-            return View(admin);
+            ViewData["CustomerId"] = new SelectList(_context.Customer, "customerId", "customerId", sale.CustomerId);
+            return View(sale);
         }
 
-        // POST: Admins/Edit/5
+        // POST: Sales/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("adminId,dateAdded")] Admin admin)
+        public async Task<IActionResult> Edit(int id, [Bind("saleId,CustomerId,date")] Sale sale)
         {
-            if (id != admin.adminId)
+            if (id != sale.saleId)
             {
                 return NotFound();
             }
@@ -113,12 +105,12 @@ namespace EZ_CD.Controllers
             {
                 try
                 {
-                    _context.Update(admin);
+                    _context.Update(sale);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!AdminExists(admin.adminId))
+                    if (!SaleExists(sale.saleId))
                     {
                         return NotFound();
                     }
@@ -129,10 +121,11 @@ namespace EZ_CD.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(admin);
+            ViewData["CustomerId"] = new SelectList(_context.Customer, "customerId", "customerId", sale.CustomerId);
+            return View(sale);
         }
 
-        // GET: Admins/Delete/5
+        // GET: Sales/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -140,32 +133,31 @@ namespace EZ_CD.Controllers
                 return NotFound();
             }
 
-            var admin = await _context.Admin
-                .FirstOrDefaultAsync(m => m.adminId == id);
-            if (admin == null)
+            var sale = await _context.Sale
+                .Include(s => s.customer)
+                .FirstOrDefaultAsync(m => m.saleId == id);
+            if (sale == null)
             {
                 return NotFound();
             }
 
-            return View(admin);
+            return View(sale);
         }
 
-        // POST: Admins/Delete/5
+        // POST: Sales/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var admin = await _context.Admin.FindAsync(id);
-            _context.Admin.Remove(admin);
+            var sale = await _context.Sale.FindAsync(id);
+            _context.Sale.Remove(sale);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool AdminExists(int id)
+        private bool SaleExists(int id)
         {
-            return _context.Admin.Any(e => e.adminId == id);
+            return _context.Sale.Any(e => e.saleId == id);
         }
-
-
     }
 }

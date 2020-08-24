@@ -7,11 +7,10 @@ namespace EZ_CD.Models
 {
     public class Artist
     {
-        public string name{ get; set; }
-        public int artistId { get; set; }
-        public ICollection<Disk> disks { get; set; }
-        public DateTime birthday { get; set; }
-        public string genre { get; set; }
-        public string country { get; set; }
+        public int artistId { get; set; } // The artist ID
+        public string name{ get; set; } // The artist name
+        public DateTime birthday { get; set; } // His birthday
+        public string genre { get; set; } // The genre
+        public string country { get; set; } // The country of origin
     }
 }

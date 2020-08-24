@@ -19,13 +19,19 @@
                 <span asp-validation-for="name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="DiskId" class="control-label"></label>
-                <select asp-for="DiskId" class ="form-control" asp-items="ViewBag.DiskId"></select>
-            </div>
-            <div class="form-group">
                 <label asp-for="length" class="control-label"></label>
                 <input asp-for="length" class="form-control" />
                 <span asp-validation-for="length" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="imagePath" class="control-label"></label>
+                <input asp-for="imagePath" class="form-control" />
+                <span asp-validation-for="imagePath" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="videoUrl" class="control-label"></label>
+                <input asp-for="videoUrl" class="form-control" />
+                <span asp-validation-for="videoUrl" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -38,6 +44,3 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

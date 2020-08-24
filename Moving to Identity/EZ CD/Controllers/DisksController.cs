@@ -7,12 +7,9 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EZ_CD.Data;
 using EZ_CD.Models;
-using Microsoft.AspNetCore.Authorization;
-
 
 namespace EZ_CD.Controllers
 {
-    [Authorize(Roles = "Admins")]
     public class DisksController : Controller
     {
         private readonly EZ_CD_DBContext _context;
@@ -25,8 +22,7 @@ namespace EZ_CD.Controllers
         // GET: Disks
         public async Task<IActionResult> Index()
         {
-            var eZ_CD_DBContext = _context.Disk.Include(d => d.artist);
-            return View(await eZ_CD_DBContext.ToListAsync());
+            return View(await _context.Disk.ToListAsync());
         }
 
         // GET: Disks/Details/5
@@ -38,20 +34,18 @@ namespace EZ_CD.Controllers
             }
 
             var disk = await _context.Disk
-                .Include(d => d.artist)
                 .FirstOrDefaultAsync(m => m.diskId == id);
             if (disk == null)
             {
                 return NotFound();
             }
-            ViewBag.ArtistId = disk.ArtistId;
+
             return View(disk);
         }
 
         // GET: Disks/Create
         public IActionResult Create()
         {
-            ViewData["Artists"] = new SelectList(_context.Artist, "artistId", "name");
             return View();
         }
 
@@ -60,7 +54,7 @@ namespace EZ_CD.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("diskId,price,name,date,ArtistId,genre,dateAdded,imagePath,videoUrl")] Disk disk)
+        public async Task<IActionResult> Create([Bind("diskId,price,name,date,genre,dateAdded,imagePath,featuredVideoUrl")] Disk disk)
         {
             if (ModelState.IsValid)
             {
@@ -84,7 +78,6 @@ namespace EZ_CD.Controllers
             {
                 return NotFound();
             }
-            ViewData["Artists"] = new SelectList(_context.Artist, "artistId", "name", disk.ArtistId);
             return View(disk);
         }
 
@@ -93,7 +86,7 @@ namespace EZ_CD.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("diskId,price,name,date,ArtistId,genre,dateAdded,imagePath,videoUrl")] Disk disk)
+        public async Task<IActionResult> Edit(int id, [Bind("diskId,price,name,date,genre,dateAdded,imagePath,featuredVideoUrl")] Disk disk)
         {
             if (id != disk.diskId)
             {
@@ -120,7 +113,6 @@ namespace EZ_CD.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ArtistId"] = new SelectList(_context.Artist, "artistId", "artistId", disk.ArtistId);
             return View(disk);
         }
 
@@ -133,7 +125,6 @@ namespace EZ_CD.Controllers
             }
 
             var disk = await _context.Disk
-                .Include(d => d.artist)
                 .FirstOrDefaultAsync(m => m.diskId == id);
             if (disk == null)
             {
@@ -158,6 +149,5 @@ namespace EZ_CD.Controllers
         {
             return _context.Disk.Any(e => e.diskId == id);
         }
-        
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EZ_CD.Areas.Identity.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,10 +8,8 @@ namespace EZ_CD.Models
 {
     public class Sale
     {
-        public int saleId { get; set; }
-        public Customer customer { get; set; }
-        public int CustomerId { get; set; }
-        public ICollection<SaleDetailes> disksSalesDetailes { get; set; }
-        public DateTime date { get; set; }
+        public int saleId { get; set; } // The id of the sale
+        public User User{ get; set; } // The user that made the purchase
+        public DateTime date { get; set; } // The time the purchase was made
     }
 }
