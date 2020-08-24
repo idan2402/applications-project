@@ -41,18 +41,17 @@
                 <div class="banner_content">
                     <div class="media">
                         <div class="d-flex">
-                            <img src=@Model.imagePath alt="">
+                            <img src=@Model.imagePath alt="@Model.name" style="object-fit : contain;width:700px">
                         </div>
                         <div class="media-body">
                             <div class="personal_text">
-                                <h6>Hello Everybody, i am</h6>
                                 <h3>@Model.name</h3>
                                 <h4>@Model.Artist</h4>
                                 <h5>@Model.genre</h5>
-                                <h5>@Model.date</h5>
+                                <h5>@Model.date.ToShortDateString()</h5>
                                 <p>You will begin to realise why this exercise is called the Dickens Pattern (with reference to the ghost showing Scrooge some different futures)</p>
                                 <ul class="list basic_info">
-                                    <li><a href="#"><i class="lnr lnr-calendar-full"></i> @Model.date</a></li>
+                                    <li><a href="#"><i class="lnr lnr-calendar-full"></i> @Model.date.ToShortDateString()</a></li>
                                     <li><a href="#"><i class="lnr lnr-phone-handset"></i> @Model.price</a></li>
                                     <li><a href="#"><i class="lnr lnr-envelope"></i>@Model.Artist</a></li>
                                     <li><a href="#"><i class="lnr lnr-home"></i> @Model.featuredVideoUrl</a></li>

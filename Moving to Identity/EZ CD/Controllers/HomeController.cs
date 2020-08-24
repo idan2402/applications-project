@@ -54,7 +54,7 @@ namespace EZ_CD.Controllers
                 return NotFound();
             }
 
-            return View("_DisksDisplayer", disk);
+            return View("DiskDetails", disk);
         }
 
 
