@@ -35,7 +35,13 @@
             </div>
             <div class="form-group">
                 <label asp-for="genre" class="control-label"></label>
-                <input asp-for="genre" class="form-control" />
+                <select id="genre-list" asp-for="genre" class="form-control">
+                    <option value="Pop" selected>Pop</option>
+                    <option value="Rap">Rap</option>
+                    <option value="Rock">Rock</option>
+                    <option value="Metal">Metal</option>
+                    <option value="Classic">Classic</option>
+                </select>
                 <span asp-validation-for="genre" class="text-danger"></span>
             </div>
             <div class="form-group">
