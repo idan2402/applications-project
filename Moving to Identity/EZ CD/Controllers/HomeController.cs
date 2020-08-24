@@ -9,6 +9,9 @@ using EZ_CD.Models;
 using EZ_CD.Data;
 using Microsoft.EntityFrameworkCore;
 using System.Net.Http;
+using Microsoft.AspNetCore.Identity;
+using EZ_CD.Areas.Identity.Data;
+using Microsoft.AspNetCore.Http;
 
 namespace EZ_CD.Controllers
 {
@@ -16,14 +19,17 @@ namespace EZ_CD.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly EZ_CD_DBContext _context;
-        public HomeController(ILogger<HomeController> logger, EZ_CD_DBContext context)
+        private readonly UserManager<User> _userManager;
+        public HomeController(ILogger<HomeController> logger, EZ_CD_DBContext context, UserManager<User> userManager)
         {
             _logger = logger;
             _context = context;
+            _userManager = userManager;
         }
 
         public IActionResult Index()
         {
+            HttpContext.Session.SetInt32("cartSize", _context.CartItem.Count());
             return View("Index", _context.Disk);
         }
 
@@ -48,9 +54,6 @@ namespace EZ_CD.Controllers
 
             return View("_DisksDisplayer", disk);
         }
-
-
-
 
 
         public async Task<IActionResult> Search(string diskName, string pop = "", string rap = "", string rock = "", string metal = "", string classic = "",
@@ -131,5 +134,12 @@ namespace EZ_CD.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        public async Task<IActionResult> Cart()
+        {
+            User currentUser = await _userManager.GetUserAsync(HttpContext.User);
+            return View("cart", _context.CartItem.Where(m => m.User == currentUser));
+        }
+
     }
 }

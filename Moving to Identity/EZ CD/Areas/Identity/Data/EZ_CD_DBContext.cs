@@ -38,5 +38,7 @@ namespace EZ_CD.Data
 
         public DbSet<EZ_CD.Models.Song> Song { get; set; }
         public DbSet<EZ_CD.Models.SaleItem> SaleItem { get; set; }
+        public DbSet<EZ_CD.Models.CartItem> CartItem { get; set; }
+
     }
 }
