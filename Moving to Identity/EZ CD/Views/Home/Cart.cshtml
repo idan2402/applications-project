@@ -1,36 +1,64 @@
 ﻿@model IEnumerable<EZ_CD.Models.CartItem>
 
+@using EZ_CD.Models
+@using Microsoft.AspNetCore.Identity
+@using EZ_CD.Areas.Identity.Data
+@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
 @{
     ViewData["Title"] = "Cart";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h1>Cart</h1>
-
-@if (Model.Count() == 0)
-{
-    <p>
-        You don't have any items in your cart
-    </p>
-}
-else
-{
-    <table class="table">
-        <thead>
-            <tr>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
+@{
+    User user = await UserManager.GetUserAsync(User);
+    if (Model.Count(m => m.User == user) == 0)
+    {
+        <p>
+            You don't have any items in your cart
+        </p>
+    }
+    else
+    {
+        <table class="table">
+            <thead>
                 <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Disk.name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Disk.price)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Disk.date)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Disk.name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Disk.price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Disk.date)
+                    </td>
                     <td>
                         <a asp-action="Details" asp-route-id="@item.cartItemId">Details</a> |
                         <a asp-action="Delete" asp-route-id="@item.cartItemId">Delete</a>
                     </td>
                 </tr>
-            }
-        </tbody>
-    </table>
+                }
+            </tbody>
+        </table>
+    }
 }

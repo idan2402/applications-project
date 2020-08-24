@@ -94,7 +94,7 @@ namespace EZ_CD.Areas.Identity.Pages.Account
                 {
                     _logger.LogInformation("User logged in.");
                     var user = await _userManager.FindByEmailAsync(Input.Email);
-                    HttpContext.Session.SetInt32("cartSize", _context.CartItem.Count());
+                    HttpContext.Session.SetInt32("cartSize", _context.CartItem.Count(m => m.User == user));
                     if (await _userManager.IsInRoleAsync(user, "Admins")) // If the user is an admin
                         return LocalRedirect(Url.Content("~/Admindashboard")); // Redirect to admins
 

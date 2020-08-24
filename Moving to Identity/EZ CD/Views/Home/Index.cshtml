@@ -74,7 +74,7 @@
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
                                         <a asp-controller="Home" asp-action="DiskDetails" asp-route-id="@item.diskId"> <button type="button" class="btn btn-sm btn-outline-secondary">View</button></a>
-                                        <a asp-controller="Disks" asp-action="Details" asp-route-id="@item.diskId"> <button type="button" class="btn btn-sm btn-outline-secondary">Add to cart</button></a>
+                                        <a asp-controller="Home" asp-action="AddToCart" asp-route-id="@item.diskId"> <button type="button" class="btn btn-sm btn-outline-secondary">Add to cart</button></a>
                                     </div>
                                 </div>
                             </div>

@@ -27,9 +27,10 @@ namespace EZ_CD.Controllers
             _userManager = userManager;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            HttpContext.Session.SetInt32("cartSize", _context.CartItem.Count());
+            User currentUser = await _userManager.GetUserAsync(HttpContext.User);
+            HttpContext.Session.SetInt32("cartSize", _context.CartItem.Count(m => m.User == currentUser));
             return View("Index", _context.Disk);
         }
 
@@ -138,7 +139,24 @@ namespace EZ_CD.Controllers
         public async Task<IActionResult> Cart()
         {
             User currentUser = await _userManager.GetUserAsync(HttpContext.User);
-            return View("cart", _context.CartItem.Where(m => m.User == currentUser));
+            return View("cart", _context.CartItem.Where(m => m.User == currentUser).Include(m => m.Disk).ToList());
+        }
+
+        public async Task<IActionResult> AddToCart(int? id)
+        {
+            
+            if (id == null)
+            {
+                return NotFound();
+            }
+            User currentUser = await _userManager.GetUserAsync(HttpContext.User);
+            CartItem cartItem = new CartItem();
+            cartItem.User = currentUser;
+            cartItem.Disk = await _context.Disk.FirstAsync(m => m.diskId == id);
+            _context.Add(cartItem);
+            await _context.SaveChangesAsync();
+            HttpContext.Session.SetInt32("cartSize", _context.CartItem.Count(m => m.User == currentUser));
+            return View("Cart", _context.CartItem.Where(m => m.User == currentUser).Include(m => m.Disk).ToList()); 
         }
 
     }
