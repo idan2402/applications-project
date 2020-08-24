@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EZ_CD.Migrations
 {
     [DbContext(typeof(EZ_CD_DBContext))]
-    [Migration("20200824104451_big-database-update")]
-    partial class bigdatabaseupdate
+    [Migration("20200824143610_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -117,6 +117,28 @@ namespace EZ_CD.Migrations
                     b.HasKey("artistId");
 
                     b.ToTable("Artist");
+                });
+
+            modelBuilder.Entity("EZ_CD.Models.CartItem", b =>
+                {
+                    b.Property<int>("cartItemId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int?>("diskId")
+                        .HasColumnType("int");
+
+                    b.HasKey("cartItemId");
+
+                    b.HasIndex("UserId");
+
+                    b.HasIndex("diskId");
+
+                    b.ToTable("CartItem");
                 });
 
             modelBuilder.Entity("EZ_CD.Models.Disk", b =>
@@ -366,6 +388,17 @@ namespace EZ_CD.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("EZ_CD.Models.CartItem", b =>
+                {
+                    b.HasOne("EZ_CD.Areas.Identity.Data.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.HasOne("EZ_CD.Models.Disk", "Disk")
+                        .WithMany()
+                        .HasForeignKey("diskId");
                 });
 
             modelBuilder.Entity("EZ_CD.Models.Disk", b =>

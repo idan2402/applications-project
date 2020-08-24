@@ -14,6 +14,9 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.Artist)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.price)
             </th>
             <th>
@@ -40,6 +43,11 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
+            <td>
+                <a asp-controller="artists" asp-action="details" asp-route-id="@item.Artist.artistId">
+                    @Html.DisplayFor(modelItem => item.Artist.name)
+                </a>
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.price)
             </td>

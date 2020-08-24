@@ -17,6 +17,7 @@ namespace EZ_CD.Models
         public DateTime dateAdded { get; set; } // The date that the admin added the disk to the website
         public User Admin { get; set; } // The admin who added the disk to the DB
         public string imagePath { get; set; } // The cover image url
+        public ICollection<Song> songs { get; set; }
         public string featuredVideoUrl { get; set; } // the video URL
     }
 }

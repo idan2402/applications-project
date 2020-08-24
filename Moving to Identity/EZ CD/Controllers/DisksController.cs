@@ -24,6 +24,9 @@ namespace EZ_CD.Controllers
         // GET: Disks
         public async Task<IActionResult> Index()
         {
+            await _context.Disk
+                .Include(d => d.Artist)
+                .FirstOrDefaultAsync();
             return View(await _context.Disk.ToListAsync());
         }
 
@@ -41,7 +44,10 @@ namespace EZ_CD.Controllers
             {
                 return NotFound();
             }
-
+            await _context.Disk
+                .Include(d => d.Artist)
+                .FirstOrDefaultAsync(m => m.diskId == id);
+            ViewBag.ArtistId = disk.Artist.artistId;
             return View(disk);
         }
 
@@ -59,10 +65,11 @@ namespace EZ_CD.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("diskId,price,name,date,genre,dateAdded,imagePath,featuredVideoUrl")] Disk disk)
+        public async Task<IActionResult> Create([Bind("diskId,price,name,date,genre,dateAdded,imagePath,featuredVideoUrl")] Disk disk, string artistId)
         {
             if (ModelState.IsValid)
             {
+                disk.Artist = _context.Artist.Find(int.Parse(artistId));
                 _context.Add(disk);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -83,6 +90,9 @@ namespace EZ_CD.Controllers
             {
                 return NotFound();
             }
+           await _context.Disk
+                .Include(d => d.Artist)
+                .FirstOrDefaultAsync(m => m.diskId == id);
             ViewData["Artists"] = new SelectList(_context.Artist, "artistId", "name", disk.Artist.artistId);
             return View(disk);
         }

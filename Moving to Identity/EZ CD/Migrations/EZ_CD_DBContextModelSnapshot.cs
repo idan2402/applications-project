@@ -93,31 +93,6 @@ namespace EZ_CD.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("EZ_CD.Models.Admin", b =>
-                {
-                    b.Property<int>("adminId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("dateAdded")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("theUserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int?>("whoAddedadminId")
-                        .HasColumnType("int");
-
-                    b.HasKey("adminId");
-
-                    b.HasIndex("theUserId");
-
-                    b.HasIndex("whoAddedadminId");
-
-                    b.ToTable("Admin");
-                });
-
             modelBuilder.Entity("EZ_CD.Models.Artist", b =>
                 {
                     b.Property<int>("artistId")
@@ -142,24 +117,26 @@ namespace EZ_CD.Migrations
                     b.ToTable("Artist");
                 });
 
-            modelBuilder.Entity("EZ_CD.Models.Customer", b =>
+            modelBuilder.Entity("EZ_CD.Models.CartItem", b =>
                 {
-                    b.Property<int>("customerId")
+                    b.Property<int>("cartItemId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("theUserId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("userId")
+                    b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("customerId");
+                    b.Property<int?>("diskId")
+                        .HasColumnType("int");
 
-                    b.HasIndex("userId");
+                    b.HasKey("cartItemId");
 
-                    b.ToTable("Customer");
+                    b.HasIndex("UserId");
+
+                    b.HasIndex("diskId");
+
+                    b.ToTable("CartItem");
                 });
 
             modelBuilder.Entity("EZ_CD.Models.Disk", b =>
@@ -169,10 +146,10 @@ namespace EZ_CD.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("ArtistId")
-                        .HasColumnType("int");
+                    b.Property<string>("AdminId")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<int?>("adminId")
+                    b.Property<int?>("artistId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("date")
@@ -180,6 +157,9 @@ namespace EZ_CD.Migrations
 
                     b.Property<DateTime>("dateAdded")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("featuredVideoUrl")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("genre")
                         .HasColumnType("nvarchar(max)");
@@ -193,14 +173,11 @@ namespace EZ_CD.Migrations
                     b.Property<double>("price")
                         .HasColumnType("float");
 
-                    b.Property<string>("videoUrl")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("diskId");
 
-                    b.HasIndex("ArtistId");
+                    b.HasIndex("AdminId");
 
-                    b.HasIndex("adminId");
+                    b.HasIndex("artistId");
 
                     b.ToTable("Disk");
                 });
@@ -212,37 +189,39 @@ namespace EZ_CD.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CustomerId")
-                        .HasColumnType("int");
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("date")
                         .HasColumnType("datetime2");
 
                     b.HasKey("saleId");
 
-                    b.HasIndex("CustomerId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Sale");
                 });
 
-            modelBuilder.Entity("EZ_CD.Models.SaleDetailes", b =>
+            modelBuilder.Entity("EZ_CD.Models.SaleItem", b =>
                 {
-                    b.Property<int>("DiskId")
+                    b.Property<int>("saleItemId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("diskId")
                         .HasColumnType("int");
 
-                    b.Property<int>("SaleId")
+                    b.Property<int?>("saleId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("customerId")
-                        .HasColumnType("int");
+                    b.HasKey("saleItemId");
 
-                    b.HasKey("DiskId", "SaleId");
+                    b.HasIndex("diskId");
 
-                    b.HasIndex("SaleId");
+                    b.HasIndex("saleId");
 
-                    b.HasIndex("customerId");
-
-                    b.ToTable("SaleDetailes");
+                    b.ToTable("SaleItem");
                 });
 
             modelBuilder.Entity("EZ_CD.Models.Song", b =>
@@ -252,8 +231,11 @@ namespace EZ_CD.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("DiskId")
+                    b.Property<int?>("diskId")
                         .HasColumnType("int");
+
+                    b.Property<string>("imagePath")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("length")
                         .HasColumnType("nvarchar(max)");
@@ -261,9 +243,12 @@ namespace EZ_CD.Migrations
                     b.Property<string>("name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("videoUrl")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("songId");
 
-                    b.HasIndex("DiskId");
+                    b.HasIndex("diskId");
 
                     b.ToTable("Song");
                 });
@@ -403,72 +388,51 @@ namespace EZ_CD.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("EZ_CD.Models.Admin", b =>
+            modelBuilder.Entity("EZ_CD.Models.CartItem", b =>
                 {
-                    b.HasOne("EZ_CD.Areas.Identity.Data.User", "theUser")
+                    b.HasOne("EZ_CD.Areas.Identity.Data.User", "User")
                         .WithMany()
-                        .HasForeignKey("theUserId");
+                        .HasForeignKey("UserId");
 
-                    b.HasOne("EZ_CD.Models.Admin", "whoAdded")
+                    b.HasOne("EZ_CD.Models.Disk", "Disk")
                         .WithMany()
-                        .HasForeignKey("whoAddedadminId");
-                });
-
-            modelBuilder.Entity("EZ_CD.Models.Customer", b =>
-                {
-                    b.HasOne("EZ_CD.Areas.Identity.Data.User", "user")
-                        .WithMany()
-                        .HasForeignKey("userId");
+                        .HasForeignKey("diskId");
                 });
 
             modelBuilder.Entity("EZ_CD.Models.Disk", b =>
                 {
-                    b.HasOne("EZ_CD.Models.Artist", "artist")
-                        .WithMany("disks")
-                        .HasForeignKey("ArtistId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("EZ_CD.Models.Admin", "admin")
+                    b.HasOne("EZ_CD.Areas.Identity.Data.User", "Admin")
                         .WithMany()
-                        .HasForeignKey("adminId");
+                        .HasForeignKey("AdminId");
+
+                    b.HasOne("EZ_CD.Models.Artist", "Artist")
+                        .WithMany()
+                        .HasForeignKey("artistId");
                 });
 
             modelBuilder.Entity("EZ_CD.Models.Sale", b =>
                 {
-                    b.HasOne("EZ_CD.Models.Customer", "customer")
+                    b.HasOne("EZ_CD.Areas.Identity.Data.User", "User")
                         .WithMany()
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
                 });
 
-            modelBuilder.Entity("EZ_CD.Models.SaleDetailes", b =>
+            modelBuilder.Entity("EZ_CD.Models.SaleItem", b =>
                 {
-                    b.HasOne("EZ_CD.Models.Disk", "disk")
-                        .WithMany("disksSalesDetailes")
-                        .HasForeignKey("DiskId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("EZ_CD.Models.Disk", "Disk")
+                        .WithMany()
+                        .HasForeignKey("diskId");
 
-                    b.HasOne("EZ_CD.Models.Sale", "sale")
-                        .WithMany("disksSalesDetailes")
-                        .HasForeignKey("SaleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("EZ_CD.Models.Customer", null)
-                        .WithMany("purchases")
-                        .HasForeignKey("customerId");
+                    b.HasOne("EZ_CD.Models.Sale", "Sale")
+                        .WithMany()
+                        .HasForeignKey("saleId");
                 });
 
             modelBuilder.Entity("EZ_CD.Models.Song", b =>
                 {
-                    b.HasOne("EZ_CD.Models.Disk", "disk")
-                        .WithMany("songs")
-                        .HasForeignKey("DiskId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("EZ_CD.Models.Disk", "Disk")
+                        .WithMany()
+                        .HasForeignKey("diskId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
