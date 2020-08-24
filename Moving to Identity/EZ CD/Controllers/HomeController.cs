@@ -29,9 +29,10 @@ namespace EZ_CD.Controllers
 
         public async Task<IActionResult> Index()
         {
+            var tempContext = _context.Disk.Include(d => d.Artist);
             User currentUser = await _userManager.GetUserAsync(HttpContext.User);
             HttpContext.Session.SetInt32("cartSize", _context.CartItem.Count(m => m.User == currentUser));
-            return View("Index", _context.Disk);
+            return View("Index", tempContext);
         }
 
         public IActionResult Privacy()

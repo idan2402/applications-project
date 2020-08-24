@@ -51,38 +51,40 @@
                         @Html.Raw("<h1> Couldn't find results </h1>");
 
                 }
-
-                @foreach (var item in Model)
-                {
-                    <div class="col-md-6 col-lg-4">
-                        <div class="card">
-                            <div class="embed-responsive embed-responsive-4by3">
-                                <img alt="Card image cap" class="card-img-top img-fluid embed-responsive-item"
-                                     src="@item.imagePath" />
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title">@Html.DisplayFor(modelItem => item.name)</h5>
-                                <p class="card-text">
-                                    @Html.DisplayFor(modelItem => item.Artist.name)
-                                    <br />
-                                    Date Released: @item.date.ToShortDateString()
-                                    <br />
-                                    Genre: @Html.DisplayFor(modelItem => item.genre)
-                                    <br />
-                                    Price: @Html.DisplayFor(modelItem => item.price)$
-                                </p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <a asp-controller="Home" asp-action="DiskDetails" asp-route-id="@item.diskId"> <button type="button" class="btn btn-sm btn-outline-secondary">View</button></a>
-                                        <a asp-controller="Home" asp-action="AddToCart" asp-route-id="@item.diskId"> <button type="button" class="btn btn-sm btn-outline-secondary">Add to cart</button></a>
+                <div class=" row">
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card">
+                                <div class="embed-responsive embed-responsive-4by3">
+                                    <img alt="Card image cap" class="card-img-top img-fluid embed-responsive-item"
+                                         src="@item.imagePath" />
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">@Html.DisplayFor(modelItem => item.name)</h5>
+                                    <p class="card-text">
+                                        @Html.DisplayFor(modelItem => item.Artist.name)
+                                        <br />
+                                        Date Released: @item.date.ToShortDateString()
+                                        <br />
+                                        Genre: @Html.DisplayFor(modelItem => item.genre)
+                                        <br />
+                                        Price: @Html.DisplayFor(modelItem => item.price)$
+                                    </p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="btn-group">
+                                            <a asp-controller="Home" asp-action="DiskDetails" asp-route-id="@item.diskId"> <button type="button" class="btn btn-sm btn-outline-secondary">View</button></a>
+                                            &nbsp;
+                                            <a asp-controller="Home" asp-action="AddToCart" asp-route-id="@item.diskId"> <button type="button" class="btn btn-sm btn-outline-secondary">Add to cart</button></a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
 
-                }
+                    }
+                </div>
 
             </div>
 
