@@ -24,10 +24,8 @@ namespace EZ_CD.Controllers
         // GET: Disks
         public async Task<IActionResult> Index()
         {
-            await _context.Disk
-                .Include(d => d.Artist)
-                .FirstOrDefaultAsync();
-            return View(await _context.Disk.ToListAsync());
+           var tempContext = _context.Disk.Include(d => d.Artist);
+            return View(await tempContext.ToListAsync());
         }
 
         // GET: Disks/Details/5
@@ -44,11 +42,7 @@ namespace EZ_CD.Controllers
             {
                 return NotFound();
             }
-            await _context.Disk
-                .Include(d => d.Artist)
-                .FirstOrDefaultAsync(m => m.diskId == id);
-            ViewBag.ArtistId = disk.Artist.artistId;
-            return View(disk);
+            return RedirectToAction("Index");
         }
 
        
