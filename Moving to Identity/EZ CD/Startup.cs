@@ -28,8 +28,9 @@ namespace EZ_CD
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc()
-                .AddGitHubWebHooks();
+
+            services.AddSession(s => s.IdleTimeout = TimeSpan.FromMinutes(30));
+            services.AddMvc();
 
             services.AddDbContext<EZ_CD_DBContext>(options =>
                     options.UseSqlServer(
@@ -46,6 +47,7 @@ namespace EZ_CD
 
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.AddHttpContextAccessor();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -63,6 +65,8 @@ namespace EZ_CD
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            
+            app.UseSession();
 
             app.UseRouting();
 
