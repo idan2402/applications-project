@@ -32,10 +32,25 @@ namespace EZ_CD.Controllers
             return View();
         }
 
-        public IActionResult DiskDetails()
+        public async Task<IActionResult> DiskDetails(int? id)
         {
-            return View("_DisksDisplayer");
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var disk = await _context.Disk
+                .FirstOrDefaultAsync(m => m.diskId == id);
+            if (disk == null)
+            {
+                return NotFound();
+            }
+
+            return View("_DisksDisplayer", disk);
         }
+
+
+
 
 
         public async Task<IActionResult> Search(string diskName, string pop = "", string rap = "", string rock = "", string metal = "", string classic = "",
