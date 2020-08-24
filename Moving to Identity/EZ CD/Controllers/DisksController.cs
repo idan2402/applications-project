@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EZ_CD.Data;
 using EZ_CD.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EZ_CD.Controllers
 {
+    [Authorize(Roles = "Admins")]
     public class DisksController : Controller
     {
         private readonly EZ_CD_DBContext _context;
@@ -46,6 +48,7 @@ namespace EZ_CD.Controllers
         // GET: Disks/Create
         public IActionResult Create()
         {
+            ViewData["Artists"] = new SelectList(_context.Artist, "artistId", "name");
             return View();
         }
 
@@ -78,6 +81,7 @@ namespace EZ_CD.Controllers
             {
                 return NotFound();
             }
+            ViewData["Artists"] = new SelectList(_context.Artist, "artistId", "name", disk.Artist.artistId);
             return View(disk);
         }
 
@@ -113,6 +117,7 @@ namespace EZ_CD.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["ArtistId"] = new SelectList(_context.Artist, "artistId", "artistId", disk.Artist.artistId);
             return View(disk);
         }
 

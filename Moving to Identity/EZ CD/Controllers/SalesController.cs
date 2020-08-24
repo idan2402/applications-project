@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EZ_CD.Data;
 using EZ_CD.Models;
+using EZ_CD.Areas.Identity;
 
 namespace EZ_CD.Controllers
 {
@@ -46,6 +47,7 @@ namespace EZ_CD.Controllers
         // GET: Sales/Create
         public IActionResult Create()
         {
+            ViewData["CustomerId"] = new SelectList(_context.Users, "customerId", "customerId");
             return View();
         }
 
@@ -62,6 +64,7 @@ namespace EZ_CD.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["CustomerId"] = new SelectList(_context.Users, "customerId", "customerId", sale.User.Id);
             return View(sale);
         }
 
@@ -78,6 +81,7 @@ namespace EZ_CD.Controllers
             {
                 return NotFound();
             }
+            ViewData["CustomerId"] = new SelectList(_context.Users, "customerId", "customerId", sale.User.Id);
             return View(sale);
         }
 
@@ -113,6 +117,7 @@ namespace EZ_CD.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["CustomerId"] = new SelectList(_context.Users, "customerId", "customerId", sale.User.Id);
             return View(sale);
         }
 
