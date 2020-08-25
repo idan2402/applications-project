@@ -23,7 +23,7 @@ namespace EZ_CD.Models
         [DisplayName("Date Added To The Site")]
         public DateTime dateAdded { get; set; } // The date that the admin added the disk to the website
         public User Admin { get; set; } // The admin who added the disk to the DB
-        [DisplayName("Cover Image URL")]
+        [DisplayName("Cover Image")]
         public string imagePath { get; set; } // The cover image url
         [DisplayName("Featured Video URL")]
         public string featuredVideoUrl { get; set; } // the video URL

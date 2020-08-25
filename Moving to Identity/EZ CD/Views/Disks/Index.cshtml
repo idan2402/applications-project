@@ -17,10 +17,13 @@
                 @Html.DisplayNameFor(model => model.Artist)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.price)
+                @Html.DisplayNameFor(model => model.name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.name)
+                @Html.DisplayNameFor(model => model.imagePath)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.price)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.date)
@@ -30,9 +33,6 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.dateAdded)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.imagePath)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.featuredVideoUrl)
@@ -49,10 +49,12 @@
                 </a>
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.price)
+                @Html.DisplayFor(modelItem => item.name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.name)
+                <a href="@item.imagePath"><img src="@item.imagePath" height="35" width="35" /></a>
+            <td>
+                @Html.DisplayFor(modelItem => item.price)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.date)
@@ -62,9 +64,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.dateAdded)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.imagePath)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.featuredVideoUrl)

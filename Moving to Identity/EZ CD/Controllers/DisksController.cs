@@ -90,6 +90,7 @@ namespace EZ_CD.Controllers
                 .FirstOrDefaultAsync(m => m.diskId == id);
             ViewData["Artists"] = new SelectList(_context.Artist, "artistId", "name", disk.Artist.artistId);
             ViewBag.Countries = new SelectList(Countries.countries, disk.Artist.country);
+            ViewBag.Songs = _context.Song.Where(song => song.Disk.diskId == id);
             return View(disk);
         }
 

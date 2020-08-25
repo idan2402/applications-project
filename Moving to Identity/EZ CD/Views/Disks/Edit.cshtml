@@ -5,6 +5,24 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
+<style>
+    .pt-3-half {
+        padding-top: 1.4rem;
+    }
+
+    #table{
+        position:relative;
+        margin-top:-145%;
+        margin-left:110%;
+    }
+    .save-backtolist {
+        margin-top: 132%;
+    }
+</style>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" 
+      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" 
+      crossorigin="anonymous">
 <h1>Edit</h1>
 
 <h4>Disk</h4>
@@ -60,14 +78,70 @@
                 <input asp-for="featuredVideoUrl" class="form-control" />
                 <span asp-validation-for="featuredVideoUrl" class="text-danger"></span>
             </div>
+            <!-- Editable table -->
+            <div id="table" class="table-editable">
+                <span class="table-add float-right mb-3 mr-2">
+                    <a href="#!" class="text-success">
+                        <i class="fas fa-2x" aria-hidden="true">+</i>
+                    </a>
+                </span>
+                <table class="table table-bordered table-responsive-md table-striped text-center">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Name</th>
+                            <th class="text-center">Length</th>
+                            <th class="text-center">Sort</th>
+                            <th class="text-center">Remove</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            foreach (Song song in ViewBag.Songs)
+                            {
+                                <tr>
+                                    <td class="pt-3-half" contenteditable="true">@song.name</td>
+                                    <td class="pt-3-half" contenteditable="true">@song.length</td>
+                                    <td class="pt-3-half">
+                                        <span class="table-up">
+                                            <a href="#!" class="indigo-text">
+                                                <i class="fas fa-long-arrow-alt-up"
+                                                   aria-hidden="true">↑</i>
+                                            </a>
+                                        </span>
+                                        <span class="table-down">
+                                            <a href="#!" class="indigo-text">
+                                                <i class="fas fa-long-arrow-alt-down"
+                                                   aria-hidden="true">↓</i>
+                                            </a>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="table-remove">
+                                            <button type="button"
+                                                    class="btn btn-danger btn-rounded btn-sm my-0">
+                                                Remove
+                                            </button>
+                                        </span>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                    </table>
+            </div>
+            <!-- Editable table -->
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-primary save-backtolist" />
             </div>
         </form>
     </div>
 </div>
 
-<div>
+<div class="">
     <a asp-action="Index">Back to List</a>
 </div>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/js/AdminPanel/EditDisk.js"></script>
+
 
