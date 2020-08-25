@@ -167,7 +167,7 @@ namespace EZ_CD.Controllers
             _context.Add(cartItem);
             await _context.SaveChangesAsync();
             HttpContext.Session.SetInt32("cartSize", _context.CartItem.Count(m => m.User == currentUser));
-            return View("Cart", _context.CartItem.Where(m => m.User == currentUser).Include(m => m.Disk).ToList()); 
+            return RedirectToAction(nameof(Cart));
         }
 
         public async Task<IActionResult> RemoveFromCart(int? id)
@@ -182,14 +182,21 @@ namespace EZ_CD.Controllers
             _context.Remove(cartItem);
             await _context.SaveChangesAsync();
             HttpContext.Session.SetInt32("cartSize", _context.CartItem.Count(m => m.User == currentUser));
+            return RedirectToAction(nameof(Cart));
+        }
+
+        public async Task<IActionResult> Purhcased()
+        {
+            User currentUser = await _userManager.GetUserAsync(HttpContext.User);
+
             List<CartItem> items = _context.CartItem.Where(m => m.User == currentUser).Include(m => m.Disk).ToList();
-            double sum = 0;
-            foreach (var item in items)
+            foreach (CartItem cartItem in items)
             {
-                sum += item.Disk.price;
+                _context.Remove(cartItem);
             }
-            ViewData["sum"] = sum;
-            return View("Cart", _context.CartItem.Where(m => m.User == currentUser).Include(m => m.Disk).ToList());
+            await _context.SaveChangesAsync();
+            HttpContext.Session.SetInt32("cartSize", 0);
+            return RedirectToAction(nameof(Index));
         }
 
     }

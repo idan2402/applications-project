@@ -111,10 +111,55 @@
                                         </li>
                                     </ul>
 
-                                    <button type="button" class="btn btn-primary btn-block waves-effect waves-light">
-                                        go to
-                                        checkout
-                                    </button>
+                                    <div id="paypal-button"></div>
+                                    <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+                                    <script>
+                                        paypal.Button.render({
+                                            // Configure environment
+                                            env: 'sandbox',
+                                            client: {
+                                                sandbox: 'AVhrk7Hk-tPr2vkCMj08EUEWrW9KDE31nDKdMuIbczCND3H6EIDG43mW4Byg3vnxW5Z1jmynM1pTS4Y-',
+                                                //production: 'demo_production_client_id'
+                                            },
+                                            // Customize button (optional)
+                                            locale: 'en_US',
+                                            style: {
+                                                size: 'small',
+                                                color: 'gold',
+                                                shape: 'pill',
+                                            },
+
+                                            // Enable Pay Now checkout flow (optional)
+                                            commit: true,
+
+                                            // Set up a payment
+                                            payment: function (data, actions) {
+                                                return actions.payment.create({
+                                                    transactions: [{
+                                                        amount: {
+                                                            total: "@ViewData["sum"]",
+                                                            currency: 'USD',
+                                                        },
+                                                        custom: '90048630024435',
+                                                        //invoice_number: '12345', Insert a unique invoice number
+                                                        payment_options: {
+                                                            allowed_payment_method: 'INSTANT_FUNDING_SOURCE'
+                                                        },
+                                                        soft_descriptor: 'ECHI5786786',
+
+                                                    }],
+                                                    note_to_payer: 'Contact us for any questions on your order.'
+                                                });
+                                            },
+                                            onAuthorize: function (data, actions) {
+                                                return actions.payment.execute().then(function () {
+                                                    // Show a confirmation message to the buyer
+                                                    window.location.href = '@Url.Action("Purhcased", "Home")/'
+                                                });
+                                            }
+                                        }, '#paypal-button');
+
+                                    </script>
 
                                 </div>
                             </div>
