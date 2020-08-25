@@ -12,6 +12,7 @@ using System.Net.Http;
 using Microsoft.AspNetCore.Identity;
 using EZ_CD.Areas.Identity.Data;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Localization;
 
 namespace EZ_CD.Controllers
 {
@@ -20,11 +21,13 @@ namespace EZ_CD.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly EZ_CD_DBContext _context;
         private readonly UserManager<User> _userManager;
-        public HomeController(ILogger<HomeController> logger, EZ_CD_DBContext context, UserManager<User> userManager)
+        private readonly SignInManager<User> _singInManager;
+        public HomeController(ILogger<HomeController> logger, EZ_CD_DBContext context, UserManager<User> userManager, SignInManager<User> singInManager)
         {
             _logger = logger;
             _context = context;
             _userManager = userManager;
+            _singInManager = singInManager;
         }
 
         public async Task<IActionResult> Index()
@@ -140,7 +143,14 @@ namespace EZ_CD.Controllers
         public async Task<IActionResult> Cart()
         {
             User currentUser = await _userManager.GetUserAsync(HttpContext.User);
-            return View("cart", _context.CartItem.Where(m => m.User == currentUser).Include(m => m.Disk).ToList());
+            List<CartItem> items = _context.CartItem.Where(m => m.User == currentUser).Include(m => m.Disk).ToList();
+            double sum = 0;
+            foreach (var item in items)
+            {
+                sum += item.Disk.price;
+            }
+            ViewData["sum"] = sum;
+            return View("cart", items);
         }
 
         public async Task<IActionResult> AddToCart(int? id)
