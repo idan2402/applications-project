@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using EZ_CD.Data;
 using EZ_CD.Models;
 using Microsoft.AspNetCore.Authorization;
+using EZ_CD.Utilities;
 
 namespace EZ_CD.Controllers
 {
@@ -48,6 +49,7 @@ namespace EZ_CD.Controllers
         // GET: Artists/Create
         public IActionResult Create()
         {
+            ViewBag.Countries = new SelectList(Countries.countries, Countries.countries[0]);
             return View();
         }
 
@@ -80,6 +82,7 @@ namespace EZ_CD.Controllers
             {
                 return NotFound();
             }
+            ViewBag.Countries = new SelectList(Countries.countries, artist.country);
             return View(artist);
         }
 
