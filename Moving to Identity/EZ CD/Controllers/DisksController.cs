@@ -42,7 +42,7 @@ namespace EZ_CD.Controllers
             {
                 return NotFound();
             }
-            return RedirectToAction("Index");
+            return View(disk);
         }
 
        
@@ -96,7 +96,7 @@ namespace EZ_CD.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("diskId,price,name,date,genre,dateAdded,imagePath,featuredVideoUrl")] Disk disk)
+        public async Task<IActionResult> Edit(int id, [Bind("diskId,price,name,date,genre,dateAdded,imagePath,featuredVideoUrl")] Disk disk, string artistId)
         {
             if (id != disk.diskId)
             {
@@ -107,6 +107,7 @@ namespace EZ_CD.Controllers
             {
                 try
                 {
+                    disk.Artist = _context.Artist.Find(int.Parse(artistId));
                     _context.Update(disk);
                     await _context.SaveChangesAsync();
                 }
