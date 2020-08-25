@@ -1,8 +1,9 @@
 ﻿@model EZ_CD.Models.Disk
 
 
+
 @{
-    
+
     ViewData["Title"] = Model.name;
     Layout = "_Layout";
 }
@@ -44,11 +45,12 @@
                             <img src=@Model.imagePath alt="@Model.name" style="object-fit : contain;width:700px">
                         </div>
                         <div class="media-body">
+                            <h3>@Model.name</h3>
                             <div class="personal_text">
-                                <h3>@Model.name</h3>
+
                                 <h4>@Model.Artist</h4>
                                 <h5>@Model.genre</h5>
-                                <h5>@Model.date.ToShortDateString()</h5>
+                                
                                 <p>You will begin to realise why this exercise is called the Dickens Pattern (with reference to the ghost showing Scrooge some different futures)</p>
                                 <ul class="list basic_info">
                                     <li><a href="#"><i class="lnr lnr-calendar-full"></i> @Model.date.ToShortDateString()</a></li>
@@ -57,9 +59,16 @@
                                     <li><a href="#"><i class="lnr lnr-home"></i> @Model.featuredVideoUrl</a></li>
                                 </ul>
                                 <ul class="list personal_social">
-                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                    <li><a href="https://pitchfork.com/reviews/albums/@Model.Artist.name-@Model.name/"><i class=""></i></a></li>
+                                
+                                </ul>
+                                <h2>
+                                    Songs List
+                                </h2>
+                                <ul class="list basic_info">
+                                    
+                                    <li><a href="#"><i class="lnr lnr-calendar-full"></i> @Model.date.ToShortDateString()</a></li>
+
                                 </ul>
                             </div>
                         </div>

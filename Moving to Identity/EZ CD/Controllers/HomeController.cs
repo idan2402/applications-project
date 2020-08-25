@@ -56,6 +56,8 @@ namespace EZ_CD.Controllers
             {
                 return NotFound();
             }
+            var songs = _context.Song.Where(s => s.Disk.diskId == id).ToList();
+
 
             return View("DiskDetails", disk);
         }
