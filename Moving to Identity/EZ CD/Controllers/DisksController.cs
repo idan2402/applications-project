@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using EZ_CD.Data;
 using EZ_CD.Models;
 using Microsoft.AspNetCore.Authorization;
+using EZ_CD.Utilities;
 
 namespace EZ_CD.Controllers
 {
@@ -88,6 +89,7 @@ namespace EZ_CD.Controllers
                 .Include(d => d.Artist)
                 .FirstOrDefaultAsync(m => m.diskId == id);
             ViewData["Artists"] = new SelectList(_context.Artist, "artistId", "name", disk.Artist.artistId);
+            ViewBag.Countries = new SelectList(Countries.countries, disk.Artist.country);
             return View(disk);
         }
 
