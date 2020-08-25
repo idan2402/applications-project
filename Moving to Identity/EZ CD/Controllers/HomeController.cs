@@ -170,5 +170,27 @@ namespace EZ_CD.Controllers
             return View("Cart", _context.CartItem.Where(m => m.User == currentUser).Include(m => m.Disk).ToList()); 
         }
 
+        public async Task<IActionResult> RemoveFromCart(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            User currentUser = await _userManager.GetUserAsync(HttpContext.User);
+
+            CartItem cartItem = await _context.CartItem.FirstAsync(m => m.cartItemId== id);
+            _context.Remove(cartItem);
+            await _context.SaveChangesAsync();
+            HttpContext.Session.SetInt32("cartSize", _context.CartItem.Count(m => m.User == currentUser));
+            List<CartItem> items = _context.CartItem.Where(m => m.User == currentUser).Include(m => m.Disk).ToList();
+            double sum = 0;
+            foreach (var item in items)
+            {
+                sum += item.Disk.price;
+            }
+            ViewData["sum"] = sum;
+            return View("Cart", _context.CartItem.Where(m => m.User == currentUser).Include(m => m.Disk).ToList());
+        }
+
     }
 }
