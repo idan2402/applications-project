@@ -203,12 +203,28 @@ namespace EZ_CD.Controllers
             User currentUser = await _userManager.GetUserAsync(HttpContext.User);
 
             List<CartItem> items = _context.CartItem.Where(m => m.User == currentUser).Include(m => m.Disk).ToList();
+            
+            // Creates a sale
+            Sale sale = new Sale();
+            sale.date = DateTime.Now;
+            sale.User = currentUser;
+
+            _context.Add(sale); // Adds the new sale to the sales table
+
             foreach (CartItem cartItem in items)
             {
-                _context.Remove(cartItem);
+                //Creates a new saleItem from the data of the cartItem
+                SaleItem saleItem = new SaleItem();
+                saleItem.Disk = cartItem.Disk;
+                saleItem.Sale = sale;
+
+                _context.Add(saleItem); // Adds the saleItem to the datbase
+
+                _context.Remove(cartItem); // Removes the cartItem from the database
             }
-            await _context.SaveChangesAsync();
-            HttpContext.Session.SetInt32("cartSize", 0);
+             
+            await _context.SaveChangesAsync(); // Saves the changes
+            HttpContext.Session.SetInt32("cartSize", 0); // Sets the new size cart (0 cuz empty)
             return RedirectToAction(nameof(Index));
         }
 
