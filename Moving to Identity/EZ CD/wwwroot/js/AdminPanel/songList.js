@@ -1,6 +1,6 @@
 ﻿const $tableID = $('#table');
 const $BTN = $('#export-btn');
-const $EXPORT = $('#export');
+const $EXPORT = $('#songsJSON');
 
 const newTr = `
 <tr class="hide">
@@ -26,50 +26,54 @@ const newTr = `
 </tr>`;
 
 $('.table-add').on('click', 'i', () => {
-    
+
     const $clone = $tableID.find('tbody tr').last().clone(true).removeClass('hide table-line');
 
-    if ($tableID.find('table tbody tr').length === 0) 
+    if ($tableID.find('table tbody tr').length === 0)
         $('tbody').append(newTr);
 
     $tableID.find('table').append($clone);
+    setData();
 });
 
 $tableID.on('click', '.table-remove', function () {
 
     $(this).parents('tr').detach();
+    setData();
 });
 
 $tableID.on('click', '.table-up', function () {
 
     const $row = $(this).parents('tr');
 
-    if ($row.index() === 0) 
+    if ($row.index() === 0)
         return;
-    
+
     $row.prev().before($row.get(0));
+    setData();
 });
 
 $tableID.on('click', '.table-down', function () {
 
     const $row = $(this).parents('tr');
     $row.next().after($row.get(0));
+    setData();
 });
 
 // A few jQuery helpers for exporting only
 jQuery.fn.pop = [].pop;
 jQuery.fn.shift = [].shift;
 
-$BTN.on('click', () => {
-
+function setData() {
     const $rows = $tableID.find('tr:not(:hidden)');
     const headers = [];
     const data = [];
 
     // Get the headers (add special header logic here)
     $($rows.shift()).find('th:not(:empty)').each(function () {
-
-        headers.push($(this).text().toLowerCase());
+        var currentHeader = $(this).text().toLowerCase();
+        if (currentHeader != 'remove' && currentHeader != 'sort')
+            headers.push(currentHeader);
     });
 
     // Turn all existing rows into a loopable array
@@ -85,7 +89,17 @@ $BTN.on('click', () => {
 
         data.push(h);
     });
-
-    // Output the result
-    $EXPORT.text(JSON.stringify(data));
+    document.getElementById("songsJSON").setAttribute("value", JSON.stringify(data));
+}
+$BTN.on('click', () => {
+    setData();
+    document.getElementById("songsJSON").setAttribute("value", JSON.stringify(data));
 });
+
+$(function () {
+    document.getElementById("songsJSON").setAttribute("value", JSON.stringify(data));
+})
+function setSongsJSONValue() {
+    setData();
+    return true;
+}

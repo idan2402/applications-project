@@ -5,6 +5,22 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+      crossorigin="anonymous">
+
+<style>
+    .pt-3-half {
+        padding-top: 1.4rem;
+    }
+
+    #table {
+        position: relative;
+        margin-top: -155%;
+        margin-left: 110%;
+    }
+</style>
+
 <h1>Create</h1>
 
 <h4>Disk</h4>
@@ -60,15 +76,42 @@
                 <span asp-validation-for="featuredVideoUrl" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input name="songsJSON" class="form-control" id="songsJSON" value="text" hidden />
             </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" onclick="setData()" />
+            </div>
+            <div>
+                <a asp-action="Index">Back to List</a>
+            </div>
+            <!-- Editable table -->
+            <div id="table" class="table-editable">
+                <span class="table-add float-right mb-3 mr-2">
+                    <a href="#!" class="text-success">
+                        <i class="fas fa-2x" aria-hidden="true">+</i>
+                    </a>
+                </span>
+                <table class="table table-bordered table-responsive-md table-striped text-center">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Name</th>
+                            <th class="text-center">Length</th>
+                            <th class="text-center">Sort</th>
+                            <th class="text-center">Remove</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+            <!-- Editable table -->
         </form>
     </div>
 </div>
 
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/js/AdminPanel/createDisk.js"></script>
+<script src="~/js/AdminPanel/songList.js"></script>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+
 
