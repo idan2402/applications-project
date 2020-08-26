@@ -56,6 +56,9 @@ namespace EZ_CD.Controllers
             {
                 return NotFound();
             }
+
+            var tempContext = _context.Song.Include(d => d.Disk);
+
             var songs = _context.Song.Where(s => s.Disk.diskId == id).ToList();
 
 
