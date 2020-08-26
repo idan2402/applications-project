@@ -165,14 +165,22 @@ namespace EZ_CD.Controllers
             {
                 return NotFound();
             }
+            
             User currentUser = await _userManager.GetUserAsync(HttpContext.User);
-            CartItem cartItem = new CartItem();
-            cartItem.User = currentUser;
-            cartItem.Disk = await _context.Disk.FirstAsync(m => m.diskId == id);
-            _context.Add(cartItem);
-            await _context.SaveChangesAsync();
-            HttpContext.Session.SetInt32("cartSize", _context.CartItem.Count(m => m.User == currentUser));
-            return RedirectToAction(nameof(Cart));
+            if(currentUser == null)
+            {
+                return Redirect("~/Identity/Account/Login");
+            }
+            else
+            {
+                CartItem cartItem = new CartItem();
+                cartItem.User = currentUser;
+                cartItem.Disk = await _context.Disk.FirstAsync(m => m.diskId == id);
+                _context.Add(cartItem);
+                await _context.SaveChangesAsync();
+                HttpContext.Session.SetInt32("cartSize", _context.CartItem.Count(m => m.User == currentUser));
+                return RedirectToAction(nameof(Cart));
+            }
         }
 
         public async Task<IActionResult> RemoveFromCart(int? id)
