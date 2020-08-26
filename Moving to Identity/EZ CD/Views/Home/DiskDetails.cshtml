@@ -48,14 +48,14 @@
                             <h3>@Model.name</h3>
                             <div class="personal_text">
 
-                                <h4>@Model.Artist</h4>
+                                <h4>@Model.Artist.name</h4>
                                 <h5>@Model.genre</h5>
                                 
                                 <p>You will begin to realise why this exercise is called the Dickens Pattern (with reference to the ghost showing Scrooge some different futures)</p>
                                 <ul class="list basic_info">
                                     <li><a href="#"><i class="lnr lnr-calendar-full"></i> @Model.date.ToShortDateString()</a></li>
                                     <li><a href="#"><i class="lnr lnr-phone-handset"></i> @Model.price</a></li>
-                                    <li><a href="#"><i class="lnr lnr-envelope"></i>@Model.Artist</a></li>
+                                    <li><a href="#"><i class="lnr lnr-envelope"></i>@Model.Artist.name</a></li>
                                     <li><a href="#"><i class="lnr lnr-home"></i> @Model.featuredVideoUrl</a></li>
                                 </ul>
                                 <ul class="list personal_social">
