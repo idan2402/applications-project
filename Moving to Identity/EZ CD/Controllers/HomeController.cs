@@ -49,6 +49,7 @@ namespace EZ_CD.Controllers
             {
                 return NotFound();
             }
+            ViewBag.songs = _context.Song.Where(s => s.Disk.diskId == id);
 
             var disk = await _context.Disk.Include(d => d.Artist)
                 .FirstOrDefaultAsync(m => m.diskId == id);
