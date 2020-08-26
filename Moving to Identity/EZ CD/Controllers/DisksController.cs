@@ -9,6 +9,7 @@ using EZ_CD.Data;
 using EZ_CD.Models;
 using Microsoft.AspNetCore.Authorization;
 using EZ_CD.Utilities;
+using Newtonsoft.Json;
 
 namespace EZ_CD.Controllers
 {
@@ -60,10 +61,20 @@ namespace EZ_CD.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("diskId,price,name,date,genre,dateAdded,imagePath,featuredVideoUrl")] Disk disk, string artistId)
+        public async Task<IActionResult> Create([Bind("diskId,price,name,date,genre,dateAdded,imagePath,featuredVideoUrl")] Disk disk, string artistId, string songsJSON)
         {
             if (ModelState.IsValid)
             {
+                dynamic array = JsonConvert.DeserializeObject(songsJSON);
+                foreach (var song in array)
+                {
+                    Song temp = new Song();
+                    temp.name = song.name;
+                    temp.length = song.length;
+                    temp.Disk = disk;
+                    _context.Song.Add(temp);
+                }
+                
                 disk.Artist = _context.Artist.Find(int.Parse(artistId));
                 _context.Add(disk);
                 await _context.SaveChangesAsync();
@@ -99,7 +110,7 @@ namespace EZ_CD.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("diskId,price,name,date,genre,dateAdded,imagePath,featuredVideoUrl")] Disk disk, string artistId)
+        public async Task<IActionResult> Edit(int id, [Bind("diskId,price,name,date,genre,dateAdded,imagePath,featuredVideoUrl")] Disk disk, string artistId, string songsJSON)
         {
             if (id != disk.diskId)
             {
@@ -112,6 +123,19 @@ namespace EZ_CD.Controllers
                 {
                     disk.Artist = _context.Artist.Find(int.Parse(artistId));
                     _context.Update(disk);
+
+                    var songs = _context.Song.Where(s => s.Disk.diskId == id);
+                    foreach (var s in songs)
+                        _context.Song.Remove(s);
+                    dynamic array = JsonConvert.DeserializeObject(songsJSON);
+                    foreach (var song in array){
+                        Song temp = new Song();
+                        temp.name = song.name;
+                        temp.length = song.length;
+                        temp.Disk = disk;
+                        _context.Song.Add(temp);
+                    }
+                    
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -155,6 +179,9 @@ namespace EZ_CD.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var disk = await _context.Disk.FindAsync(id);
+            var songs = _context.Song.Where(s => s.Disk.diskId == id);
+            foreach (var s in songs)
+                _context.Song.Remove(s);
             _context.Disk.Remove(disk);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

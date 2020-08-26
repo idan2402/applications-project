@@ -10,18 +10,15 @@
         padding-top: 1.4rem;
     }
 
-    #table{
-        position:relative;
-        margin-top:-145%;
-        margin-left:110%;
-    }
-    .save-backtolist {
-        margin-top: 132%;
+    #table {
+        position: relative;
+        margin-top: -155%;
+        margin-left: 110%;
     }
 </style>
 
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" 
-      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" 
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
       crossorigin="anonymous">
 <h1>Edit</h1>
 
@@ -29,7 +26,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">
+        <form asp-action="Edit" onsubmit="return setSongsJSONValue()">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="diskId" />
             <div class="form-group">
@@ -77,6 +74,15 @@
                 <label asp-for="featuredVideoUrl" class="control-label"></label>
                 <input asp-for="featuredVideoUrl" class="form-control" />
                 <span asp-validation-for="featuredVideoUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input name="songsJSON" class="form-control" id="songsJSON" value="text" hidden />
+            </div>
+            <div class="form-group">
+                <input id="export-btn" type="submit" value="Save" class="btn btn-primary" />
+            </div>
+            <div>
+                <a asp-action="Index">Back to List</a>
             </div>
             <!-- Editable table -->
             <div id="table" class="table-editable">
@@ -127,21 +133,15 @@
                             }
                         }
                     </tbody>
-                    </table>
+                </table>
             </div>
             <!-- Editable table -->
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary save-backtolist" />
-            </div>
         </form>
+        
     </div>
 </div>
 
-<div class="">
-    <a asp-action="Index">Back to List</a>
-</div>
-
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
-<script src="~/js/AdminPanel/EditDisk.js"></script>
+<script src="~/js/AdminPanel/songList.js"></script>
 
 
