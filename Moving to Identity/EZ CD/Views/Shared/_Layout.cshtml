@@ -5,10 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - EZ_CD</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/navbar.css" />
+    <link rel="stylesheet" href="~/css/layout.css" />
+
     <style>
         .logo-image {
             object-fit: contain;
+        }
+
+        .footer-text {
+            margin-top: 200px;
         }
     </style>
 
@@ -87,6 +92,15 @@
     </header>
 
     @RenderBody()
+
+    <footer class="footer bg-dark">
+        <div class="footer-text">
+            <a asp-action="Contact" style="margin-right:120px; color:white">Contact</a>
+            <a asp-action="About" style="color:white;">About Us</a>
+            <a asp-action="QnA" style="margin-left:120px;color:white">Q&A</a>
+        </div>
+    </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

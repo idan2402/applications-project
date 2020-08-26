@@ -228,6 +228,18 @@ namespace EZ_CD.Controllers
             HttpContext.Session.SetInt32("cartSize", 0); // Sets the new size cart (0 cuz empty)
             return RedirectToAction(nameof(Index));
         }
+        public IActionResult About()
+        {
+            return View();
+        }
+        public IActionResult Contact()
+        {
+            return View();
+        }
+        public IActionResult QnA()
+        {
+            return View();
+        }
 
     }
 }

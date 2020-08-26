@@ -1,14 +1,10 @@
 ﻿@model EZ_CD.Models.Disk
 
-
-
 @{
 
     ViewData["Title"] = Model.name;
     Layout = "_Layout";
 }
-
-
 
 <head>
     <!-- Required meta tags -->
@@ -39,9 +35,6 @@
     </style>
 </head>
 
-
-
-
 <body>
 
     <section class="home_banner_area">
@@ -49,9 +42,9 @@
             <div class="banner_inner d-flex align-items-center">
                 <div class="banner_content">
                     <div class="media">
-                        
-                            <img class="sticky" src=@Model.imagePath alt=@Model.name>
-                        
+
+                        <img class="sticky" src=@Model.imagePath alt=@Model.name>
+
                         <div class="media-body" style="padding-left:50px">
                             <h3>@Model.name</h3>
                             <div class="personal_text">
@@ -79,14 +72,15 @@
                                         <th>Name</th>
                                         <th>Length</th>
                                     </tr>
-                                  
-                                        @foreach (var item in ViewBag.songs)
-                                        {
-                                            <tr>
-                                                <td>@item.name</td>
-                                                <td>@item.length</td>
-                                            </tr>
-                                        }
+
+                                    @foreach (var item in ViewBag.songs)
+                                    {
+                                        <tr>
+                                            <td>@item.name</td>
+                                            <td>@item.length</td>
+                                        </tr>
+                                    }
+                                </table>
                             </div>
                         </div>
                     </div>
