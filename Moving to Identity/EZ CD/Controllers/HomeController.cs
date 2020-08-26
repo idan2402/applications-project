@@ -50,12 +50,17 @@ namespace EZ_CD.Controllers
                 return NotFound();
             }
 
-            var disk = await _context.Disk
+            var disk = await _context.Disk.Include(d => d.Artist)
                 .FirstOrDefaultAsync(m => m.diskId == id);
             if (disk == null)
             {
                 return NotFound();
             }
+
+            var tempContext = _context.Song.Include(d => d.Disk);
+
+            var songs = tempContext.Where(s => s.Disk.diskId == id).ToList();
+
 
             return View("DiskDetails", disk);
         }
