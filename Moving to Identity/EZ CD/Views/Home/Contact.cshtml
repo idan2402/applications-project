@@ -1,8 +1,57 @@
 ﻿
 @{
-    ViewData["Title"] = "Contact";
+    ViewData["Title"] = "About";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Contact</h1>
+<link type="text/css" rel="stylesheet" href="./lib/bootstrap/dist/css/bootstrap.min.css" />
 
+<style>
+    .main-text { /*multiple columns*/
+        column-count: 3;
+        column-gap: 40px;
+        -webkit-column-rule: 1px solid lightgrey; /* Chrome, Safari, Opera */
+        -moz-column-rule: 1px solid lightgrey; /* Firefox */
+        column-rule: 1px solid lightgrey;
+        column-span: all;
+        position: relative;
+        min-height: 31vh;
+    }
+
+    p {
+        font-family: 'Droid Sans', sans-serif;
+        font-size: 15px;
+        font-weight: 500;
+        line-height: 24px;
+        margin: 0;
+    }
+
+    .left {
+        margin-left: 250px;
+    }
+
+
+    .right {
+        margin-right: 100px;
+    }
+</style>
+
+<body>
+    <div class="jumbotron jumbotron-fluid text-center">
+        <div class="container">
+            <h1 class="display-4">Contact</h1>
+            <p class="lead">EZ CD - The Place To Get A CD!</p>
+        </div>
+    </div>
+    <div class="main-text">
+        <p class="left">
+            E-Mail: support@ezcd.com
+        </p>
+        <p style="text-align:center">
+            TEL: 03-1234567
+        </p>
+        <p class="right" style="text-align:center">
+            Address: 18175 Kiker Rd, Winnie, Texas(TX), 77665
+        </p>
+    </div>
+</body>

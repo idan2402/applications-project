@@ -230,6 +230,10 @@ namespace EZ_CD.Controllers
         }
         public IActionResult About()
         {
+            ViewBag.numOfDisks = _context.Disk.Count();
+            ViewBag.numOfArtists = _context.Artist.Count();
+            ViewBag.numOfSongs = _context.Song.Count();
+            ViewBag.numOfSales = _context.SaleItem.Count();
             return View();
         }
         public IActionResult Contact()
