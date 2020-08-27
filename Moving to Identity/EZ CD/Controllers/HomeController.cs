@@ -8,17 +8,12 @@ using Microsoft.Extensions.Logging;
 using EZ_CD.Models;
 using EZ_CD.Data;
 using Microsoft.EntityFrameworkCore;
-using System.Net.Http;
 using Microsoft.AspNetCore.Identity;
 using EZ_CD.Areas.Identity.Data;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Localization;
 using System.Globalization;
-using Genius;
-using Genius.Models.Annotation;
-using Genius.Models.Referent;
-using RestSharp;
 using Newtonsoft.Json;
+using RestSharp;
 
 namespace EZ_CD.Controllers
 {
@@ -91,19 +86,27 @@ namespace EZ_CD.Controllers
                 return NotFound();
             }
 
-            var client = new RestClient("https://www.theaudiodb.com/api/v1/json/1/searchalbum.php?a=" + disk.name);
-            var request = new RestRequest(Method.GET);
-            request.AddHeader("x-rapidapi-host", "theaudiodb.p.rapidapi.com");
-            request.AddHeader("x-rapidapi-key", "1f93d82fecmsh6b9145790737872p198302jsn573fbd3516e4");
-            request.OnBeforeDeserialization = resp => { resp.ContentType = "application/json"; };
-            IRestResponse response = client.Execute(request);
-            dynamic obj = JsonConvert.DeserializeObject(response.Content);
-            ViewBag.response = obj.album[0].strDescriptionEN;
+            var audioDbClient = new RestClient("https://www.theaudiodb.com/api/v1/json/1/searchalbum.php?a=" + disk.name); //making a rest request to TheAudioDB API
+            var requestAudioDb = new RestRequest(Method.GET);
+            requestAudioDb.AddHeader("x-rapidapi-host", "theaudiodb.p.rapidapi.com");
+            requestAudioDb.AddHeader("x-rapidapi-key", "1f93d82fecmsh6b9145790737872p198302jsn573fbd3516e4");
+            requestAudioDb.OnBeforeDeserialization = resp => { resp.ContentType = "application/json"; };
 
-            Console.WriteLine(response.Content);
-
+            try //if the current disk inst on TheAudioDB's database, skip this part
+            {
+                IRestResponse response = audioDbClient.Execute(requestAudioDb);
+                dynamic obj = JsonConvert.DeserializeObject(response.Content);
+                string description = obj.album[0].strDescriptionEN;
+                if(description == null)
+                    ViewBag.description = "This disk doesn't have a description yet";
+                else
+                    ViewBag.description = description;               
+            }
+            catch {
+                ViewBag.description = "This disk doesn't have a description yet";
+            }
+           
             var tempContext = _context.Song.Include(d => d.Disk);
-
             var songs = tempContext.Where(s => s.Disk.diskId == id).ToList(); //seraching for all the songs that the current disk contains
 
 
