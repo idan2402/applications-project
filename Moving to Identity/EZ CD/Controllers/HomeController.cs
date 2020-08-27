@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Identity;
 using EZ_CD.Areas.Identity.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Localization;
+using System.Globalization;
 
 namespace EZ_CD.Controllers
 {
@@ -50,6 +51,32 @@ namespace EZ_CD.Controllers
                 return NotFound();
             }
             ViewBag.songs = _context.Song.Where(s => s.Disk.diskId == id);
+            string[] timeformats = { @"m\:ss", @"mm\:ss", @"h\:mm\:ss" };
+            string totalTime = " ";
+            double totalTimeinSecs = 0;
+            try //calculating the total time in seconds of this album
+            {
+                foreach (Song song in ViewBag.songs)
+                {
+                    totalTimeinSecs += TimeSpan.ParseExact(song.length, timeformats, CultureInfo.InvariantCulture).TotalSeconds;
+                }
+                TimeSpan time = TimeSpan.FromSeconds(totalTimeinSecs);
+                if (totalTimeinSecs > 3600)
+                {
+                    totalTime += time.Hours.ToString();
+                    if (totalTimeinSecs < 7200)
+                        totalTime += " hour ";
+                    else
+                        totalTime += " hours ";
+                }
+                totalTime += time.Minutes.ToString();
+                totalTime += " minutes";
+                ViewBag.totalTime = totalTime;
+            }
+            catch
+            {
+                throw new Exception();
+            }
 
             var disk = await _context.Disk.Include(d => d.Artist)
                 .FirstOrDefaultAsync(m => m.diskId == id);
@@ -60,7 +87,7 @@ namespace EZ_CD.Controllers
 
             var tempContext = _context.Song.Include(d => d.Disk);
 
-            var songs = tempContext.Where(s => s.Disk.diskId == id).ToList();
+            var songs = tempContext.Where(s => s.Disk.diskId == id).ToList(); //seraching for all the songs that the current disk contains
 
 
             return View("DiskDetails", disk);

@@ -28,9 +28,13 @@
     <style>
         img.sticky {
             position: sticky;
-            top: 0;
+            top: 70px;
             object-fit: contain;
             width: 700px;
+        }
+        .framed-objs {
+            box-shadow: 7px 7px 3px #ccc;
+            border-radius: 8px
         }
     </style>
 </head>
@@ -43,7 +47,7 @@
                 <div class="banner_content">
                     <div class="media">
 
-                        <img class="sticky" src=@Model.imagePath alt=@Model.name>
+                        <img class="sticky framed-objs" src=@Model.imagePath alt=@Model.name />
 
                         <div class="media-body" style="padding-left:50px">
                             <h3>@Model.name</h3>
@@ -56,9 +60,9 @@
                                 <ul class="list basic_info">
                                     <li><i class="lnr lnr-calendar-full"></i> @Model.date.ToShortDateString()</li>
                                     <li><i class="lnr lnr-tag"></i> @Model.price$</li>
-                                    <li><i class="lnr lnr-user"></i>@Model.Artist.name</li>
+                                    <li><i class="lnr lnr-clock"></i>@ViewBag.totalTime</li>
                                 </ul>
-                                <iframe width="420" height="345" src="https://www.youtube.com/embed/@Model.featuredVideoUrl">
+                                <iframe class="framed-objs" width="500" height="393" src="https://www.youtube.com/embed/@Model.featuredVideoUrl">
                                 </iframe>
                                 <ul class="list personal_social">
                                     <li><a href="https://pitchfork.com/reviews/albums/@Model.Artist.name-@Model.name/"><i class=""></i></a></li>
@@ -81,6 +85,8 @@
                                         </tr>
                                     }
                                 </table>
+                                <br />
+                                <a asp-controller="Home" asp-action="AddToCart" asp-route-id="@Model.diskId"> <button type="button" class="btn btn-sm btn-outline-secondary">Add to cart</button></a>
                             </div>
                         </div>
                     </div>
