@@ -56,7 +56,7 @@
                                 <h4>@Model.Artist.name</h4>
                                 <h5>@Model.genre</h5>
 
-                                <p>You will begin to realise why this exercise is called the Dickens Pattern (with reference to the ghost showing Scrooge some different futures)</p>
+                                <p>@ViewBag.response</p>
                                 <ul class="list basic_info">
                                     <li><i class="lnr lnr-calendar-full"></i> @Model.date.ToShortDateString()</li>
                                     <li><i class="lnr lnr-tag"></i> @Model.price$</li>

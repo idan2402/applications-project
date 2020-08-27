@@ -14,6 +14,11 @@ using EZ_CD.Areas.Identity.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Localization;
 using System.Globalization;
+using Genius;
+using Genius.Models.Annotation;
+using Genius.Models.Referent;
+using RestSharp;
+using Newtonsoft.Json;
 
 namespace EZ_CD.Controllers
 {
@@ -80,10 +85,22 @@ namespace EZ_CD.Controllers
 
             var disk = await _context.Disk.Include(d => d.Artist)
                 .FirstOrDefaultAsync(m => m.diskId == id);
+
             if (disk == null)
             {
                 return NotFound();
             }
+
+            var client = new RestClient("https://www.theaudiodb.com/api/v1/json/1/searchalbum.php?a=" + disk.name);
+            var request = new RestRequest(Method.GET);
+            request.AddHeader("x-rapidapi-host", "theaudiodb.p.rapidapi.com");
+            request.AddHeader("x-rapidapi-key", "1f93d82fecmsh6b9145790737872p198302jsn573fbd3516e4");
+            request.OnBeforeDeserialization = resp => { resp.ContentType = "application/json"; };
+            IRestResponse response = client.Execute(request);
+            dynamic obj = JsonConvert.DeserializeObject(response.Content);
+            ViewBag.response = obj.album[0].strDescriptionEN;
+
+            Console.WriteLine(response.Content);
 
             var tempContext = _context.Song.Include(d => d.Disk);
 
