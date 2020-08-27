@@ -4,5 +4,54 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>About</h1>
+<link type="text/css" rel="stylesheet" href="./lib/bootstrap/dist/css/bootstrap.min.css" />
 
+<style>
+    .main-text { /*multiple columns*/
+        column-count: 3;
+        column-gap: 40px;
+        -webkit-column-rule: 1px solid lightgrey; /* Chrome, Safari, Opera */
+        -moz-column-rule: 1px solid lightgrey; /* Firefox */
+        column-rule: 1px solid lightgrey;
+        column-span: all;
+        position: relative;
+        min-height: 31vh;
+    }
+
+    p {
+        font-family: 'Droid Sans', sans-serif;
+        font-size: 15px;
+        font-weight: 500;
+        line-height: 24px;
+        margin: 0;
+    }
+
+    .left {
+        margin-left: 100px;
+    }
+
+
+    .right {
+        margin-right: 100px;
+    }
+</style>
+
+<body>
+    <div class="jumbotron jumbotron-fluid text-center">
+        <div class="container">
+            <h1 class="display-4">About Us</h1>
+            <p class="lead">EZ CD - The Place To Get A CD!</p>
+        </div>
+    </div>
+    <div class="main-text">
+        <p class="left">
+            We Offer @ViewBag.numOfDisks Disks, Made By @ViewBag.numOfArtists Artists. That's A Total Of @ViewBag.numOfSongs Songs.
+        </p>
+        <p>
+            EZ CD is the greatest CD shop in the world! Our goal is to give everbody access to quality music at a competitive price.
+        </p>
+        <p class="right">
+            The Store Opened On August 11th, 2020. Since Then, We Sold @ViewBag.numOfSales Disks.
+        </p>
+    </div>
+</body>
