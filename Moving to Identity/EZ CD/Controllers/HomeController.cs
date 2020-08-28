@@ -54,10 +54,11 @@ namespace EZ_CD.Controllers
             string[] timeformats = { @"m\:ss", @"mm\:ss", @"h\:mm\:ss" };
             string totalTime = " ";
             double totalTimeinSecs = 0;
+            int totalViews = 0;
             try //calculating the total time in seconds of this album
             {
                 foreach (Song song in ViewBag.songs)
-                {
+                {                    
                     totalTimeinSecs += TimeSpan.ParseExact(song.length, timeformats, CultureInfo.InvariantCulture).TotalSeconds;
                 }
                 TimeSpan time = TimeSpan.FromSeconds(totalTimeinSecs);
@@ -72,11 +73,10 @@ namespace EZ_CD.Controllers
                 totalTime += time.Minutes.ToString();
                 totalTime += " minutes";
                 ViewBag.totalTime = totalTime;
+                ViewBag.totalViews = totalViews;
             }
             catch
-            {
-                throw new Exception();
-            }
+            { }
 
             var disk = await _context.Disk.Include(d => d.Artist)
                 .FirstOrDefaultAsync(m => m.diskId == id);
@@ -94,9 +94,9 @@ namespace EZ_CD.Controllers
 
             try //if the current disk inst on TheAudioDB's database, skip this part
             {
-                IRestResponse response = audioDbClient.Execute(requestAudioDb);
-                dynamic obj = JsonConvert.DeserializeObject(response.Content);
-                string description = obj.album[0].strDescriptionEN;
+                IRestResponse responseAudioDB = audioDbClient.Execute(requestAudioDb);
+                dynamic objAudioDB = JsonConvert.DeserializeObject(responseAudioDB.Content);
+                string description = objAudioDB.album[0].strDescriptionEN;
                 if(description == null)
                     ViewBag.description = "This disk doesn't have a description yet";
                 else
@@ -105,7 +105,10 @@ namespace EZ_CD.Controllers
             catch {
                 ViewBag.description = "This disk doesn't have a description yet";
             }
+
+            
            
+
             var tempContext = _context.Song.Include(d => d.Disk);
             var songs = tempContext.Where(s => s.Disk.diskId == id).ToList(); //seraching for all the songs that the current disk contains
 

@@ -10,6 +10,8 @@ using EZ_CD.Models;
 using Microsoft.AspNetCore.Authorization;
 using EZ_CD.Utilities;
 using Newtonsoft.Json;
+using RestSharp;
+using Newtonsoft.Json.Linq;
 
 namespace EZ_CD.Controllers
 {
@@ -63,9 +65,16 @@ namespace EZ_CD.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("diskId,price,name,date,genre,dateAdded,imagePath,featuredVideoUrl")] Disk disk, string artistId, string songsJSON)
         {
+            IRestClient geniusClient = new RestClient();
             if (ModelState.IsValid)
             {
                 dynamic array = JsonConvert.DeserializeObject(songsJSON);
+                if (((JArray)array).Count == 0)
+                { 
+                    ViewBag.Error = "You must enter at least one song";
+                    return View("Error");
+                }
+                    
                 foreach (var song in array)
                 {
                     Song temp = new Song();
@@ -74,7 +83,20 @@ namespace EZ_CD.Controllers
                     temp.Disk = disk;
                     _context.Song.Add(temp);
                 }
-                
+                IRestRequest requestGenius = new RestRequest("https://api.genius.com/search?q=" + array[0].name + _context.Artist.Find(int.Parse(artistId)).name);
+                requestGenius.AddHeader("Authorization", "Bearer IBWzJOsCp1yX3P_jd3SVGV8m7HvR-nS8FDbrPy1hp4s6teuS3ygbytt98qZmuGFA");
+                requestGenius.OnBeforeDeserialization = resp => { resp.ContentType = "application/json"; };
+                try
+                {
+                    var responseGenius = geniusClient.Get(requestGenius);
+                    dynamic obj = JsonConvert.DeserializeObject(responseGenius.Content);
+                    disk.imagePath = (string)obj.response.hits[0].result.song_art_image_url;
+                }
+                catch
+                {
+
+                }
+
                 disk.Artist = _context.Artist.Find(int.Parse(artistId));
                 _context.Add(disk);
                 await _context.SaveChangesAsync();
