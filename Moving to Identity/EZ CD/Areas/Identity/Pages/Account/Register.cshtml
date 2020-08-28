@@ -13,6 +13,13 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link type="text/css" rel="stylesheet" href="~/css/login.css" />
     <!------ Include the above in your HEAD tag ---------->
+    <style>
+        #sig-canvas {
+        border: 2px dotted #CCCCCC;
+        border-radius: 15px;
+        cursor: crosshair;
+        }
+    </style>
 </head>
 
 <body>
@@ -31,7 +38,7 @@
 
             <!-- Login Form -->
 
-            <form asp-rout-returnUrl="@Model.ReturnUrl" method="post" style="padding-top: 5px; padding-bottom: 20px">
+            <form asp-rout-returnUrl="@Model.ReturnUrl" method="post" style="padding-top: 5px; padding-bottom: 20px" onsubmit="return isCorrect()">
 
                 <input asp-for="Input.FirstName" class="fadeIn second" placeholder="First Name">
                 <span asp-validation-for="Input.FirstName" class="text-danger"></span>
@@ -50,6 +57,28 @@
 
                 <input asp-for="Input.ConfirmPassword" class="fadeIn third" placeholder="Confirm Password">
                 <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+
+                <!-- Content -->
+                <div class="container fadeIn third">
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <canvas id="sig-canvas">
+                                Get a better browser, bro.
+                            </canvas>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p>Please enter your signature</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button class="btn btn-default" id="sig-clearBtn">Clear Signature</button>
+                        </div>
+                    </div>
+
 
                 <input type="submit" class="fadeIn fourth" value="Sign Up">
                 <div class="fb-login-button fadeIn fourth"
@@ -74,4 +103,5 @@
     </div>
 </body>
 </html>
+<script src="~/js/register.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>

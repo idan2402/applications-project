@@ -82,7 +82,8 @@ h2.active {
 
 input[type="button"],
 input[type="submit"],
-input[type="reset"] {
+input[type="reset"],
+sig-clearBtn {
     background-color: #56baed;
     border: none;
     color: white;
@@ -122,7 +123,8 @@ input[type="reset"] {
 
 input[type="text"],
 input[type="email"],
-input[type="password"] {
+input[type="password"],
+{
     background-color: #f6f6f6;
     border: none;
     color: #0d0d0d;
@@ -145,14 +147,16 @@ input[type="password"] {
 
     input[type="text"]:focus,
     input[type="email"]:focus,
-    input[type="password"]:focus {
+    input[type="password"]:focus,
+    {
         background-color: #fff;
         border-bottom: 2px solid #5fbae9;
     }
 
     input[type="text"]:placeholder,
     input[type="email"]:placeholder,
-    input[type="password"]:placeholder {
+    input[type="password"]:placeholder,
+    {
         color: #cccccc;
     }
 
