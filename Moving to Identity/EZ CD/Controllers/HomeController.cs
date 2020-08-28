@@ -34,13 +34,63 @@ namespace EZ_CD.Controllers
 
         public async Task<IActionResult> Index()
         {
+            /* Is This Code Needed?
             IRestClient restClient = new RestClient();
             IRestRequest request = new RestRequest("https://api.genius.com/artists/16775/songs?access_token=8rGdEOfCmCnCHLMotGkGr9SGv_uGJZQgchokUOcwydzfI25vq5iYGvDSJZHN36E6");
             var response = restClient.Get(request);
             dynamic obj = JsonConvert.DeserializeObject(response.Content);
+            */
             var tempContext = _context.Disk.Include(d => d.Artist);
             User currentUser = await _userManager.GetUserAsync(HttpContext.User);
             HttpContext.Session.SetInt32("cartSize", _context.CartItem.Count(m => m.User == currentUser));
+            
+            // The Suggestion Algorithm, To Be Continued
+            /*
+            if(user is connected){
+                var userPurchases = _context.Sale.Where(s => s.User.Id == currentUser.Id);
+                var userPurchasedItems = userPurchases.Join(_context.SaleItem, s => s.saleId, si => si.Sale.saleId, (s, si) => new { disk = si.Disk });
+
+                Dictionary<string, int> genresCounter = new Dictionary<string, int>();
+                genresCounter["Rap"] = 0;
+                genresCounter["Pop"] = 0;
+                genresCounter["Rock"] = 0;
+                genresCounter["Metal"] = 0;
+                genresCounter["Classic"] = 0;
+
+                foreach (var item in userPurchasedItems)
+                    genresCounter[item.disk.genre]++;
+                var firstGenre = genresCounter.Aggregate((l, r) => l.Value > r.Value ? l : r).Key;
+                genresCounter.Remove(firstGenre);
+                var secondGenre = genresCounter.Aggregate((l, r) => l.Value > r.Value ? l : r).Key;
+
+                Dictionary<Disk, int> mostSaledDisksOfFirstGenre = new Dictionary<Disk, int>();
+                foreach(var item in _context.SaleItem)
+                {
+                    if (item.Disk.genre != firstGenre)
+                        continue;
+                    mostSaledDisksOfFirstGenre[item.Disk]++;
+                }
+                Dictionary<Disk, int> mostSaledDisksOfSecondGenre = new Dictionary<Disk, int>();
+                foreach (var item in _context.SaleItem)
+                {
+                    if (item.Disk.genre != secondGenre)
+                        continue;
+                    mostSaledDisksOfSecondGenre[item.Disk]++;
+                }
+                List<Disk> results1 = new List<Disk>();
+                List<Disk> results2 = new List<Disk>();
+                for (int i = 0; i < 3; i++)
+                {
+                    results1.Append(mostSaledDisksOfFirstGenre.Aggregate((l, r) => l.Value > r.Value ? l : r).Key);
+                    results2.Append(mostSaledDisksOfSecondGenre.Aggregate((l, r) => l.Value > r.Value ? l : r).Key);
+                    mostSaledDisksOfFirstGenre.Remove(results1[i]);
+                    mostSaledDisksOfSecondGenre.Remove(results2[i]);
+                }
+
+                return View("Index", results1.Union(results2));
+            }
+            */
+
             return View("Index", tempContext);
         }
 

@@ -1,8 +1,60 @@
 ﻿
 @{
-    ViewData["Title"] = "QnA";
+    ViewData["Title"] = "About";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>QnA</h1>
+<link type="text/css" rel="stylesheet" href="./lib/bootstrap/dist/css/bootstrap.min.css" />
 
+<style>
+    .main-text { /*multiple columns*/
+        column-count: 3;
+        column-gap: 40px;
+        -webkit-column-rule: 1px solid lightgrey; /* Chrome, Safari, Opera */
+        -moz-column-rule: 1px solid lightgrey; /* Firefox */
+        column-rule: 1px solid lightgrey;
+        column-span: all;
+        position: relative;
+        min-height: 31vh;
+    }
+
+    p {
+        font-family: 'Droid Sans', sans-serif;
+        font-size: 15px;
+        font-weight: 500;
+        line-height: 24px;
+        margin: 0;
+    }
+
+    .left {
+        margin-left: 100px;
+    }
+
+
+    .right {
+        margin-right: 100px;
+    }
+</style>
+
+<body>
+    <div class="jumbotron jumbotron-fluid text-center">
+        <div class="container">
+            <h1 class="display-4">Q & A</h1>
+            <p class="lead">EZ CD - The Place To Get A CD!</p>
+        </div>
+    </div>
+    <div class="main-text">
+        <p class="left">
+            Q: Who Are The Founders Of The Project?<br/>
+            A: Noam Eilon, Hen Ashkenazi, Idan Chudner and Adir Zaguri
+        </p>
+        <p style="text-align:center">
+            Q: Which Technologies Were Used During The Making Of The Project?<br/>
+            A: We Used The ASP.NET Core Framework. The Project Was Built With HTML, CSS, C# And JS.
+        </p>
+        <p class="right" style="text-align:center">
+            Q: Do We Love Web Applications Course?<br />
+            A: Yes!!!!!!!!!!!!!!!!!!!!!!!!!!
+        </p>
+    </div>
+</body>
