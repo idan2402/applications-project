@@ -87,4 +87,13 @@ form {
     text-align: center;
 }
 
+.btn-outline-success {
+    color: #66FCF1;
+    border-color: #66FCF1;
+}
 
+    .btn-outline-success:hover {
+        color: black;
+        background-color: #66FCF1;
+        border-color: #66FCF1;
+    }

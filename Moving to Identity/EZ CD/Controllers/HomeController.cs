@@ -19,6 +19,7 @@ namespace EZ_CD.Controllers
 {
     public class HomeController : Controller
     {
+        
         private readonly ILogger<HomeController> _logger;
         private readonly EZ_CD_DBContext _context;
         private readonly UserManager<User> _userManager;
@@ -33,6 +34,10 @@ namespace EZ_CD.Controllers
 
         public async Task<IActionResult> Index()
         {
+            IRestClient restClient = new RestClient();
+            IRestRequest request = new RestRequest("https://api.genius.com/artists/16775/songs?access_token=8rGdEOfCmCnCHLMotGkGr9SGv_uGJZQgchokUOcwydzfI25vq5iYGvDSJZHN36E6");
+            var response = restClient.Get(request);
+            dynamic obj = JsonConvert.DeserializeObject(response.Content);
             var tempContext = _context.Disk.Include(d => d.Artist);
             User currentUser = await _userManager.GetUserAsync(HttpContext.User);
             HttpContext.Session.SetInt32("cartSize", _context.CartItem.Count(m => m.User == currentUser));
