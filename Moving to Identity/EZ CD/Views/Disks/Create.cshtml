@@ -16,7 +16,7 @@
 
     #table {
         position: relative;
-        margin-top: -155%;
+        margin-top: -142%;
         margin-left: 110%;
     }
 </style>
@@ -27,7 +27,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Create" onsubmit="return validateNumOfSongs()">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label class="control-label">Artist:</label>
@@ -71,7 +71,7 @@
                 <span asp-validation-for="featuredVideoUrl" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input name="songsJSON" class="form-control" id="songsJSON" value="text" hidden />
+                <input name="songsJSON" class="form-control" id="songsJSON" value="none" hidden />
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" onclick="setData()" />

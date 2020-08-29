@@ -40,12 +40,13 @@ namespace EZ_CD.Controllers
                 return NotFound();
             }
 
-            var disk = await _context.Disk
+            var disk = await _context.Disk.Include(d => d.Artist)
                 .FirstOrDefaultAsync(m => m.diskId == id);
             if (disk == null)
             {
                 return NotFound();
             }
+            ViewBag.ArtistId = disk.Artist.artistId;
             return View(disk);
         }
 

@@ -103,3 +103,11 @@ function setSongsJSONValue() {
     setData();
     return true;
 }
+
+function validateNumOfSongs() {
+    if ($tableID.find('tr:not(:hidden)').length == 1) { // no songs were added
+        alert("At Least One Song Is Required");
+        return false;
+    }
+    return true;
+}

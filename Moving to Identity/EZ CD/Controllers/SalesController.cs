@@ -77,8 +77,7 @@ namespace EZ_CD.Controllers
             {
                 return NotFound();
             }
-
-            var sale = await _context.Sale.FindAsync(id);
+            var sale = await _context.Sale.Include(s => s.User).Where(s => s.saleId == id).FirstOrDefaultAsync();
             if (sale == null)
             {
                 return NotFound();

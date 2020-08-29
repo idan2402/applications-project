@@ -19,17 +19,17 @@ namespace EZ_CD.Controllers
 {
     public class HomeController : Controller
     {
-        
+
         private readonly ILogger<HomeController> _logger;
         private readonly EZ_CD_DBContext _context;
         private readonly UserManager<User> _userManager;
-        private readonly SignInManager<User> _singInManager;
-        public HomeController(ILogger<HomeController> logger, EZ_CD_DBContext context, UserManager<User> userManager, SignInManager<User> singInManager)
+        private readonly SignInManager<User> _signInManager;
+        public HomeController(ILogger<HomeController> logger, EZ_CD_DBContext context, UserManager<User> userManager, SignInManager<User> signInManager)
         {
             _logger = logger;
             _context = context;
             _userManager = userManager;
-            _singInManager = singInManager;
+            _signInManager = signInManager;
         }
 
         public async Task<IActionResult> Index()
@@ -43,10 +43,12 @@ namespace EZ_CD.Controllers
             var tempContext = _context.Disk.Include(d => d.Artist);
             User currentUser = await _userManager.GetUserAsync(HttpContext.User);
             HttpContext.Session.SetInt32("cartSize", _context.CartItem.Count(m => m.User == currentUser));
+
             
-            // The Suggestion Algorithm, To Be Continued
-            /*
-            if(user is connected){
+            // The Suggestion Algorithm
+            if (_signInManager.IsSignedIn(HttpContext.User))
+            {
+
                 var userPurchases = _context.Sale.Where(s => s.User.Id == currentUser.Id);
                 var userPurchasedItems = userPurchases.Join(_context.SaleItem, s => s.saleId, si => si.Sale.saleId, (s, si) => new { disk = si.Disk });
 
@@ -57,41 +59,59 @@ namespace EZ_CD.Controllers
                 genresCounter["Metal"] = 0;
                 genresCounter["Classic"] = 0;
 
+                // get users more purchased categories
                 foreach (var item in userPurchasedItems)
                     genresCounter[item.disk.genre]++;
                 var firstGenre = genresCounter.Aggregate((l, r) => l.Value > r.Value ? l : r).Key;
+
+                if (genresCounter[firstGenre] == 0) // user didnt purchase anything
+                    return View("Index", tempContext);
+
                 genresCounter.Remove(firstGenre);
+
                 var secondGenre = genresCounter.Aggregate((l, r) => l.Value > r.Value ? l : r).Key;
+                if (genresCounter[secondGenre] == 0) // user only purchased from one category
+                    secondGenre = "none";
 
+                // get most sold disks on the first category
                 Dictionary<Disk, int> mostSaledDisksOfFirstGenre = new Dictionary<Disk, int>();
-                foreach(var item in _context.SaleItem)
+                foreach (var item in _context.SaleItem.Include(s => s.Disk).Where(s => s.Disk.genre == firstGenre))
                 {
-                    if (item.Disk.genre != firstGenre)
-                        continue;
-                    mostSaledDisksOfFirstGenre[item.Disk]++;
+                    if (!mostSaledDisksOfFirstGenre.ContainsKey(item.Disk))
+                        mostSaledDisksOfFirstGenre[item.Disk] = 0;
+                    mostSaledDisksOfFirstGenre[item.Disk] = mostSaledDisksOfFirstGenre[item.Disk] + 1;
                 }
-                Dictionary<Disk, int> mostSaledDisksOfSecondGenre = new Dictionary<Disk, int>();
-                foreach (var item in _context.SaleItem)
+                int len = Math.Min(3, mostSaledDisksOfFirstGenre.Count);
+                List<Disk> results1 = new List<Disk>(len);
+                for (int i = 0; i < len; i++)
                 {
-                    if (item.Disk.genre != secondGenre)
-                        continue;
-                    mostSaledDisksOfSecondGenre[item.Disk]++;
-                }
-                List<Disk> results1 = new List<Disk>();
-                List<Disk> results2 = new List<Disk>();
-                for (int i = 0; i < 3; i++)
-                {
-                    results1.Append(mostSaledDisksOfFirstGenre.Aggregate((l, r) => l.Value > r.Value ? l : r).Key);
-                    results2.Append(mostSaledDisksOfSecondGenre.Aggregate((l, r) => l.Value > r.Value ? l : r).Key);
-                    mostSaledDisksOfFirstGenre.Remove(results1[i]);
-                    mostSaledDisksOfSecondGenre.Remove(results2[i]);
+                    results1.Add(mostSaledDisksOfFirstGenre.Aggregate((l, r) => l.Value > r.Value ? l : r).Key);
+                    mostSaledDisksOfFirstGenre.Remove(mostSaledDisksOfFirstGenre.Aggregate((l, r) => l.Value > r.Value ? l : r).Key);
                 }
 
-                return View("Index", results1.Union(results2));
+                // get most disks sold on the second category
+                if (secondGenre != "none")
+                {
+                    Dictionary<Disk, int> mostSaledDisksOfSecondGenre = new Dictionary<Disk, int>();
+                    foreach (var item in _context.SaleItem.Include(s => s.Disk).Where(s => s.Disk.genre == secondGenre))
+                    {
+                        if (!mostSaledDisksOfSecondGenre.ContainsKey(item.Disk))
+                            mostSaledDisksOfSecondGenre[item.Disk] = 0;
+                        mostSaledDisksOfSecondGenre[item.Disk] = mostSaledDisksOfSecondGenre[item.Disk] + 1;
+                    }
+                    int len2 = Math.Min(3, mostSaledDisksOfSecondGenre.Count);
+                    List<Disk> results2 = new List<Disk>(len2);
+                    for (int i = 0; i < len2; i++)
+                    {
+                        results2.Add(mostSaledDisksOfSecondGenre.Aggregate((l, r) => l.Value > r.Value ? l : r).Key);
+                        mostSaledDisksOfSecondGenre.Remove(results2[i]);
+                    }
+
+                    return View("Index", results1.Union(results2));
+                }
+                else { return View("Index", results1); }
             }
-            */
-
-            return View("Index", tempContext);
+            else { return View("Index", tempContext); }
         }
 
         public IActionResult Privacy()
@@ -113,7 +133,7 @@ namespace EZ_CD.Controllers
             try //calculating the total time in seconds of this album
             {
                 foreach (Song song in ViewBag.songs)
-                {                    
+                {
                     totalTimeinSecs += TimeSpan.ParseExact(song.length, timeformats, CultureInfo.InvariantCulture).TotalSeconds;
                 }
                 TimeSpan time = TimeSpan.FromSeconds(totalTimeinSecs);
@@ -152,17 +172,18 @@ namespace EZ_CD.Controllers
                 IRestResponse responseAudioDB = audioDbClient.Execute(requestAudioDb);
                 dynamic objAudioDB = JsonConvert.DeserializeObject(responseAudioDB.Content);
                 string description = objAudioDB.album[0].strDescriptionEN;
-                if(description == null)
+                if (description == null)
                     ViewBag.description = "This disk doesn't have a description yet";
                 else
-                    ViewBag.description = description;               
+                    ViewBag.description = description;
             }
-            catch {
+            catch
+            {
                 ViewBag.description = "This disk doesn't have a description yet";
             }
 
-            
-           
+
+
 
             var tempContext = _context.Song.Include(d => d.Disk);
             var songs = tempContext.Where(s => s.Disk.diskId == id).ToList(); //seraching for all the songs that the current disk contains
@@ -266,14 +287,14 @@ namespace EZ_CD.Controllers
 
         public async Task<IActionResult> AddToCart(int? id)
         {
-            
+
             if (id == null)
             {
                 return NotFound();
             }
-            
+
             User currentUser = await _userManager.GetUserAsync(HttpContext.User);
-            if(currentUser == null)
+            if (currentUser == null)
             {
                 return Redirect("~/Identity/Account/Login");
             }
@@ -297,7 +318,7 @@ namespace EZ_CD.Controllers
             }
             User currentUser = await _userManager.GetUserAsync(HttpContext.User);
 
-            CartItem cartItem = await _context.CartItem.FirstAsync(m => m.cartItemId== id);
+            CartItem cartItem = await _context.CartItem.FirstAsync(m => m.cartItemId == id);
             _context.Remove(cartItem);
             await _context.SaveChangesAsync();
             HttpContext.Session.SetInt32("cartSize", _context.CartItem.Count(m => m.User == currentUser));
@@ -309,7 +330,7 @@ namespace EZ_CD.Controllers
             User currentUser = await _userManager.GetUserAsync(HttpContext.User);
 
             List<CartItem> items = _context.CartItem.Where(m => m.User == currentUser).Include(m => m.Disk).ToList();
-            
+
             // Creates a sale
             Sale sale = new Sale();
             sale.date = DateTime.Now;
@@ -328,7 +349,7 @@ namespace EZ_CD.Controllers
 
                 _context.Remove(cartItem); // Removes the cartItem from the database
             }
-             
+
             await _context.SaveChangesAsync(); // Saves the changes
             HttpContext.Session.SetInt32("cartSize", 0); // Sets the new size cart (0 cuz empty)
             return RedirectToAction(nameof(Index));
