@@ -9,6 +9,7 @@ using EZ_CD.Data;
 using EZ_CD.Models;
 using EZ_CD.Areas.Identity;
 using Microsoft.AspNetCore.Authorization;
+using EZ_CD.Areas.Identity.Data;
 
 namespace EZ_CD.Controllers
 {
@@ -25,7 +26,16 @@ namespace EZ_CD.Controllers
         // GET: Sales
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Sale.ToListAsync());
+            var tempContext = await _context.Sale.Include(s => s.User).ToListAsync();
+            foreach (var sale in tempContext)
+            {
+                var saleItems = await _context.SaleItem.Include(s => s.Disk).Include(s => s.Sale).Where(s => s.Sale.saleId == sale.saleId).ToListAsync();
+                double sum = 0;
+                foreach (var item in saleItems)
+                    sum += item.Disk.price;
+                ViewData[sale.saleId.ToString()] = sum;
+            }
+            return View(tempContext);
         }
 
         // GET: Sales/Details/5
@@ -36,13 +46,14 @@ namespace EZ_CD.Controllers
                 return NotFound();
             }
 
-            var sale = await _context.Sale
+            var sale = await _context.Sale.Include(s => s.User)
                 .FirstOrDefaultAsync(m => m.saleId == id);
             if (sale == null)
             {
                 return NotFound();
             }
-
+            
+            ViewBag.Disks = await _context.SaleItem.Include(s => s.Disk).Include(s => s.Sale).Where(s => s.Sale.saleId == id).ToListAsync();
             return View(sale);
         }
 

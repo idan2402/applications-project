@@ -48,7 +48,8 @@ namespace EZ_CD.Controllers
             // The Suggestion Algorithm
             if (_signInManager.IsSignedIn(HttpContext.User))
             {
-
+                if (await _userManager.IsInRoleAsync(currentUser, "Admins"))
+                    return RedirectToAction("Index","AdminDashboard");
                 var userPurchases = _context.Sale.Where(s => s.User.Id == currentUser.Id);
                 var userPurchasedItems = userPurchases.Join(_context.SaleItem, s => s.saleId, si => si.Sale.saleId, (s, si) => new { disk = si.Disk });
 
@@ -121,7 +122,11 @@ namespace EZ_CD.Controllers
 
         public async Task<IActionResult> DiskDetails(int? id)
         {
-            if (id == null)
+            if (_signInManager.IsSignedIn(HttpContext.User)) // if he's an admin, go to the admin dashboard
+                if (await _userManager.IsInRoleAsync(await _userManager.GetUserAsync(HttpContext.User), "Admins"))
+                    return RedirectToAction("Index", "AdminDashboard");
+
+                if (id == null)
             {
                 return NotFound();
             }
@@ -196,6 +201,11 @@ namespace EZ_CD.Controllers
         public async Task<IActionResult> Search(string diskName, string pop = "", string rap = "", string rock = "", string metal = "", string classic = "",
             string fromYear = "", string toYear = "", string minPrice = "", string maxPrice = "")
         {
+            // if he's an admin, go to the admin dashboard
+            if (_signInManager.IsSignedIn(HttpContext.User)) 
+                if (await _userManager.IsInRoleAsync(await _userManager.GetUserAsync(HttpContext.User), "Admins"))
+                    return RedirectToAction("Index", "AdminDashboard");
+
             // Validations:
             if (fromYear != "")
             {
@@ -274,6 +284,11 @@ namespace EZ_CD.Controllers
 
         public async Task<IActionResult> Cart()
         {
+            // if he's an admin, go to the admin dashboard
+            if (_signInManager.IsSignedIn(HttpContext.User))
+                if (await _userManager.IsInRoleAsync(await _userManager.GetUserAsync(HttpContext.User), "Admins"))
+                    return RedirectToAction("Index", "AdminDashboard");
+
             User currentUser = await _userManager.GetUserAsync(HttpContext.User);
             List<CartItem> items = _context.CartItem.Where(m => m.User == currentUser).Include(m => m.Disk).ToList();
             double sum = 0;
