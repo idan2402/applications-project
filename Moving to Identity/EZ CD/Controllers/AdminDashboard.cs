@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Web;
 using Microsoft.VisualBasic;
+using EZ_CD.Models;
+using Microsoft.AspNetCore.Identity.UI.V3.Pages.Account.Manage.Internal;
 
 namespace EZ_CD.Controllers
 {
@@ -31,6 +33,22 @@ namespace EZ_CD.Controllers
 
         public IActionResult Index()
         {
+            // Setting the data for the pie chart
+            String[] all_generes = { "Pop", "Rap", "Rock", "Metal", "Classic" };
+            List<String> generes = new List<string>();
+            Dictionary<String, int> data = new Dictionary<String, int>();
+            foreach (String genere in all_generes)
+            {
+                int count = _context.Disk.Count(m => m.genre == genere);
+                if (count > 0)
+                {
+                    generes.Add(genere);
+                    data.Add(genere, count);
+                }
+
+            }
+            ViewBag.data = data;
+            ViewBag.generes = generes.ToArray();
             return View();
         }
 
