@@ -47,12 +47,13 @@ namespace EZ_CD.Controllers
 
             if (_context.Sale.Count() == 0)
             {
+                ViewBag.personalText = "Our Top Sellers:";
                 List<Disk> result = new List<Disk>();
-                var _tempContext2 = _context.Disk.Include(d => d.Artist);
+                var _tempContext2 = await _context.Disk.Include(d => d.Artist).ToListAsync();
+
                 for (int i = 0; i < Math.Min(9, _context.Disk.Count()); i++)
-                {
                     result.Add(_tempContext2.ElementAt(i));
-                }
+                
                 return View("Index", result);
             }
 
