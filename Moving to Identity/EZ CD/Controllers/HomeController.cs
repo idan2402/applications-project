@@ -95,6 +95,10 @@ namespace EZ_CD.Controllers
                         results.Add(mostSoldDisks.Aggregate((l, r) => l.Value > r.Value ? l : r).Key);
                         mostSoldDisks.Remove(mostSoldDisks.Aggregate((l, r) => l.Value > r.Value ? l : r).Key);
                     }
+
+                    if (results.Count() < Math.Min(9, _context.Disk.Count()))
+                        results = FillDisks(results);
+
                     return View("Index", results);
                 }
 
@@ -137,10 +141,14 @@ namespace EZ_CD.Controllers
                         results2.Add(mostSaledDisksOfSecondGenre.Aggregate((l, r) => l.Value > r.Value ? l : r).Key);
                         mostSaledDisksOfSecondGenre.Remove(results2[i]);
                     }
-
-                    return View("Index", results1.Union(results2));
+                    foreach (var item in results2)
+                        results1.Add(item);
                 }
-                else { return View("Index", results1); }
+
+                if(results1.Count() < Math.Min(9, _context.Disk.Count()))
+                    results1 = FillDisks(results1);
+
+                return View("Index", results1); 
             }
             else {
                 ViewBag.personalText = "Our Top Sellers:";
@@ -159,8 +167,20 @@ namespace EZ_CD.Controllers
                     results.Add(mostSoldDisks.Aggregate((l, r) => l.Value > r.Value ? l : r).Key);
                     mostSoldDisks.Remove(mostSoldDisks.Aggregate((l, r) => l.Value > r.Value ? l : r).Key);
                 }
+                if (results.Count < 9)
+                    results = FillDisks(results);
                 return View("Index", results);
             }
+        }
+
+        private List<Disk> FillDisks(List<Disk> list)
+        {
+            var _tempContext2 = _context.Disk.Include(d => d.Artist).Where(d => !list.Contains(d)).ToList();
+            int count = list.Count();
+            for (int i = 0; i < Math.Min(9 - count, _context.Disk.Count()); i++)
+                list.Add(_tempContext2.ElementAt(i));
+
+            return list;
         }
 
         public IActionResult Privacy()
