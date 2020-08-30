@@ -244,7 +244,7 @@ namespace EZ_CD.Controllers
             // End Of Validations
 
             // The Search:
-            IQueryable<Disk> results = _context.Disk;
+            IQueryable<Disk> results = _context.Disk.Include(d => d.Artist);
 
             if (!String.IsNullOrEmpty(diskName))
                 results = results.Where(disk => (disk.name.Contains(diskName)));
@@ -258,10 +258,10 @@ namespace EZ_CD.Controllers
                 results = results.Where(disk => (disk.price <= int.Parse(maxPrice)));
 
             if (String.IsNullOrEmpty(pop) && String.IsNullOrEmpty(rap) && String.IsNullOrEmpty(rock) && String.IsNullOrEmpty(metal) && String.IsNullOrEmpty(classic))
-                return View("index", await results.ToListAsync());
+                return View("Index", await results.ToListAsync());
 
-            return View(
-                from disk in results
+            return View("Index",
+                from disk in results.Include(d => d.Artist)
                 where (disk.genre == pop) || (disk.genre == rap) || (disk.genre == rock) || (disk.genre == metal) || (disk.genre == classic)
                 select disk
                 );
