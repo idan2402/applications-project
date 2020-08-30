@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Http;
 using System.Globalization;
 using Newtonsoft.Json;
 using RestSharp;
+using Microsoft.EntityFrameworkCore.Internal;
 
 namespace EZ_CD.Controllers
 {
@@ -44,6 +45,16 @@ namespace EZ_CD.Controllers
             User currentUser = await _userManager.GetUserAsync(HttpContext.User);
             HttpContext.Session.SetInt32("cartSize", _context.CartItem.Count(m => m.User == currentUser));
 
+            if (_context.Sale.Count() == 0)
+            {
+                List<Disk> result = new List<Disk>();
+                var _tempContext2 = _context.Disk.Include(d => d.Artist);
+                for (int i = 0; i < Math.Min(9, _context.Disk.Count()); i++)
+                {
+                    result.Add(_tempContext2.ElementAt(i));
+                }
+                return View("Index", result);
+            }
 
             // The Suggestion Algorithm
             if (_signInManager.IsSignedIn(HttpContext.User))
