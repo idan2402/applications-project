@@ -145,7 +145,6 @@ namespace EZ_CD.Controllers
             {
                 return NotFound();
             }
-
             var artist = await _context.Artist
                 .FirstOrDefaultAsync(m => m.artistId == id);
             if (artist == null)
@@ -161,6 +160,11 @@ namespace EZ_CD.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            var disks = _context.Disk.Where(d => d.Artist.artistId == id);
+            foreach (var disk in disks)
+            {
+                _context.Remove(disk);
+            }
             var artist = await _context.Artist.FindAsync(id);
             _context.Artist.Remove(artist);
             await _context.SaveChangesAsync();
