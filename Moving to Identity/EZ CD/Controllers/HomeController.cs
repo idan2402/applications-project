@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Http;
 using System.Globalization;
 using Newtonsoft.Json;
 using RestSharp;
+using Microsoft.EntityFrameworkCore.Internal;
 
 namespace EZ_CD.Controllers
 {
@@ -44,12 +45,23 @@ namespace EZ_CD.Controllers
             User currentUser = await _userManager.GetUserAsync(HttpContext.User);
             HttpContext.Session.SetInt32("cartSize", _context.CartItem.Count(m => m.User == currentUser));
 
-            
+            if (_context.Sale.Count() == 0)
+            {
+                ViewBag.personalText = "Our Top Sellers:";
+                List<Disk> result = new List<Disk>();
+                var _tempContext2 = await _context.Disk.Include(d => d.Artist).ToListAsync();
+
+                for (int i = 0; i < Math.Min(9, _context.Disk.Count()); i++)
+                    result.Add(_tempContext2.ElementAt(i));
+                
+                return View("Index", result);
+            }
+
             // The Suggestion Algorithm
             if (_signInManager.IsSignedIn(HttpContext.User))
             {
-                if (await _userManager.IsInRoleAsync(currentUser, "Admins"))
-                    return RedirectToAction("Index","AdminDashboard");
+                ViewBag.personalText = "Recommended For You, " + currentUser.FirstName + ":";
+
                 var userPurchases = _context.Sale.Where(s => s.User.Id == currentUser.Id);
                 var userPurchasedItems = userPurchases.Join(_context.SaleItem, s => s.saleId, si => si.Sale.saleId, (s, si) => new { disk = si.Disk });
 
@@ -60,13 +72,35 @@ namespace EZ_CD.Controllers
                 genresCounter["Metal"] = 0;
                 genresCounter["Classic"] = 0;
 
-                // get users more purchased categories
+                // get users most purchased categories
                 foreach (var item in userPurchasedItems)
                     genresCounter[item.disk.genre]++;
                 var firstGenre = genresCounter.Aggregate((l, r) => l.Value > r.Value ? l : r).Key;
 
                 if (genresCounter[firstGenre] == 0) // user didnt purchase anything
-                    return View("Index", tempContext);
+                {
+                    ViewBag.personalText = "Our Top Sellers:";
+                    var _tempContext = await _context.SaleItem.Include(s => s.Disk).ToListAsync();
+                    Dictionary<Disk, int> mostSoldDisks = new Dictionary<Disk, int>();
+                    foreach (var item in _tempContext)
+                    {
+                        if (!mostSoldDisks.ContainsKey(item.Disk))
+                            mostSoldDisks[item.Disk] = 0;
+                        mostSoldDisks[item.Disk] = mostSoldDisks[item.Disk] + 1;
+                    }
+                    int length = Math.Min(9, mostSoldDisks.Count);
+                    List<Disk> results = new List<Disk>(length);
+                    for (int i = 0; i < length; i++)
+                    {
+                        results.Add(mostSoldDisks.Aggregate((l, r) => l.Value > r.Value ? l : r).Key);
+                        mostSoldDisks.Remove(mostSoldDisks.Aggregate((l, r) => l.Value > r.Value ? l : r).Key);
+                    }
+
+                    if (results.Count() < Math.Min(9, _context.Disk.Count()))
+                        results = FillDisks(results);
+
+                    return View("Index", results);
+                }
 
                 genresCounter.Remove(firstGenre);
 
@@ -107,12 +141,46 @@ namespace EZ_CD.Controllers
                         results2.Add(mostSaledDisksOfSecondGenre.Aggregate((l, r) => l.Value > r.Value ? l : r).Key);
                         mostSaledDisksOfSecondGenre.Remove(results2[i]);
                     }
-
-                    return View("Index", results1.Union(results2));
+                    foreach (var item in results2)
+                        results1.Add(item);
                 }
-                else { return View("Index", results1); }
+
+                if(results1.Count() < Math.Min(9, _context.Disk.Count()))
+                    results1 = FillDisks(results1);
+
+                return View("Index", results1); 
             }
-            else { return View("Index", tempContext); }
+            else {
+                ViewBag.personalText = "Our Top Sellers:";
+                var _tempContext = await _context.SaleItem.Include(s => s.Disk).ToListAsync();
+                Dictionary<Disk, int> mostSoldDisks = new Dictionary<Disk, int>();
+                foreach (var item in _tempContext)
+                {
+                    if (!mostSoldDisks.ContainsKey(item.Disk))
+                        mostSoldDisks[item.Disk] = 0;
+                    mostSoldDisks[item.Disk] = mostSoldDisks[item.Disk] + 1;
+                }
+                int len = Math.Min(9, mostSoldDisks.Count);
+                List<Disk> results = new List<Disk>(len);
+                for (int i = 0; i < len; i++)
+                {
+                    results.Add(mostSoldDisks.Aggregate((l, r) => l.Value > r.Value ? l : r).Key);
+                    mostSoldDisks.Remove(mostSoldDisks.Aggregate((l, r) => l.Value > r.Value ? l : r).Key);
+                }
+                if (results.Count < 9)
+                    results = FillDisks(results);
+                return View("Index", results);
+            }
+        }
+
+        private List<Disk> FillDisks(List<Disk> list)
+        {
+            var _tempContext2 = _context.Disk.Include(d => d.Artist).Where(d => !list.Contains(d)).ToList();
+            int count = list.Count();
+            for (int i = 0; i < Math.Min(9 - count, _context.Disk.Count()); i++)
+                list.Add(_tempContext2.ElementAt(i));
+
+            return list;
         }
 
         public IActionResult Privacy()
@@ -199,7 +267,7 @@ namespace EZ_CD.Controllers
 
 
         public async Task<IActionResult> Search(string diskName, string pop = "", string rap = "", string rock = "", string metal = "", string classic = "",
-            string fromYear = "", string toYear = "", string minPrice = "", string maxPrice = "")
+            string fromYear = "", string toYear = "", string minPrice = "", string maxPrice = "", string artist = "")
         {
             // if he's an admin, go to the admin dashboard
             if (_signInManager.IsSignedIn(HttpContext.User)) 
@@ -243,9 +311,13 @@ namespace EZ_CD.Controllers
             }
             // End Of Validations
 
+            ViewBag.personalText = "Search Results:";
+
             // The Search:
             IQueryable<Disk> results = _context.Disk.Include(d => d.Artist);
 
+            if (!String.IsNullOrEmpty(artist))
+                results = results.Where(disk => disk.Artist.name.Contains(artist));
             if (!String.IsNullOrEmpty(diskName))
                 results = results.Where(disk => (disk.name.Contains(diskName)));
             if (!String.IsNullOrEmpty(fromYear))
