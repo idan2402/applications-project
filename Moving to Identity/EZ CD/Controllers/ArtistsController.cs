@@ -42,7 +42,7 @@ namespace EZ_CD.Controllers
             {
                 return NotFound();
             }
-
+            ViewBag.artistDisks = _context.Disk.Include(d => d.Artist).Where(d => d.Artist.artistId == id).ToList();
             return View(artist);
         }
 

@@ -7,10 +7,11 @@
 
 <h1>Details</h1>
 
+
 <div>
     <h4>Disk</h4>
     <hr />
-    <dd class="row">
+    <dl class="row">
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Artist)
         </dt>
@@ -61,24 +62,19 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.featuredVideoUrl)
         </dd>
-        <dt class="col-sm-2">
-            Tracklist
+        <dt class="col-sm-2" style="padding-bottom:8px; text-decoration: underline">
+            Tracklist:
+            <br />
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-10" style="margin-top:10px">
             @foreach (var item in ViewBag.songs)
             {
-            <tr>
-                <td>@item.name</td>
-                &nbsp;
-                -
-                &nbsp;
-                <td>@item.length</td>
-                <br />
-            </tr>
-            }
-            </dd>               
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.diskId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+            <dt class="col-sm-2 tracklist" style="font-weight:normal">@item.name</dt>
+            <dd class="col-sm-10 tracklist">@item.length</dd>
+        }
+        </dl>
+    </div>
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.diskId">Edit</a> |
+        <a asp-action="Index">Back to List</a>
+    </div>

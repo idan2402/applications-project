@@ -37,14 +37,14 @@
         <dt class="col-sm-2">
             Disks:
         </dt>
-        @foreach (var item in ViewBag.Disks)
-        {
-            <dt class="col-sm-2"></dt>
-            <dd class="col-sm-10">
-                <a asp-controller="disks" asp-action="details" asp-route-id="@item.Disk.diskId">@item.Disk.name</a>
-            </dd>
-        }
-
+        <dd>
+            @foreach (var item in ViewBag.Disks)
+            {
+                <div class="col-sm-10" style="white-space:nowrap">
+                    <a asp-action="details" asp-controller="disks" asp-route-id="@item.Disk.diskId">@item.Disk.name</a>
+                </div>
+            }
+        <dd>
     </dl>
 </div>
 <div>
