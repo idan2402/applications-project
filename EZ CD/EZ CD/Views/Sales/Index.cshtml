@@ -2,17 +2,20 @@
 
 @{
     ViewData["Title"] = "Index";
-    Layout = "_AdminLayout";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Sales</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.User)
+            </th>
+            <th>
+                Order Total
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.date)
             </th>
@@ -20,17 +23,22 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+        @foreach (var item in Model)
+        {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.UserName)
+            </td>
+            <td>
+                @(ViewData[item.saleId.ToString()])$
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.date)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.saleId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.saleId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.saleId">Delete</a>
+                <a asp-action="Details" asp-route-id="@item.saleId">Details</a>
             </td>
         </tr>
-}
+        }
     </tbody>
 </table>

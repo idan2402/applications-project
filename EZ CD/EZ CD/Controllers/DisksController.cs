@@ -1,20 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EZ_CD.Data;
 using EZ_CD.Models;
+using Microsoft.AspNetCore.Authorization;
+using EZ_CD.Utilities;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using RestSharp;
+using System.Collections.Generic;
+using System;
 
 namespace EZ_CD.Controllers
 {
+    [Authorize(Roles = "Admins")]
     public class DisksController : Controller
     {
-        private readonly EZ_CDContext _context;
+        private readonly EZ_CD_DBContext _context;
 
-        public DisksController(EZ_CDContext context)
+        public DisksController(EZ_CD_DBContext context)
         {
             _context = context;
         }
@@ -22,95 +28,36 @@ namespace EZ_CD.Controllers
         // GET: Disks
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Disk.ToListAsync());
-        }
-        public void inValidInput() { 
-        }
-        public async Task<IActionResult> Search(string diskName, string pop="", string rap = "", string rock = "", string metal = "", string classic = "",
-            string fromYear = "", string toYear = "", string minPrice = "", string maxPrice = "")
-        {
-            // Validations:
-            if(fromYear != "")
-            {
-                if (!isDigits(fromYear))
-                    return View("_InvalidArguments");
-                if(int.Parse(fromYear) <= 0)
-                    return View("_InvalidArguments");
-                if (int.Parse(fromYear) != double.Parse(fromYear))
-                    return View("_InvalidArguments");
-            }
-            if (toYear != "")
-            {
-                if (!isDigits(toYear))
-                    return View("_InvalidArguments");
-                if (int.Parse(toYear) > int.Parse(DateTime.Now.Year.ToString()))
-                    return View("_InvalidArguments");
-                if (int.Parse(toYear) != double.Parse(toYear))
-                    return View("_InvalidArguments");
-                if(int.Parse(toYear) < int.Parse(fromYear))
-                    return View("_InvalidArguments");
-            }
-            if (minPrice != "")
-            {
-                if (!isDigits(minPrice))
-                    return View("_InvalidArguments");
-                if (int.Parse(minPrice) < 0)
-                    return View("_InvalidArguments");
-            }
-            if (minPrice != "")
-            {
-                if (!isDigits(maxPrice))
-                    return View("_InvalidArguments");
-                if (int.Parse(maxPrice) < int.Parse(minPrice))
-                    return View("_InvalidArguments");
-            }
-            // End Of Validations
-
-            // The Search:
-            IQueryable<Disk> results = _context.Disk;
-
-            if (!String.IsNullOrEmpty(diskName))
-                results = results.Where(disk => (disk.name.Contains(diskName)));
-            if (!String.IsNullOrEmpty(fromYear))
-                results = results.Where(disk => (disk.date.Year >= int.Parse(fromYear)));
-            if (!String.IsNullOrEmpty(toYear))
-                results = results.Where(disk => (disk.date.Year <= int.Parse(toYear)));
-            if (!String.IsNullOrEmpty(minPrice))
-                results = results.Where(disk => (disk.price >= int.Parse(minPrice)));
-            if (!String.IsNullOrEmpty(maxPrice))
-                results = results.Where(disk => (disk.price <= int.Parse(maxPrice)));
-
-            if (String.IsNullOrEmpty(pop) && String.IsNullOrEmpty(rap) && String.IsNullOrEmpty(rock) && String.IsNullOrEmpty(metal) && String.IsNullOrEmpty(classic))
-                return View(await results.ToListAsync());
-            
-            return View(
-                from disk in results
-                where (disk.genre == pop) || (disk.genre == rap) || (disk.genre == rock) || (disk.genre == metal) || (disk.genre == classic)
-                select disk
-                );
+            var tempContext = _context.Disk.Include(d => d.Artist);
+            return View(await tempContext.ToListAsync());
         }
 
         // GET: Disks/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            ViewBag.songs = _context.Song.Where(s => s.Disk.diskId == id);
+
             if (id == null)
             {
                 return NotFound();
             }
 
-            var disk = await _context.Disk
+            var disk = await _context.Disk.Include(d => d.Artist)
                 .FirstOrDefaultAsync(m => m.diskId == id);
             if (disk == null)
             {
                 return NotFound();
             }
-
+            ViewBag.ArtistId = disk.Artist.artistId;
             return View(disk);
         }
+
+
 
         // GET: Disks/Create
         public IActionResult Create()
         {
+            ViewData["Artists"] = new SelectList(_context.Artist, "artistId", "name");
             return View();
         }
 
@@ -119,10 +66,41 @@ namespace EZ_CD.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("diskId,price,name,date,genre,dateAdded")] Disk disk)
+        public async Task<IActionResult> Create([Bind("diskId,price,name,date,genre,dateAdded,imagePath,featuredVideoUrl")] Disk disk, string artistId, string songsJSON)
         {
+            IRestClient geniusClient = new RestClient();
             if (ModelState.IsValid)
             {
+                dynamic array = JsonConvert.DeserializeObject(songsJSON);
+                if (((JArray)array).Count == 0)
+                {
+                    ViewBag.Error = "You must enter at least one song";
+                    return View("Error");
+                }
+
+                foreach (var song in array)
+                {
+                    Song temp = new Song();
+                    temp.name = song.name;
+                    temp.length = song.length;
+                    temp.Disk = disk;
+                    _context.Song.Add(temp);
+                }
+                IRestRequest requestGenius = new RestRequest("https://api.genius.com/search?q=" + array[0].name + _context.Artist.Find(int.Parse(artistId)).name);
+                requestGenius.AddHeader("Authorization", "Bearer IBWzJOsCp1yX3P_jd3SVGV8m7HvR-nS8FDbrPy1hp4s6teuS3ygbytt98qZmuGFA");
+                requestGenius.OnBeforeDeserialization = resp => { resp.ContentType = "application/json"; };
+                try
+                {
+                    var responseGenius = geniusClient.Get(requestGenius);
+                    dynamic obj = JsonConvert.DeserializeObject(responseGenius.Content);
+                    disk.imagePath = (string)obj.response.hits[0].result.song_art_image_url;
+                }
+                catch
+                {
+
+                }
+
+                disk.Artist = _context.Artist.Find(int.Parse(artistId));
                 _context.Add(disk);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -143,6 +121,12 @@ namespace EZ_CD.Controllers
             {
                 return NotFound();
             }
+            await _context.Disk
+                 .Include(d => d.Artist)
+                 .FirstOrDefaultAsync(m => m.diskId == id);
+            ViewData["Artists"] = new SelectList(_context.Artist, "artistId", "name", disk.Artist.artistId);
+            ViewBag.Countries = new SelectList(Countries.countries, disk.Artist.country);
+            ViewBag.Songs = _context.Song.Where(song => song.Disk.diskId == id);
             return View(disk);
         }
 
@@ -151,7 +135,7 @@ namespace EZ_CD.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("diskId,price,name,date,genre,dateAdded")] Disk disk)
+        public async Task<IActionResult> Edit(int id, [Bind("diskId,price,name,date,genre,dateAdded,imagePath,featuredVideoUrl")] Disk disk, string artistId, string songsJSON)
         {
             if (id != disk.diskId)
             {
@@ -162,7 +146,22 @@ namespace EZ_CD.Controllers
             {
                 try
                 {
+                    disk.Artist = _context.Artist.Find(int.Parse(artistId));
                     _context.Update(disk);
+
+                    var songs = _context.Song.Where(s => s.Disk.diskId == id);
+                    foreach (var s in songs)
+                        _context.Song.Remove(s);
+                    dynamic array = JsonConvert.DeserializeObject(songsJSON);
+                    foreach (var song in array)
+                    {
+                        Song temp = new Song();
+                        temp.name = song.name;
+                        temp.length = song.length;
+                        temp.Disk = disk;
+                        _context.Song.Add(temp);
+                    }
+
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -178,6 +177,7 @@ namespace EZ_CD.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["ArtistId"] = new SelectList(_context.Artist, "artistId", "artistId", disk.Artist.artistId);
             return View(disk);
         }
 
@@ -205,6 +205,9 @@ namespace EZ_CD.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var disk = await _context.Disk.FindAsync(id);
+            var songs = _context.Song.Where(s => s.Disk.diskId == id);
+            foreach (var s in songs)
+                _context.Song.Remove(s);
             _context.Disk.Remove(disk);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
@@ -214,14 +217,34 @@ namespace EZ_CD.Controllers
         {
             return _context.Disk.Any(e => e.diskId == id);
         }
-        private bool isDigits(string str)
-        {
-            char[] digitsArr = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '-', '.'};
-            foreach (char c in str)
-                if (!digitsArr.Contains(c))
-                    return false;
-            return true;
-        }
 
+        // GET: Disks/Delete/5
+        public async Task<IActionResult> Search(string filter, string state)
+        {
+            if (String.IsNullOrEmpty(filter))
+                filter = "";
+            IEnumerable<Disk> list = new List<Disk>();
+            list = await _context.Disk.Include(d => d.Artist).ToListAsync();
+            if (state == "artist")
+                list = list.Where(d => d.Artist.name.Contains(filter, StringComparison.OrdinalIgnoreCase));
+            else
+                list = list.Where(d => d.name.Contains(filter, StringComparison.OrdinalIgnoreCase));
+            IEnumerable<object> finalList = new List<object>();
+            finalList = list.Select(item => new
+            {
+                ArtistId = item.Artist.artistId,
+                Artist = item.Artist.name,
+                item.name,
+                item.imagePath,
+                date = item.date.ToShortDateString(),
+                item.genre,
+                dateAdded = item.dateAdded.ToShortDateString(),
+                item.featuredVideoUrl,
+                item.diskId,
+                item.price
+            }).ToList();
+
+            return Json(finalList);
+        }
     }
 }

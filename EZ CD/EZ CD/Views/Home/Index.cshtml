@@ -1,317 +1,86 @@
-﻿
-<link type="text/css" rel="stylesheet" href="~/css/home.css" />
-<div>
-    <section>
-        <div class="jumbotron jumbotron-fluid text-center">
+﻿@model IEnumerable<EZ_CD.Models.Disk>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_Layout";
+}
+
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>EZ CD</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+            integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+            crossorigin="anonymous"></script>
+    <link type="text/css" rel="stylesheet" href="./css/home.css" />
+    <link href="https://fonts.googleapis.com/css?family=Slabo+27px&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" rel="stylesheet">
+</head>
+
+<body>
+        <section>
+            <div class="jumbotron jumbotron-fluid text-center">
+                <div class="container">
+                    <h1 class="display-4" style="text-shadow: 1px 1px 8px rgba(62, 106, 168, .8)">EZ CD</h1>
+                    <p class="lead">
+                        This is the place to get CD. THIS IS A NICE!
+                    </p>
+                    <p class="lead">
+                            @ViewBag.personalText
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <div class="album py-5 bg-light">
             <div class="container">
-                <h1 class="display-4">EZ CD</h1>
-                <p class="lead">
-                    This is the place to get CD. THIS IS A NICE!
-                </p>
+                @{ if (Model.Count() == 0)
+                        @Html.Raw("<h1> Couldn't find results </h1>");
+
+                }
+                <div class=" row">
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-md-6 col-lg-4 mb-4">
+                            <div class="card">
+                                <div class="embed-responsive embed-responsive-4by3">
+                                    <img alt="Card image cap" class="card-img-top img-fluid embed-responsive-item"
+                                         src="@item.imagePath" />
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">@Html.DisplayFor(modelItem => item.name)</h5>
+                                    <p class="card-text">
+                                        @Html.DisplayFor(modelItem => item.Artist.name)
+                                        <br />
+                                        Date Released: @item.date.ToShortDateString()
+                                        <br />
+                                        Genre: @Html.DisplayFor(modelItem => item.genre)
+                                        <br />
+                                        Price: @Html.DisplayFor(modelItem => item.price)$
+                                    </p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="btn-group">
+                                            <a asp-controller="Home" asp-action="DiskDetails" asp-route-id="@item.diskId"> <button type="button" class="btn btn-sm btn-outline-secondary">View</button></a>
+                                            &nbsp;
+                                            <a asp-controller="Home" asp-action="AddToCart" asp-route-id="@item.diskId"> <button type="button" class="btn btn-sm btn-outline-secondary">Add to cart</button></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    }
+                </div>
+
             </div>
+
         </div>
-    </section>
+</body>
 
-    <div class="album py-5 bg-light">
-        <div class="container">
-
-            <div class="row">
-                <div class="col-md-6 col-lg-4">
-                    <div class="card">
-                        <div class="embed-responsive embed-responsive-4by3">
-                            <img alt="Card image cap" class="card-img-top img-fluid embed-responsive-item"
-                                 src="~/img/logic.jpg" />
-                        </div>
-
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">
-                                This is a wider card with supporting text below as a natural
-                                lead-in to
-                                additional content. This content is a little bit longer.
-                            </p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                </div>
-                                <small class="text-muted">9 mins</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="card">
-                        <div class="embed-responsive embed-responsive-4by3">
-                            <img alt="Card image cap" class="card-img-top img-fluid embed-responsive-item"
-                                 src="~/img/master of puppets.jpg" />
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">
-                                This is a wider card with supporting text below as a natural
-                                lead-in to
-                                additional content. This content is a little bit longer.
-                            </p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                </div>
-                                <small class="text-muted">9 mins</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="card">
-                        <div class="embed-responsive embed-responsive-4by3">
-                            <img alt="Card image cap" class="card-img-top img-fluid embed-responsive-item"
-                                 src="~/img/logic.jpg" />
-                        </div>
-
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">
-                                This is a wider card with supporting text below as a natural
-                                lead-in to
-                                additional content. This content is a little bit longer.
-                            </p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                </div>
-                                <small class="text-muted">9 mins</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-6 col-lg-4">
-                    <div class="card">
-                        <div class="embed-responsive embed-responsive-4by3">
-                            <img alt="Card image cap" class="card-img-top img-fluid embed-responsive-item"
-                                 src="~/img/logic.jpg" />
-                        </div>
-
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">
-                                This is a wider card with supporting text below as a natural
-                                lead-in to
-                                additional content. This content is a little bit longer.
-                            </p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                </div>
-                                <small class="text-muted">9 mins</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="card">
-                        <div class="embed-responsive embed-responsive-4by3">
-                            <img alt="Card image cap" class="card-img-top img-fluid embed-responsive-item"
-                                 src="~/img/master of puppets.jpg" />
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">
-                                This is a wider card with supporting text below as a natural
-                                lead-in to
-                                additional content. This content is a little bit longer.
-                            </p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                </div>
-                                <small class="text-muted">9 mins</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="card">
-                        <div class="embed-responsive embed-responsive-4by3">
-                            <img alt="Card image cap" class="card-img-top img-fluid embed-responsive-item"
-                                 src="~/img/logic.jpg" />
-                        </div>
-
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">
-                                This is a wider card with supporting text below as a natural
-                                lead-in to
-                                additional content. This content is a little bit longer.
-                            </p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                </div>
-                                <small class="text-muted">9 mins</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-6 col-lg-4">
-                    <div class="card">
-                        <div class="embed-responsive embed-responsive-4by3">
-                            <img alt="Card image cap" class="card-img-top img-fluid embed-responsive-item"
-                                 src="~/img/logic.jpg" />
-                        </div>
-
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">
-                                This is a wider card with supporting text below as a natural
-                                lead-in to
-                                additional content. This content is a little bit longer.
-                            </p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                </div>
-                                <small class="text-muted">9 mins</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="card">
-                        <div class="embed-responsive embed-responsive-4by3">
-                            <img alt="Card image cap" class="card-img-top img-fluid embed-responsive-item"
-                                 src="~/img/master of puppets.jpg" />
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">
-                                This is a wider card with supporting text below as a natural
-                                lead-in to
-                                additional content. This content is a little bit longer.
-                            </p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                </div>
-                                <small class="text-muted">9 mins</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="card">
-                        <div class="embed-responsive embed-responsive-4by3">
-                            <img alt="Card image cap" class="card-img-top img-fluid embed-responsive-item"
-                                 src="~/img/logic.jpg" />
-                        </div>
-
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">
-                                This is a wider card with supporting text below as a natural
-                                lead-in to
-                                additional content. This content is a little bit longer.
-                            </p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                </div>
-                                <small class="text-muted">9 mins</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-6 col-lg-4">
-                    <div class="card">
-                        <div class="embed-responsive embed-responsive-4by3">
-                            <img alt="Card image cap" class="card-img-top img-fluid embed-responsive-item"
-                                 src="~/img/logic.jpg" />
-                        </div>
-
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">
-                                This is a wider card with supporting text below as a natural
-                                lead-in to
-                                additional content. This content is a little bit longer.
-                            </p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                </div>
-                                <small class="text-muted">9 mins</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="card">
-                        <div class="embed-responsive embed-responsive-4by3">
-                            <img alt="Card image cap" class="card-img-top img-fluid embed-responsive-item"
-                                 src="~/img/master of puppets.jpg" />
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">
-                                This is a wider card with supporting text below as a natural
-                                lead-in to
-                                additional content. This content is a little bit longer.
-                            </p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                </div>
-                                <small class="text-muted">9 mins</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="card">
-                        <div class="embed-responsive embed-responsive-4by3">
-                            <img alt="Card image cap" class="card-img-top img-fluid embed-responsive-item"
-                                 src="~/img/logic.jpg" />
-                        </div>
-
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">
-                                This is a wider card with supporting text below as a natural
-                                lead-in to
-                                additional content. This content is a little bit longer.
-                            </p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                </div>
-                                <small class="text-muted">9 mins</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-</div>
-
+</html>

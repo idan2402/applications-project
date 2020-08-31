@@ -2,7 +2,7 @@
   "dependencies": {
     "mssql1": {
       "type": "mssql",
-      "connectionId": "EZ_CDContext"
+      "connectionId": "EZ_CD_DBContextConnection"
     }
   }
 }

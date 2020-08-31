@@ -7,14 +7,17 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EZ_CD.Data;
 using EZ_CD.Models;
+using Microsoft.AspNetCore.Authorization;
+using EZ_CD.Utilities;
 
 namespace EZ_CD.Controllers
 {
+    [Authorize(Roles = "Admins")]
     public class ArtistsController : Controller
     {
-        private readonly EZ_CDContext _context;
+        private readonly EZ_CD_DBContext _context;
 
-        public ArtistsController(EZ_CDContext context)
+        public ArtistsController(EZ_CD_DBContext context)
         {
             _context = context;
         }
@@ -39,13 +42,14 @@ namespace EZ_CD.Controllers
             {
                 return NotFound();
             }
-
+            ViewBag.artistDisks = _context.Disk.Include(d => d.Artist).Where(d => d.Artist.artistId == id).ToList();
             return View(artist);
         }
 
         // GET: Artists/Create
         public IActionResult Create()
         {
+            ViewBag.Countries = new SelectList(Countries.countries, Countries.countries[0]);
             return View();
         }
 
@@ -54,7 +58,7 @@ namespace EZ_CD.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("name,artistId,birthday,genre,country")] Artist artist)
+        public async Task<IActionResult> Create([Bind("artistId,name,birthday,genre,country")] Artist artist)
         {
             if (ModelState.IsValid)
             {
@@ -78,6 +82,7 @@ namespace EZ_CD.Controllers
             {
                 return NotFound();
             }
+            ViewBag.Countries = new SelectList(Countries.countries, artist.country);
             return View(artist);
         }
 
@@ -86,7 +91,7 @@ namespace EZ_CD.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("artistId,birthday,genre,country")] Artist artist)
+        public async Task<IActionResult> Edit(int id, [Bind("artistId,name,birthday,genre,country")] Artist artist)
         {
             if (id != artist.artistId)
             {
@@ -116,6 +121,23 @@ namespace EZ_CD.Controllers
             return View(artist);
         }
 
+        public async Task<IActionResult> Search(string filter)
+        {
+            if (String.IsNullOrEmpty(filter))
+                filter = "";
+            var temp = _context.Artist.ToList().Where(a => a.name.Contains(filter, StringComparison.OrdinalIgnoreCase));
+            var finalList = temp.Select(item => new
+            {
+                item.name,
+                item.genre,
+                birthday = item.birthday.ToShortDateString(),
+                item.country,
+                item.artistId
+            }).ToList();
+            return Json(finalList);
+        }
+
+
         // GET: Artists/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -123,7 +145,6 @@ namespace EZ_CD.Controllers
             {
                 return NotFound();
             }
-
             var artist = await _context.Artist
                 .FirstOrDefaultAsync(m => m.artistId == id);
             if (artist == null)
@@ -139,6 +160,11 @@ namespace EZ_CD.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            var disks = _context.Disk.Where(d => d.Artist.artistId == id);
+            foreach (var disk in disks)
+            {
+                _context.Remove(disk);
+            }
             var artist = await _context.Artist.FindAsync(id);
             _context.Artist.Remove(artist);
             await _context.SaveChangesAsync();

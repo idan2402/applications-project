@@ -1,12 +1,9 @@
-/* BASIC */
 
-html {
-    background-color: #343a40 !important;
-}
 
 body {
     font-family: "Poppins", sans-serif;
     height: 100vh;
+    background-color: #343a40 !important;
 }
 
 a {
@@ -26,7 +23,6 @@ h2 {
     color: #cccccc;
 }
 
-/* STRUCTURE */
 
 .wrapper {
     display: flex;
@@ -59,9 +55,12 @@ h2 {
     text-align: center;
     -webkit-border-radius: 0 0 10px 10px;
     border-radius: 0 0 10px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-/* TABS */
 
 h2.inactive {
     color: #cccccc;
@@ -72,11 +71,15 @@ h2.active {
     border-bottom: 2px solid #5fbae9;
 }
 
-/* FORM TYPOGRAPHY*/
+
+.text-danger {
+    display: inline-block !important;
+}
 
 input[type="button"],
 input[type="submit"],
-input[type="reset"] {
+input[type="reset"],
+sig-clearBtn {
     background-color: #56baed;
     border: none;
     color: white;
@@ -98,23 +101,25 @@ input[type="reset"] {
     transition: all 0.3s ease-in-out;
 }
 
-    input[type="button"]:hover,
-    input[type="submit"]:hover,
-    input[type="reset"]:hover {
-        background-color: #39ace7;
-    }
+input[type="button"]:hover,
+input[type="submit"]:hover,
+input[type="reset"]:hover {
+    background-color: #39ace7;
+}
 
-    input[type="button"]:active,
-    input[type="submit"]:active,
-    input[type="reset"]:active {
-        -moz-transform: scale(0.95);
-        -webkit-transform: scale(0.95);
-        -o-transform: scale(0.95);
-        -ms-transform: scale(0.95);
-        transform: scale(0.95);
-    }
+input[type="button"]:active,
+input[type="submit"]:active,
+input[type="reset"]:active {
+    -moz-transform: scale(0.95);
+    -webkit-transform: scale(0.95);
+    -o-transform: scale(0.95);
+    -ms-transform: scale(0.95);
+    transform: scale(0.95);
+}
 
-input[type="text"] {
+input[type="text"],
+input[type="email"],
+input[type="password"]{
     background-color: #f6f6f6;
     border: none;
     color: #0d0d0d;
@@ -135,14 +140,18 @@ input[type="text"] {
     border-radius: 5px 5px 5px 5px;
 }
 
-    input[type="text"]:focus {
-        background-color: #fff;
-        border-bottom: 2px solid #5fbae9;
-    }
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus{
+    background-color: #fff;
+    border-bottom: 2px solid #5fbae9;
+}
 
-    input[type="text"]:placeholder {
-        color: #cccccc;
-    }
+input[type="text"]:placeholder,
+input[type="email"]:placeholder,
+input[type="password"]:placeholder{
+    color: #cccccc;
+}
 
 /* ANIMATIONS */
 
@@ -265,7 +274,7 @@ input[type="text"] {
 }
 
 .underlineHover:hover {
-    color: #0d0d0d;
+    color: #0d0d0d !important;
 }
 
     .underlineHover:hover:after {
@@ -304,4 +313,76 @@ i {
     text-align: center;
     height: 100px;
     width: 100px;
+}
+
+.the-submit {
+    border-radius: 0 0 10px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.lable-container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.lable-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Create a custom radio button */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.lable-container:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.lable-container input:checked ~ .checkmark {
+    background-color: #2196F3;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.lable-container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.lable-container .checkmark:after {
+    top: 9px;
+    left: 9px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: white;
 }

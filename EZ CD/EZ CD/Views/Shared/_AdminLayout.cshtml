@@ -1,17 +1,15 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors" />
     <meta name="generator" content="Jekyll v4.1.1" />
-    <title>Dashboard Template · Bootstrap</title>
+    <title>EZ CD Admin Dashboard</title>
 
-    <!-- <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/dashboard/"> -->
-    <!-- Bootstrap core CSS -->
-    <!-- <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet"> -->
 
     <style>
     .bd-placeholder-img {
@@ -22,25 +20,16 @@
       -ms-user-select: none;
       user-select: none;
     }
+    #nav-buttons{
+        flex-direction: row !important;
+    }
 
-    @*@media (min-width: 768px) {
-      .bd-placeholder-img-lg {
-        font-size: 3.5rem;
-      }
-    }*@
+    #nav-buttons > li{
+        margin: 10px!important;
+    }
+  
+    
     </style>
-    <!-- Custom styles for this template -->
-    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-          integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-          crossorigin="anonymous"></script>
-
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
-          integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
-          crossorigin="anonymous"></script>
-
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
-          integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
-          crossorigin="anonymous"></script> -->
     <link type="text/css" rel="stylesheet" href="~/css/AdminPanel/Layout/layout.css" />
     <link href="https://fonts.googleapis.com/css?family=Slabo+27px&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -51,18 +40,22 @@
     <!-- Website Header -->
     <header>
         <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-            <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" style="display: flex; align-items: center;" href="#">
+            <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" style="display: flex; align-items: center;" href="/AdminDashboard">
                 EZ CD
                 Dashboard
             </a>
-            <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse"
-                    data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <ul class="navbar-nav px-3">
+            
+            <ul id="nav-buttons"class="navbar-nav">
                 <li class="nav-item text-nowrap">
-                    <a class="nav-link" href="#">Sign out</a>
+                    <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
+
                 </li>
+                <li class="nav-item text-nowrap">
+                    <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                        <button id="logout" type="submit" class="nav-link btn btn-link">Logout</button>
+                    </form>
+                </li>
+
             </ul>
         </nav>
     </header>
@@ -73,41 +66,47 @@
                 <div class="sidebar-sticky pt-3">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="/admindashboard" id="admindashboard">
                                 <span data-feather="home"></span>
                                 Dashboard
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/sales">
+                            <a class="nav-link" href="/sales" id="sales">
                                 <span data-feather="shopping-cart"></span>
-                                sales
+                                Sales
+                            </a>
+                        </li>
+                        <!--<li class="nav-item">
+                            <a class="nav-link" href="/saleDetailes" id="saledetailes">
+                                <span data-feather="shopping-cart"></span>
+                                Sale Detailes
+                            </a>
+                        </li>-->
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Artists" id="artists">
+                                <span data-feather="user"></span>
+                                Artists
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/saleDetailes">
-                                <span data-feather="shopping-cart"></span>
-                                sale detailes
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/disks">
+                            <a class="nav-link" href="/disks" id="disks">
                                 <span data-feather="disc"></span>
-                                disks
+                                Disks
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="/customers">
-                                <span data-feather="users"></span>
-                                Customers <span class="sr-only">(current)</span>
-                            </a>
-                        </li>
+                        <!--<li class="nav-item">
+        <a class="nav-link" href="/customers" id="customers">
+            <span data-feather="users"></span>
+            Customers
+        </a>
+    </li>-->
 
                     </ul>
                 </div>
             </nav>
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-                        @RenderBody()      
+                @RenderBody()
             </main>
         </div>
     </div>
@@ -123,6 +122,7 @@
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
     <script src="~/js/AdminPanel/Layout/layout.js"></script>
+    @RenderSection("Scripts", required: false)
 </body>
 
 </html>

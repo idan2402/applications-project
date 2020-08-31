@@ -5,10 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - EZ_CD</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/navbar.css" />
+    <link rel="stylesheet" href="~/css/layout.css" />
+
     <style>
         .logo-image {
             object-fit: contain;
+        }
+
+        .footer-text {
+            margin-top: 200px;
         }
     </style>
 
@@ -16,7 +21,7 @@
 <body>
     <header>
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <a class="navbar-brand" asp-controller="Home" asp-action="Index">
                 <img src="~/img/logo.png" width="30" height="30" class="logo-image d-inline-block align-top" alt="">
                 EZ CD
@@ -28,19 +33,10 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" asp-controller="Home" asp-action="Index">Home<span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">News</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a asp-controller="Login" asp-action="Index" class="nav-link">Log In</a>
-                    </li>
+                    <partial name="_LoginPartial.cshtml" />
                 </ul>
-                <form method="get" action="/disks/search" id="filters-form" name="filters-form" onsubmit="return validateFiltersForm()">
-                    <div class="dropdown cat-dropdown search-element">
+                <form method="get" action="/home/search" id="filters-form" name="filters-form" onsubmit="return validateFiltersForm()">
+                    <div class="dropdown cat-dropdown search-element" id="filters-dropdown">
                         <button class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" type="button" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false">
                             Filters
                         </button>
@@ -85,17 +81,27 @@
                                     <input type="text" id="maxPrice" name="maxPrice" max="4" maxlength="4" size="6">
                                 </li>
                             </ul>
+                            <a class="dropdown-item Artist" href="#">Artist</a>
+                            <ul class="submenu Artists dropdown-menu">
+                                <li class="dropdown-item">
+                                    Name:
+                                    <input type="text" id="artistText" name="artist" size="6">
+                                </li>
+                            </ul>
                         </div>
 
                     </div>
-                    <input class="form-control mr-sm-2 search-element" name="diskName" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0 search-element" type="submit">Search</button>
+                    <input class="form-control mr-sm-2 search-element" name="diskName" id="search-textbox" type="search" placeholder="Album Name" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0 search-element" id="search-btn" type="submit">Search</button>
                 </form>
             </div>
         </nav>
     </header>
 
     @RenderBody()
+
+
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
@@ -103,4 +109,14 @@
     <script src="~/js/navbar.js"></script>
     @RenderSection("Scripts", required: false)
 </body>
+
+
 </html>
+
+<footer class="footer bg-dark">
+    <div class="footer-text">
+        <a asp-action="Contact" style="margin-right:120px; color:white">Contact</a>
+        <a asp-action="About" style="color:white;">About Us</a>
+        <a asp-action="QnA" style="margin-left:120px;color:white">Q&A</a>
+    </div>
+</footer>
