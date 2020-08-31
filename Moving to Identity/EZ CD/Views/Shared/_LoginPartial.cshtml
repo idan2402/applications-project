@@ -17,9 +17,12 @@
         <li class="nav-item active">
             <a class="nav-link" asp-controller="Home" asp-action="Index">Home<span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">News</a>
-        </li>
+        @if (await UserManager.IsInRoleAsync(user, "Admins")) {
+            <li class="nav-item">
+                <a class="nav-link" asp-controller="AdminDashboard" asp-action="Index">Admin Dashboard</a>
+            </li>
+        }
+        
         <li class="nav-item">
             <a class="nav-link" asp-controller="Home" asp-action="Cart">Cart (@HttpContextAccessor.HttpContext.Session.GetInt32("cartSize"))</a>
         </li>
