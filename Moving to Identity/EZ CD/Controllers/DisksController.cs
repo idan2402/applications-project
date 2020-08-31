@@ -35,6 +35,8 @@ namespace EZ_CD.Controllers
         // GET: Disks/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            ViewBag.songs = _context.Song.Where(s => s.Disk.diskId == id);
+
             if (id == null)
             {
                 return NotFound();
