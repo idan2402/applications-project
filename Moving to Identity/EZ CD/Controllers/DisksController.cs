@@ -234,28 +234,14 @@ namespace EZ_CD.Controllers
                 Artist = item.Artist.name,
                 item.name,
                 item.imagePath,
-                item.date,
+                date = item.date.ToShortDateString(),
                 item.genre,
-                item.dateAdded,
+                dateAdded = item.dateAdded.ToShortDateString(),
                 item.featuredVideoUrl,
                 item.diskId,
                 item.price
             }).ToList();
 
-
-            /*foreach (var item in list)
-                finalList.Append(new
-                {
-                    ArtistId = item.Artist.artistId,
-                    Artist = item.Artist.name,
-                    item.name,
-                    item.imagePath,
-                    item.date,
-                    item.genre,
-                    item.dateAdded,
-                    item.featuredVideoUrl,
-                    item.diskId
-                });*/
             return Json(finalList);
         }
     }

@@ -60,7 +60,6 @@ $tableID.on('click', '.table-down', function () {
     setData();
 });
 
-// A few jQuery helpers for exporting only
 jQuery.fn.pop = [].pop;
 jQuery.fn.shift = [].shift;
 
@@ -69,7 +68,7 @@ function setData() {
     const headers = [];
     const data = [];
 
-    // Get the headers (add special header logic here)
+    // Get the headers
     $($rows.shift()).find('th:not(:empty)').each(function () {
         var currentHeader = $(this).text().toLowerCase();
         if (currentHeader != 'remove' && currentHeader != 'sort')
@@ -81,7 +80,6 @@ function setData() {
         const $td = $(this).find('td');
         const h = {};
 
-        // Use the headers from earlier to name our hash keys
         headers.forEach((header, i) => {
 
             h[header] = $td.eq(i).text();

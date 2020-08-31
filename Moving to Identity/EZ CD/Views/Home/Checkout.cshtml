@@ -1,7 +1,6 @@
 ﻿<!DOCTYPE html>
 
 <head>
-    <!-- Add meta tags for mobile and IE -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 </head>
@@ -15,7 +14,6 @@
             env: 'sandbox',
             client: {
                 sandbox: 'AVhrk7Hk-tPr2vkCMj08EUEWrW9KDE31nDKdMuIbczCND3H6EIDG43mW4Byg3vnxW5Z1jmynM1pTS4Y-',
-                //production: 'demo_production_client_id'
             },
             // Customize button (optional)
             locale: 'en_US',
@@ -25,7 +23,6 @@
                 shape: 'pill',
             },
 
-            // Enable Pay Now checkout flow (optional)
             commit: true,
 
             // Set up a payment
@@ -46,7 +43,6 @@
                         },
                         description: 'The payment transaction description.',
                         custom: '90048630024435',
-                        //invoice_number: '12345', Insert a unique invoice number
                         payment_options: {
                             allowed_payment_method: 'INSTANT_FUNDING_SOURCE'
                         },
@@ -86,10 +82,8 @@
                     note_to_payer: 'Contact us for any questions on your order.'
                 });
             },
-            // Execute the payment
             onAuthorize: function (data, actions) {
                 return actions.payment.execute().then(function () {
-                    // Show a confirmation message to the buyer
                     window.alert('Thank you for your purchase!');
                 });
             }

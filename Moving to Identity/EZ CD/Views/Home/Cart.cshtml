@@ -130,13 +130,10 @@
                                     <script src="https://www.paypalobjects.com/api/checkout.js"></script>
                                     <script>
                                         paypal.Button.render({
-                                            // Configure environment
                                             env: 'sandbox',
                                             client: {
                                                 sandbox: 'AVhrk7Hk-tPr2vkCMj08EUEWrW9KDE31nDKdMuIbczCND3H6EIDG43mW4Byg3vnxW5Z1jmynM1pTS4Y-',
-                                                //production: 'demo_production_client_id'
                                             },
-                                            // Customize button (optional)
                                             locale: 'en_US',
                                             style: {
                                                 size: 'responsive',
@@ -145,10 +142,8 @@
                                                 lable: 'paypal',
                                             },
 
-                                            // Enable Pay Now checkout flow (optional)
                                             commit: true,
 
-                                            // Set up a payment
                                             payment: function (data, actions) {
                                                 return actions.payment.create({
                                                     transactions: [{
@@ -157,7 +152,6 @@
                                                             currency: 'USD',
                                                         },
                                                         custom: '90048630024435',
-                                                        //invoice_number: '12345', Insert a unique invoice number
                                                         payment_options: {
                                                             allowed_payment_method: 'INSTANT_FUNDING_SOURCE'
                                                         },
@@ -169,7 +163,6 @@
                                             },
                                             onAuthorize: function (data, actions) {
                                                 return actions.payment.execute().then(function () {
-                                                    // Show a confirmation message to the buyer
                                                     window.location.href = '@Url.Action("Purhcased", "Home")/'
                                                 });
                                             }

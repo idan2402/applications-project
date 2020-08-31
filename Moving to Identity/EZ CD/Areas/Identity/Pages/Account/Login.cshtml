@@ -12,14 +12,11 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link type="text/css" rel="stylesheet" href="~/css/login.css" />
-    <!------ Include the above in your HEAD tag ---------->
 </head>
 
 <body>
     <div class="wrapper fadeInDown">
         <div id="formContent">
-            <!-- Tabs Titles -->
-            <!-- Icon -->
             <div class="fadeIn first" style="padding-top: 5px;">
                 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
                 <div class="circle">
@@ -27,8 +24,6 @@
                 </div>
 
             </div>
-
-
             <!-- Login Form -->
 
             <form method="post" style="padding-top: 5px; padding-bottom: 20px">
@@ -60,11 +55,9 @@
             </form>
             
 
-
             <!-- Remind Passowrd -->
             <div id="formFooter">
                 <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" class="underlineHover">Don't have an account? Sign up</a>
-                <a asp-page="./ForgotPassword" class="underlineHover">Forgot Password?</a>
             </div>
 
         </div>

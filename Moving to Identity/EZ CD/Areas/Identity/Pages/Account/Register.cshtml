@@ -12,7 +12,6 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link type="text/css" rel="stylesheet" href="~/css/login.css" />
-    <!------ Include the above in your HEAD tag ---------->
     <style>
         #sig-canvas {
         border: 2px dotted #CCCCCC;
@@ -25,8 +24,6 @@
 <body>
     <div class="wrapper fadeInDown">
         <div id="formContent">
-            <!-- Tabs Titles -->
-            <!-- Icon -->
             <div class="fadeIn first" style="padding-top: 5px;">
                 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
                 <div class="circle">
@@ -34,8 +31,6 @@
                 </div>
 
             </div>
-
-
             <!-- Login Form -->
 
             <form asp-rout-returnUrl="@Model.ReturnUrl" method="post" style="padding-top: 5px; padding-bottom: 20px" onsubmit="return isCorrect()">

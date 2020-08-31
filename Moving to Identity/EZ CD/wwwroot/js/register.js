@@ -35,7 +35,6 @@
     mousePos = getMousePos(canvas, e);
   }, false);
 
-  // Add touch event support for mobile
   canvas.addEventListener("touchstart", function(e) {
 
   }, false);
@@ -89,7 +88,6 @@
     }
   }
 
-  // Prevent scrolling when touching the canvas
   document.body.addEventListener("touchstart", function(e) {
     if (e.target == canvas) {
       e.preventDefault();
@@ -125,8 +123,6 @@
     sigText.innerHTML = "Data URL for your signature will go here!";
     sigImage.setAttribute("src", "");
   }, false);
-//    submitBtn.addEventListener("click", isCorrect(), false);
-
 })();
 
 function isCorrect() {

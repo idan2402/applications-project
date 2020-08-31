@@ -80,7 +80,7 @@ namespace EZ_CD.Controllers
                 if (genresCounter[firstGenre] == 0) // user didnt purchase anything
                 {
                     ViewBag.personalText = "Our Top Sellers:";
-                    var _tempContext = await _context.SaleItem.Include(s => s.Disk).ToListAsync();
+                    var _tempContext = await _context.SaleItem.Include(s => s.Disk).ThenInclude(d => d.Artist).ToListAsync();
                     Dictionary<Disk, int> mostSoldDisks = new Dictionary<Disk, int>();
                     foreach (var item in _tempContext)
                     {
@@ -110,7 +110,7 @@ namespace EZ_CD.Controllers
 
                 // get most sold disks on the first category
                 Dictionary<Disk, int> mostSaledDisksOfFirstGenre = new Dictionary<Disk, int>();
-                foreach (var item in _context.SaleItem.Include(s => s.Disk).Where(s => s.Disk.genre == firstGenre))
+                foreach (var item in _context.SaleItem.Include(s => s.Disk).ThenInclude(d => d.Artist).Where(s => s.Disk.genre == firstGenre))
                 {
                     if (!mostSaledDisksOfFirstGenre.ContainsKey(item.Disk))
                         mostSaledDisksOfFirstGenre[item.Disk] = 0;
@@ -128,7 +128,7 @@ namespace EZ_CD.Controllers
                 if (secondGenre != "none")
                 {
                     Dictionary<Disk, int> mostSaledDisksOfSecondGenre = new Dictionary<Disk, int>();
-                    foreach (var item in _context.SaleItem.Include(s => s.Disk).Where(s => s.Disk.genre == secondGenre))
+                    foreach (var item in _context.SaleItem.Include(s => s.Disk).ThenInclude(d => d.Artist).Where(s => s.Disk.genre == secondGenre))
                     {
                         if (!mostSaledDisksOfSecondGenre.ContainsKey(item.Disk))
                             mostSaledDisksOfSecondGenre[item.Disk] = 0;
@@ -152,7 +152,7 @@ namespace EZ_CD.Controllers
             }
             else {
                 ViewBag.personalText = "Our Top Sellers:";
-                var _tempContext = await _context.SaleItem.Include(s => s.Disk).ToListAsync();
+                var _tempContext = await _context.SaleItem.Include(s => s.Disk).ThenInclude(d => d.Artist).ToListAsync();
                 Dictionary<Disk, int> mostSoldDisks = new Dictionary<Disk, int>();
                 foreach (var item in _tempContext)
                 {
