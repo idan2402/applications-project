@@ -12,6 +12,7 @@ using System.Web;
 using Microsoft.VisualBasic;
 using EZ_CD.Models;
 using Microsoft.AspNetCore.Identity.UI.V3.Pages.Account.Manage.Internal;
+using System.Data.SqlTypes;
 
 namespace EZ_CD.Controllers
 {
@@ -49,6 +50,17 @@ namespace EZ_CD.Controllers
             }
             ViewBag.data = data;
             ViewBag.generes = generes.ToArray();
+
+            List<Dictionary<String, String>> tmp = new List<Dictionary<String, String>>();
+
+            var sales = _context.Sale.GroupBy(s => s.date.Date).Select(g => new
+            {
+                date = g.Key.ToShortDateString(),
+                count = g.Count()
+            });
+
+            ViewBag.sales = sales;
+
             return View();
         }
 
