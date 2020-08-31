@@ -160,10 +160,14 @@ namespace EZ_CD.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var disks = _context.Disk.Where(d => d.Artist.artistId == id);
-            foreach (var disk in disks)
+            int numberOfSales = _context.SaleItem.Where(s => s.Disk.Artist.artistId == id).Count();
+            if(numberOfSales != 0)
             {
-                _context.Remove(disk);
+                var disks = _context.Disk.Where(d => d.Artist.artistId == id);
+                foreach (var disk in disks)
+                {
+                    _context.Remove(disk);
+                }
             }
             var artist = await _context.Artist.FindAsync(id);
             _context.Artist.Remove(artist);
