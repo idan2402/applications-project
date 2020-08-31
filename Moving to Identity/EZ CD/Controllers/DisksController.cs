@@ -10,6 +10,8 @@ using EZ_CD.Utilities;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RestSharp;
+using System.Collections.Generic;
+using System;
 
 namespace EZ_CD.Controllers
 {
@@ -26,7 +28,7 @@ namespace EZ_CD.Controllers
         // GET: Disks
         public async Task<IActionResult> Index()
         {
-           var tempContext = _context.Disk.Include(d => d.Artist);
+            var tempContext = _context.Disk.Include(d => d.Artist);
             return View(await tempContext.ToListAsync());
         }
 
@@ -48,7 +50,7 @@ namespace EZ_CD.Controllers
             return View(disk);
         }
 
-       
+
 
         // GET: Disks/Create
         public IActionResult Create()
@@ -69,11 +71,11 @@ namespace EZ_CD.Controllers
             {
                 dynamic array = JsonConvert.DeserializeObject(songsJSON);
                 if (((JArray)array).Count == 0)
-                { 
+                {
                     ViewBag.Error = "You must enter at least one song";
                     return View("Error");
                 }
-                    
+
                 foreach (var song in array)
                 {
                     Song temp = new Song();
@@ -117,9 +119,9 @@ namespace EZ_CD.Controllers
             {
                 return NotFound();
             }
-           await _context.Disk
-                .Include(d => d.Artist)
-                .FirstOrDefaultAsync(m => m.diskId == id);
+            await _context.Disk
+                 .Include(d => d.Artist)
+                 .FirstOrDefaultAsync(m => m.diskId == id);
             ViewData["Artists"] = new SelectList(_context.Artist, "artistId", "name", disk.Artist.artistId);
             ViewBag.Countries = new SelectList(Countries.countries, disk.Artist.country);
             ViewBag.Songs = _context.Song.Where(song => song.Disk.diskId == id);
@@ -149,14 +151,15 @@ namespace EZ_CD.Controllers
                     foreach (var s in songs)
                         _context.Song.Remove(s);
                     dynamic array = JsonConvert.DeserializeObject(songsJSON);
-                    foreach (var song in array){
+                    foreach (var song in array)
+                    {
                         Song temp = new Song();
                         temp.name = song.name;
                         temp.length = song.length;
                         temp.Disk = disk;
                         _context.Song.Add(temp);
                     }
-                    
+
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -211,6 +214,49 @@ namespace EZ_CD.Controllers
         private bool DiskExists(int id)
         {
             return _context.Disk.Any(e => e.diskId == id);
+        }
+
+        // GET: Disks/Delete/5
+        public async Task<IActionResult> Search(string filter, string state)
+        {
+            if (String.IsNullOrEmpty(filter))
+                filter = "";
+            IEnumerable<Disk> list = new List<Disk>();
+            list = await _context.Disk.Include(d => d.Artist).ToListAsync();
+            if (state == "artist")
+                list = list.Where(d => d.Artist.name.Contains(filter, StringComparison.OrdinalIgnoreCase));
+            else
+                list = list.Where(d => d.name.Contains(filter, StringComparison.OrdinalIgnoreCase));
+            IEnumerable<object> finalList = new List<object>();
+            finalList = list.Select(item => new
+            {
+                ArtistId = item.Artist.artistId,
+                Artist = item.Artist.name,
+                item.name,
+                item.imagePath,
+                item.date,
+                item.genre,
+                item.dateAdded,
+                item.featuredVideoUrl,
+                item.diskId,
+                item.price
+            }).ToList();
+
+
+            /*foreach (var item in list)
+                finalList.Append(new
+                {
+                    ArtistId = item.Artist.artistId,
+                    Artist = item.Artist.name,
+                    item.name,
+                    item.imagePath,
+                    item.date,
+                    item.genre,
+                    item.dateAdded,
+                    item.featuredVideoUrl,
+                    item.diskId
+                });*/
+            return Json(finalList);
         }
     }
 }

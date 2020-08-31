@@ -121,6 +121,23 @@ namespace EZ_CD.Controllers
             return View(artist);
         }
 
+        public async Task<IActionResult> Search(string filter)
+        {
+            if (String.IsNullOrEmpty(filter))
+                filter = "";
+            var temp = _context.Artist.ToList().Where(a => a.name.Contains(filter, StringComparison.OrdinalIgnoreCase));
+            var finalList = temp.Select(item => new
+            {
+                item.name,
+                item.genre,
+                birthday = item.birthday.ToShortDateString(),
+                item.country,
+                item.artistId
+            }).ToList();
+            return Json(finalList);
+        }
+
+
         // GET: Artists/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {

@@ -10,7 +10,14 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
+
+<form asp-action="Search" id="search-form">
+    <input type="text" name="filter" id="filter" placeholder="Search" />
+    <label><input id="name" type="radio" name="state" value="name" checked="checked"/> By Name</label>
+    <label><input id="artist" type="radio" name="state" value="artist"/> By Artist</label>
+</form>
+
+<table class="table" style="margin-top:10px">
     <thead>
         <tr>
             <th>
@@ -41,39 +48,82 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a asp-controller="artists" asp-action="details" asp-route-id="@item.Artist.artistId">
+                        @Html.DisplayFor(modelItem => item.Artist.name)
+                    </a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.name)
+                </td>
+                <td>
+                    <a href="@item.imagePath"><img src="@item.imagePath" height="35" width="35" /></a>
+                <td>
+                    @Html.DisplayFor(modelItem => item.price)$
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.genre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.dateAdded)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.featuredVideoUrl)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.diskId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.diskId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.diskId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts{
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
+    <script src="~/js/AdminPanel/Search.js"></script>
+    <script id="results" type="text/html">
         <tr>
             <td>
-                <a asp-controller="artists" asp-action="details" asp-route-id="@item.Artist.artistId">
-                    @Html.DisplayFor(modelItem => item.Artist.name)
+                <a href="artists/details/${artistId}">
+                    ${artist}
                 </a>
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.name)
+                ${name}
             </td>
             <td>
-                <a href="@item.imagePath"><img src="@item.imagePath" height="35" width="35" /></a>
+                <a href="${imagePath}"><img src="${imagePath}" height="35" width="35" /></a>
             <td>
-                @Html.DisplayFor(modelItem => item.price)$
+                ${price}$
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.date)
+                ${date}
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.genre)
+                ${genre}
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.dateAdded)
+                ${dateAdded}
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.featuredVideoUrl)
+                ${featuredVideoUrl}
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.diskId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.diskId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.diskId">Delete</a>
+                <a href="/edit/${diskId}">Edit</a> |
+                <a href="/details/${diskId}">Details</a> |
+                <a href="/delete/${diskId}">Delete</a>
             </td>
         </tr>
+    </script>
+
 }
-    </tbody>
-</table>
