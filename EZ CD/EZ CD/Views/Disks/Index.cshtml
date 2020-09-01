@@ -13,8 +13,10 @@
 
 <form asp-action="Search" id="search-form">
     <input type="text" name="filter" id="filter" placeholder="Search" />
-    <label><input id="name" type="radio" name="state" value="name" checked="checked"/> By Name</label>
-    <label><input id="artist" type="radio" name="state" value="artist"/> By Artist</label>
+    <label><input id="name" type="radio" name="state" value="name" checked="checked" /> By Name</label>
+    <label style="padding-left:10px"><input id="artist" type="radio" name="state" value="artist" /> By Artist</label>
+    <input type="text" name="minprice" id="minprice" placeholder="Minimum Price $" style="margin-left:10px"   />
+    <input type="text" name="maxprice" id="maxprice" placeholder="Maximum Price $" />
 </form>
 
 <table class="table" style="margin-top:10px">
@@ -119,8 +121,7 @@
             </td>
             <td>
                 <a href="/edit/${diskId}">Edit</a> |
-                <a href="/details/${diskId}">Details</a> |
-                <a href="/delete/${diskId}">Delete</a>
+                <a href="/details/${diskId}">Details</a>
             </td>
         </tr>
     </script>

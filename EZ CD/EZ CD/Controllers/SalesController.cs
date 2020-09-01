@@ -52,7 +52,7 @@ namespace EZ_CD.Controllers
             {
                 return NotFound();
             }
-            
+
             ViewBag.Disks = await _context.SaleItem.Include(s => s.Disk).Include(s => s.Sale).Where(s => s.Sale.saleId == id).ToListAsync();
             return View(sale);
         }
@@ -62,6 +62,23 @@ namespace EZ_CD.Controllers
         {
             ViewData["CustomerId"] = new SelectList(_context.Users, "customerId", "customerId");
             return View();
+        }
+
+        public async Task<IActionResult> Search(string filter)
+        {
+            if (String.IsNullOrEmpty(filter))
+                filter = "";
+            var temp1 = _context.Sale.Include(s => s.User);
+            var temp = temp1.Where(s => s.User.UserName.Contains(filter));
+            var finalList = temp.Select(item => new
+            {
+                item.User.UserName,
+                ordertotal = _context.SaleItem.Include(s => s.Disk).Include(s => s.Sale).Where(s => s.Sale.saleId == item.saleId).Select(si => si.Disk.price).Sum(),
+                date = item.date.ToShortDateString(),
+                item.saleId
+            })
+            .ToList();
+            return Json(finalList);
         }
 
         // POST: Sales/Create

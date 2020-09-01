@@ -7,7 +7,10 @@
 
 <h1>Sales</h1>
 
-<table class="table">
+<form asp-action="Search" id="search-form">
+    <input type="text" name="filter" id="filter" placeholder="Search Username" />
+</form>
+<table class="table" style="margin-top:10px">
     <thead>
         <tr>
             <th>
@@ -25,20 +28,43 @@
     <tbody>
         @foreach (var item in Model)
         {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.User.UserName)
-            </td>
-            <td>
-                @(ViewData[item.saleId.ToString()])$
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.date)
-            </td>
-            <td>
-                <a asp-action="Details" asp-route-id="@item.saleId">Details</a>
-            </td>
-        </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.UserName)
+                </td>
+                <td>
+                    @(ViewData[item.saleId.ToString()])$
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.date)
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.saleId">Details</a>
+                </td>
+            </tr>
         }
     </tbody>
 </table>
+
+
+@section Scripts{
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
+    <script src="~/js/AdminPanel/Search.js"></script>
+    <script id="results" type="text/html">
+        <tr>
+            <td>
+                ${userName}
+            </td>
+            <td>
+                ${ordertotal}$
+            </td>
+            <td>
+                ${date}
+            <td>
+                <a href="/sales/details/${saleId}">Details</a>
+            </td>
+        </tr>
+    </script>
+}

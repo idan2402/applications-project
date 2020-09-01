@@ -121,7 +121,7 @@ namespace EZ_CD.Controllers
             return View(artist);
         }
 
-        public async Task<IActionResult> Search(string filter)
+        public IActionResult Search(string filter)
         {
             if (String.IsNullOrEmpty(filter))
                 filter = "";

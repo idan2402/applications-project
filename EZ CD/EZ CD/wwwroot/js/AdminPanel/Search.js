@@ -6,6 +6,14 @@
         refresh();
     });
 
+    $('#minprice').keyup(function () {
+        refresh();
+    });
+
+    $('#maxprice').keyup(function () {
+        refresh();
+    });
+
     $(window).keydown(function (event) {
         if (event.keyCode == 13) {
             event.preventDefault();

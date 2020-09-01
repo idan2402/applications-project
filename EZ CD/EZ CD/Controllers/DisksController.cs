@@ -219,16 +219,22 @@ namespace EZ_CD.Controllers
         }
 
         // GET: Disks/Delete/5
-        public async Task<IActionResult> Search(string filter, string state)
+        public async Task<IActionResult> Search(string filter, string state,string minprice, string maxprice)
         {
             if (String.IsNullOrEmpty(filter))
                 filter = "";
+
             IEnumerable<Disk> list = new List<Disk>();
             list = await _context.Disk.Include(d => d.Artist).ToListAsync();
             if (state == "artist")
                 list = list.Where(d => d.Artist.name.Contains(filter, StringComparison.OrdinalIgnoreCase));
             else
                 list = list.Where(d => d.name.Contains(filter, StringComparison.OrdinalIgnoreCase));
+            if (!string.IsNullOrEmpty(minprice) && isDigits(minprice))
+                list = list.Where(d => d.price >= double.Parse(minprice));
+            if (!string.IsNullOrEmpty(maxprice) && isDigits(maxprice))
+                list = list.Where(d => d.price <= double.Parse(maxprice));
+
             IEnumerable<object> finalList = new List<object>();
             finalList = list.Select(item => new
             {
@@ -245,6 +251,14 @@ namespace EZ_CD.Controllers
             }).ToList();
 
             return Json(finalList);
+        }
+        private bool isDigits(string str)
+        {
+            char[] digitsArr = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.' };
+            foreach (char c in str)
+                if (!digitsArr.Contains(c))
+                    return false;
+            return true;
         }
     }
 }
