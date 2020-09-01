@@ -177,7 +177,7 @@ namespace EZ_CD.Controllers
         {
             var _tempContext2 = _context.Disk.Include(d => d.Artist).Where(d => !list.Contains(d)).ToList();
             int count = list.Count();
-            for (int i = 0; i < Math.Min(9 - count, _context.Disk.Count()); i++)
+            for (int i = 0; i < Math.Min(9 - count, _tempContext2.Count()); i++)
                 list.Add(_tempContext2.ElementAt(i));
 
             return list;
